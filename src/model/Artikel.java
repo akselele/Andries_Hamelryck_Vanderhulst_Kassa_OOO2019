@@ -64,8 +64,12 @@ public class Artikel {
         return prijs;
     }
 
+    public int getVoorraad() {
+        return voorraad;
+    }
+
     @Override
     public String toString() {
-        return code + " - " + " - " + omschrijving + " - " + prijs + " - " + artikelgroep + " - voorraad: " + voorraad;
+        return code + " - " + omschrijving + " - $" + prijs + " - " + artikelgroep + " - voorraad: " + voorraad;
     }
 }
