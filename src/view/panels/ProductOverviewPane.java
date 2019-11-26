@@ -30,6 +30,8 @@ public class ProductOverviewPane extends GridPane {
 		table.setEditable(false);
 		table.setItems(artikelDbInMemory.getAll());
 
+
+		//Kolommen toevoegen + alle artikels inladen
 		TableColumn<Artikel, String> codeColumn = new TableColumn<Artikel,String>("Code");
 		codeColumn.setMinWidth(100);
 		codeColumn.setCellValueFactory(new PropertyValueFactory<Artikel,String>("Code"));

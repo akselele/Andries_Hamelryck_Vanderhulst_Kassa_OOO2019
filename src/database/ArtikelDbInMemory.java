@@ -25,21 +25,27 @@ public class ArtikelDbInMemory {
         return artikels.get(code);
     }
 
+
+    //ObservableList returnen is nodig om het in een tableview te kunnen weergeven
     public ObservableList<Artikel> getAll(){
         data.sort(Comparator.comparing(Artikel::getOmschrijving));
         return data;
     }
 
+    //Niet nodig maar is handig voor debugging
     public Map<String,Artikel> getArtikels(){
         return artikels;
     }
 
+    //Alles van de load van de lees klasse toevoegen aan de hashMap
     public void load() throws DomainException {
         for(Artikel artikel: artikelTekstLoadSave.load()){
             add(artikel);
         }
     }
 
+
+    //toevoegen aan de hashmap
     public void add(Artikel artikel){
         if(artikel == null){
             throw new IllegalArgumentException("Artikel mag niet leeg zijn");
@@ -47,12 +53,17 @@ public class ArtikelDbInMemory {
         artikels.put(artikel.getCode(),artikel);
     }
 
+
+    //hashmap returnen om te zien of het werkt
     public void toStringTest(){
         artikels.entrySet().forEach(entry->{
             System.out.println(entry.getValue());
         });
     }
 
+
+    //Het saven van eventueel gewijzigde artikels, wat nog niet gebruikt wordt.
+    //Het werkt wel als men het test via een ander uitvoerbestand
     public void save() throws DomainException{
         artikelTekstLoadSave.save(new ArrayList<Artikel>(artikels.values()));
     }

@@ -7,6 +7,8 @@ public class Artikel {
     private double prijs;
     private int voorraad;
 
+    //Dit is een basis artikel klasse met getters en setters met wat constraints.
+
     public Artikel(){
 
     }

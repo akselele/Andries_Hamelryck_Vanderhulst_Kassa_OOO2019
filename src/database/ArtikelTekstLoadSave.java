@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
 
+    //load in een arraylist om te returnen naar db klasse
     public List<Artikel> load() throws DomainException {
         ArrayList<Artikel> artikels = new ArrayList<>();
         File artikelbestand = new File("src/bestanden/ArtikelText.txt");
@@ -37,6 +38,9 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate{
         return artikels;
     }
 
+
+    //Het saven in het HUIDIG bestand dat men ook gebruikt om te lezen.
+    //Indien we deze methode willen testen kunnen we gewoon de naam van het uitvoerbestand veranderen.
     public void save(List<Artikel> artikels) throws DomainException{
         File artikelbestand = new File("src/bestanden/ArtikelText.txt");
 
