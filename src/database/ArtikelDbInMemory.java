@@ -1,19 +1,21 @@
 package database;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Artikel;
 import model.DomainException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ArtikelDbInMemory {
     private Map<String, Artikel> artikels = new HashMap<>();
     ArtikelTekstLoadSave artikelTekstLoadSave = new ArtikelTekstLoadSave();
+    private ObservableList<Artikel> data;
 
-    public ArtikelDbInMemory(){
-        Artikel a1 = new Artikel("1", "DVD Frozen 2", "DVD", 9.99, 5);
+    public ArtikelDbInMemory() throws DomainException{
+        load();
+        data = FXCollections.observableArrayList(new ArrayList<Artikel>());
+        data.addAll(artikels.values());
     }
 
     public Artikel get(String code){
@@ -23,8 +25,13 @@ public class ArtikelDbInMemory {
         return artikels.get(code);
     }
 
-    public List<Artikel> getAll(){
-        return new ArrayList<Artikel>(artikels.values());
+    public ObservableList<Artikel> getAll(){
+        data.sort(Comparator.comparing(Artikel::getOmschrijving));
+        return data;
+    }
+
+    public Map<String,Artikel> getArtikels(){
+        return artikels;
     }
 
     public void load() throws DomainException {

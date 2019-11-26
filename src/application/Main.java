@@ -13,9 +13,7 @@ public class Main extends Application {
 		KassaView kassaView = new KassaView();
 		KlantView klantView = new KlantView();
 
-		ArtikelDbInMemory artikelDbInMemory = new ArtikelDbInMemory();
-		artikelDbInMemory.load();
-		artikelDbInMemory.save();
+
 	}
 	
 	public static void main(String[] args) {
