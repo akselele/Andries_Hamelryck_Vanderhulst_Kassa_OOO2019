@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7099bf78-b19e-4465-9ee7-ec641e6cf6d9" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database/ArtikelDbContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database/ArtikelDbSQL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database/ArtikelDbStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database/LoadSaveStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/ArtikelDbInMemory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/ArtikelDbInMemory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/ArtikelTekstLoadSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/ArtikelTekstLoadSave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/TekstLoadSaveTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/TekstLoadSaveTemplate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/panels/ProductOverviewPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/panels/ProductOverviewPane.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +17,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -34,21 +24,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1U9Bbh9DyO5KjDeiZVn3bN9Vwy7" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1615" />
+    <option name="height" value="880" />
+  </component>
+  <component name="ProjectId" id="1UFCBIKd0iDDsRSI5We4orHB2Cw" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574691310679" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../i3/OOP/printTest" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../oef1/Labo6" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -56,15 +47,12 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
-    <key name="ExtractSuperBase.RECENT_KEYS">
-      <recent name="database" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\axlut\Desktop\TI3\Andries_Hamelryck_Vanderhulst_Kassa_OOO2019\src\application" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\axlut\Desktop\TI3\Andries_Hamelryck_Vanderhulst_Kassa_OOO2019\src\view\panels" />
       <recent name="C:\Users\axlut\Desktop\TI3\Andries_Hamelryck_Vanderhulst_Kassa_OOO2019\src\view" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\axlut\Desktop\TI3\Andries_Hamelryck_Vanderhulst_Kassa_OOO2019\src\application" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -112,10 +100,16 @@
       <workItem from="1574348915894" duration="1159000" />
       <workItem from="1574429143311" duration="57000" />
       <workItem from="1574689858471" duration="1316000" />
-      <workItem from="1574759005546" duration="173000" />
-      <workItem from="1574786010452" duration="558000" />
-      <workItem from="1574940498462" duration="3267000" />
+      <workItem from="1574942820300" duration="2502000" />
     </task>
+    <task id="LOCAL-00001" summary="story 1: changed 1O to 10">
+      <created>1574943989402</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1574943989402</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,13 +120,15 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="story 1: changed 1O to 10" />
+    <option name="LAST_COMMIT_MESSAGE" value="story 1: changed 1O to 10" />
   </component>
   <component name="masterDetails">
     <states>
