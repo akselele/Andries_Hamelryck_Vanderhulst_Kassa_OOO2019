@@ -1,4 +1,4 @@
-package database;
+package excel;
 
 public class ExcelAdapter {
 }
