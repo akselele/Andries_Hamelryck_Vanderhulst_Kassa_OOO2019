@@ -27,6 +27,7 @@ public class ProductOverviewPane extends GridPane {
         this.setVgap(5);
         this.setHgap(5);
 		this.add(new Label("Products:"), 0, 0, 1, 1);
+
 		table.setEditable(false);
 		table.setItems(artikelDbInMemory.getAll());
 

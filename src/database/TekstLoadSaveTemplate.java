@@ -1,12 +1,13 @@
 package database;
 
 import model.Artikel;
-import model.DomainException;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
-public abstract class TekstLoadSaveTemplate {
+public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {
 
-    abstract List<Artikel> load() throws DomainException;
-    abstract void save(List<Artikel> artikels) throws DomainException;
+    public abstract List<Artikel> load() throws FileNotFoundException;
+    public abstract void save(List<Artikel> artikels) throws IOException;
 }

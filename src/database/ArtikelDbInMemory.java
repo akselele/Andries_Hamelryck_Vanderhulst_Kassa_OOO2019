@@ -7,7 +7,7 @@ import model.DomainException;
 
 import java.util.*;
 
-public class ArtikelDbInMemory {
+public class ArtikelDbInMemory implements ArtikelDbStrategy {
     private Map<String, Artikel> artikels = new HashMap<>();
     ArtikelTekstLoadSave artikelTekstLoadSave = new ArtikelTekstLoadSave();
     private ObservableList<Artikel> data;
@@ -18,6 +18,7 @@ public class ArtikelDbInMemory {
         data.addAll(artikels.values());
     }
 
+    @Override
     public Artikel get(String code){
         if(code == null){
             throw new IllegalArgumentException("No code given");
@@ -27,17 +28,20 @@ public class ArtikelDbInMemory {
 
 
     //ObservableList returnen is nodig om het in een tableview te kunnen weergeven
+    @Override
     public ObservableList<Artikel> getAll(){
         data.sort(Comparator.comparing(Artikel::getOmschrijving));
         return data;
     }
 
-    //Niet nodig maar is handig voor debugging
+    //Niet nodig maar is handig voor debugging; returnt de hashMap
+    @Override
     public Map<String,Artikel> getArtikels(){
         return artikels;
     }
 
     //Alles van de load van de lees klasse toevoegen aan de hashMap
+    @Override
     public void load() throws DomainException {
         for(Artikel artikel: artikelTekstLoadSave.load()){
             add(artikel);
@@ -46,6 +50,7 @@ public class ArtikelDbInMemory {
 
 
     //toevoegen aan de hashmap
+    @Override
     public void add(Artikel artikel){
         if(artikel == null){
             throw new IllegalArgumentException("Artikel mag niet leeg zijn");
@@ -64,6 +69,7 @@ public class ArtikelDbInMemory {
 
     //Het saven van eventueel gewijzigde artikels, wat nog niet gebruikt wordt.
     //Het werkt wel als men het test via een ander uitvoerbestand
+    @Override
     public void save() throws DomainException{
         artikelTekstLoadSave.save(new ArrayList<Artikel>(artikels.values()));
     }
