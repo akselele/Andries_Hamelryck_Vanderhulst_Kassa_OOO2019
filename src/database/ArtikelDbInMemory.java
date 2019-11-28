@@ -7,6 +7,10 @@ import model.DomainException;
 
 import java.util.*;
 
+/**
+ @Author Axel Hamelryck
+ **/
+
 public class ArtikelDbInMemory implements ArtikelDbStrategy {
     private Map<String, Artikel> artikels = new HashMap<>();
     ArtikelTekstLoadSave artikelTekstLoadSave = new ArtikelTekstLoadSave();

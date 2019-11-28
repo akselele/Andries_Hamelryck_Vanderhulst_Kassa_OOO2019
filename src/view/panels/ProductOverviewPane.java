@@ -1,5 +1,6 @@
 package view.panels;
 
+import database.ArtikelDbContext;
 import database.ArtikelDbInMemory;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -16,20 +17,24 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Artikel;
 
+/**
+ @Author Axel Hamelryck
+ **/
+
 
 public class ProductOverviewPane extends GridPane {
 	private TableView<Artikel> table = new TableView<>();
-	private ArtikelDbInMemory artikelDbInMemory;
+	private ArtikelDbContext artikelDbContext;
 
-	public ProductOverviewPane(ArtikelDbInMemory artikelDbInMemory) {
-		this.artikelDbInMemory = artikelDbInMemory;
+	public ProductOverviewPane(ArtikelDbContext artikelDbContext) {
+		this.artikelDbContext = artikelDbContext;
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
 		this.add(new Label("Products:"), 0, 0, 1, 1);
 
 		table.setEditable(false);
-		table.setItems(artikelDbInMemory.getAll());
+		table.setItems(artikelDbContext.getAll());
 
 
 		//Kolommen toevoegen + alle artikels inladen

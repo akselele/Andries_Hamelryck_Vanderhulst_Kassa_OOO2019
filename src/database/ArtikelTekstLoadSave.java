@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ @Author Axel Hamelryck
+ **/
+
 public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate implements LoadSaveStrategy{
 
     //load in een arraylist om te returnen naar db klasse
