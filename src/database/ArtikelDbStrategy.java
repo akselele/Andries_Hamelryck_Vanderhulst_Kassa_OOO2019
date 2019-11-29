@@ -24,4 +24,6 @@ public interface ArtikelDbStrategy {
     //Het saven van eventueel gewijzigde artikels, wat nog niet gebruikt wordt.
     //Het werkt wel als men het test via een ander uitvoerbestand
     void save() throws DomainException;
+
+    void toStringTest();
 }

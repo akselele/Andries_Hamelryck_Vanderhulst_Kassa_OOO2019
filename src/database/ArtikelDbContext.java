@@ -41,4 +41,8 @@ public class ArtikelDbContext {
     public void save() throws DomainException{
         artikelDbStrategy.save();
     }
+
+    public void toStringTest(){
+        artikelDbStrategy.toStringTest();
+    }
 }

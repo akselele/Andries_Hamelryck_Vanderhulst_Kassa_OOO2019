@@ -38,4 +38,9 @@ public class ArtikelDbSQL implements ArtikelDbStrategy {
     public void save() throws DomainException {
 
     }
+
+    @Override
+    public void toStringTest() {
+
+    }
 }

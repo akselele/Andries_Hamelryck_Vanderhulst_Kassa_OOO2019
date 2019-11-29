@@ -7,6 +7,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import model.DomainException;
+import view.panels.KassaOverviewPane;
 import view.panels.ProductOverviewPane;
 
 /**
@@ -16,8 +17,9 @@ import view.panels.ProductOverviewPane;
 public class KassaMainPane extends BorderPane {
 	public KassaMainPane() throws DomainException {
         ArtikelDbContext artikelDbContext = new ArtikelDbContext();
-	    TabPane tabPane = new TabPane(); 	    
-        Tab kassaTab = new Tab("Kassa");
+	    TabPane tabPane = new TabPane();
+        KassaOverviewPane kassaOverviewPane = new KassaOverviewPane(artikelDbContext);
+        Tab kassaTab = new Tab("Kassa",kassaOverviewPane);
         ProductOverviewPane productOverviewPane = new ProductOverviewPane(artikelDbContext);
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
         Tab instellingTab = new Tab("Instellingen");
