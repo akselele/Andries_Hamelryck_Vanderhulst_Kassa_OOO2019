@@ -16,6 +16,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Artikel;
+import model.ObserverPattern.EventType;
+import model.ObserverPattern.Observer;
+import model.ObserverPattern.Subject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  @Author Axel Hamelryck
@@ -58,7 +65,4 @@ public class ProductOverviewPane extends GridPane {
 
 		this.getChildren().addAll(table);
 	}
-	
-	
-
 }

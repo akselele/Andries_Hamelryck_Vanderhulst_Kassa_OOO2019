@@ -10,22 +10,26 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import model.Artikel;
+import model.ObserverPattern.EventType;
+import model.ObserverPattern.Observer;
+import model.ObserverPattern.Subject;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import javax.swing.tree.ExpandVetoException;
+import java.util.*;
 
 /**
  @Author Axel Hamelryck
  **/
 
-public class KassaOverviewPane extends GridPane {
+public class KassaOverviewPane extends GridPane implements Subject{
     private TableView<Artikel> table = new TableView<>();
     private ArtikelDbContext artikelDbContext;
     private ObservableList<Artikel> artikels;
     double uitkomst;
+    private Map<EventType, List<Observer>> observers;
 
     public KassaOverviewPane(ArtikelDbContext artikelDbContext){
+        observers = new HashMap<>();
         this.artikelDbContext = artikelDbContext;
         artikels = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
@@ -50,13 +54,14 @@ public class KassaOverviewPane extends GridPane {
                         uitkomst += artikelDbContext.getArtikel(artikelField.getText()).getPrijs();
                         artikels.add(artikelDbContext.getArtikel(artikelField.getText()));
                         artikels.removeAll(Collections.singleton(null));
-                        totaal.setText("Totaal: " + uitkomst);
+                        totaal.setText("Totaal: $" + uitkomst);
+
                     }
                     catch(NullPointerException e){
                         displayErrorMessage("Niet bestaande code.");
                         artikelField.clear();
                     }
-                refresh();
+                refresh(artikelDbContext.getArtikel(artikelField.getText()));
             }
         });
         this.getChildren().addAll(table);
@@ -70,8 +75,9 @@ public class KassaOverviewPane extends GridPane {
         alert.show();
     }
 
-    public void refresh(){
+    public void refresh(Artikel artikel){
         table.refresh();
+        notifyObserver(EventType.KLANTVIEW, artikel, uitkomst);
     }
 
     public void setTable(){
@@ -84,5 +90,29 @@ public class KassaOverviewPane extends GridPane {
         prijsColumn.setCellValueFactory(new PropertyValueFactory<Artikel,String>("Prijs"));
         prijsColumn.setMinWidth(100);
         table.getColumns().addAll(omschrijvingColumn, prijsColumn);
+    }
+
+    @Override
+    public void registerObserver(EventType e, Observer o) {
+        if (observers.get(e) == null){
+            List<Observer> observers = new ArrayList<>();
+            observers.add(o);
+            this.observers.put(e,observers);
+        }else{
+            List<Observer> observers = this.observers.get(e);
+            observers.add(o);
+        }
+    }
+
+    @Override
+    public void unregisterObserver(EventType e, Observer o) {
+        this.observers.get(e).remove(o);
+    }
+
+    @Override
+    public void notifyObserver(EventType e, Artikel a, double uitkomst) {
+        for (Observer o:this.observers.get(e)) {
+            o.update(a, uitkomst);
+        }
     }
 }
