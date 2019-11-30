@@ -2,7 +2,6 @@ package view.panels;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,6 +18,7 @@ public class KlantOverviewPane extends GridPane {
     private TableView<Artikel> table = new TableView<Artikel>();
     private Label totaal = new Label();
     private ObservableList<Artikel> artikels;
+    private double uitkomst;
 
 
     public KlantOverviewPane(){
@@ -31,10 +31,24 @@ public class KlantOverviewPane extends GridPane {
         setTable();
     }
 
-    public void refresh(double uitkomst){
-        table.refresh();
+    public void refresh(){
         artikels.removeAll(Collections.singleton(null));
+        Iterator<Artikel> i = artikels.iterator();
+        for(Artikel artikel : new ArrayList<>(artikels)){
+            if(artikel.getAantal() == 0){
+                artikels.remove(artikel);
+            }
+        }
+        uitkomst();
         totaal.setText("Totaal: $" + uitkomst);
+        table.refresh();
+    }
+
+    public void uitkomst(){
+        uitkomst = 0;
+        for(Artikel artikel : artikels){
+            uitkomst += artikel.getAantal() * artikel.getPrijs();
+        }
     }
 
     public void setTable(){
@@ -52,16 +66,28 @@ public class KlantOverviewPane extends GridPane {
         table.getColumns().addAll(omschrijvingColumn, prijsColumn,aantalColumn);
     }
 
-    public void add(Artikel artikel, double uitkomst){
+    public void add(Artikel artikel, boolean remove){
         try {
-            if (artikels.contains(artikel)) {
-                artikel.setAantal(artikel.getAantal() + 1);
-            } else {
-                artikel.setAantal(1);
-                artikels.add(artikel);
+            if (remove) {
+                for(Artikel artikel1 : artikels){
+                    if(artikel1.getCode().equalsIgnoreCase(artikel.getCode())){
+                        artikel1.setAantal(artikel1.getAantal()-1);
+                    }
+                }
+                refresh();
             }
-            refresh(uitkomst);
+            else{
+                if (artikels.contains(artikel)) {
+                    artikel.setAantal(artikel.getAantal() + 1);
+                } else {
+                    artikel.setAantal(1);
+                    artikels.add(artikel);
+                }
+                refresh();
+            }
+
         }
+        //Deze catch is leeg omdat in KassaOverviewPane al een nullpointerexception wordt gegooid, anders zijn er 2 warning screens.
         catch(NullPointerException e){
 
         }

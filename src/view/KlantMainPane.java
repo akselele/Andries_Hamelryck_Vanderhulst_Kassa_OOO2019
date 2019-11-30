@@ -27,8 +27,8 @@ public class KlantMainPane extends BorderPane {
         this.setCenter(tabPane);
     }
 
-    public void add(Artikel artikel, double uitkomst){
-        klantOverviewPane.add(artikel, uitkomst);
+    public void add(Artikel artikel,boolean remove){
+        klantOverviewPane.add(artikel, remove);
     }
 
 

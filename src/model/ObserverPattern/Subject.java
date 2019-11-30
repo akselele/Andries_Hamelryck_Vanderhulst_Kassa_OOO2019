@@ -11,5 +11,5 @@ public interface Subject {
 
     public void unregisterObserver(EventType e, Observer o);
 
-    public void notifyObserver(EventType e, Artikel artikel, double uitkomst);
+    public void notifyObserver(EventType e, Artikel artikel,boolean remove);
 }

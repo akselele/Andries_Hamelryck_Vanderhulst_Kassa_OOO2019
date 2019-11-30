@@ -8,5 +8,5 @@ import model.Artikel;
 
 public interface Observer {
 
-    public void update(Artikel artikel, double uitkomst);
+    public void update(Artikel artikel, boolean remove);
 }
