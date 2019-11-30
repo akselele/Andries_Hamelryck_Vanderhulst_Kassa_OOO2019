@@ -45,7 +45,7 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate implements LoadS
 
     //Het saven in het HUIDIG bestand dat men ook gebruikt om te lezen.
     //Indien we deze methode willen testen kunnen we gewoon de naam van het uitvoerbestand veranderen.
-    public void save(List<Artikel> artikels) throws DomainException{
+    public void save(List<Artikel> artikels) throws DomainException {
         File artikelbestand = new File("src/bestanden/ArtikelText.txt");
 
         try{
