@@ -6,6 +6,7 @@ public class Artikel {
     private String artikelgroep;
     private double prijs;
     private int voorraad;
+    private int aantal = 0;
 
     //Dit is een basis artikel klasse met getters en setters met wat constraints.
 
@@ -68,6 +69,14 @@ public class Artikel {
 
     public int getVoorraad() {
         return voorraad;
+    }
+
+    public int getAantal() {
+        return aantal;
+    }
+
+    public void setAantal(int aantal) {
+        this.aantal = aantal;
     }
 
     @Override

@@ -56,10 +56,10 @@ public class ProductOverviewPane extends GridPane {
 		artikelgroepColumn.setCellValueFactory(new PropertyValueFactory<Artikel,String>("Artikelgroep"));
 		TableColumn prijsColumn = new TableColumn("Prijs");
 		prijsColumn.setMinWidth(100);
-		prijsColumn.setCellValueFactory(new PropertyValueFactory<Artikel,String>("Prijs"));
+		prijsColumn.setCellValueFactory(new PropertyValueFactory<Artikel,Double>("Prijs"));
 		TableColumn voorraadColumn = new TableColumn("Voorraad");
 		voorraadColumn.setMinWidth(100);
-		voorraadColumn.setCellValueFactory(new PropertyValueFactory<Artikel,String>("Voorraad"));
+		voorraadColumn.setCellValueFactory(new PropertyValueFactory<Artikel,Integer>("Voorraad"));
 
 		table.getColumns().addAll(codeColumn,omschrijvingColumn,artikelgroepColumn,prijsColumn,voorraadColumn);
 

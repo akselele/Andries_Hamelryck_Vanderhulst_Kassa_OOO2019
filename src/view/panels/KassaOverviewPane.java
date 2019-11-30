@@ -62,6 +62,7 @@ public class KassaOverviewPane extends GridPane implements Subject{
                         artikelField.clear();
                     }
                 refresh(artikelDbContext.getArtikel(artikelField.getText()));
+                artikelField.clear();
             }
         });
         this.getChildren().addAll(table);
@@ -87,7 +88,7 @@ public class KassaOverviewPane extends GridPane implements Subject{
         omschrijvingColumn.setCellValueFactory(new PropertyValueFactory<Artikel,String>("Omschrijving"));
         omschrijvingColumn.setMinWidth(100);
         TableColumn prijsColumn = new TableColumn("Prijs");
-        prijsColumn.setCellValueFactory(new PropertyValueFactory<Artikel,String>("Prijs"));
+        prijsColumn.setCellValueFactory(new PropertyValueFactory<Artikel,Double>("Prijs"));
         prijsColumn.setMinWidth(100);
         table.getColumns().addAll(omschrijvingColumn, prijsColumn);
     }
