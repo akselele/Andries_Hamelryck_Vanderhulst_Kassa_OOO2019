@@ -10,8 +10,8 @@ public class Artikel {
 
     //Dit is een basis artikel klasse met getters en setters met wat constraints.
 
-    public Artikel(){
-
+    public Artikel(String code){
+        setCode(code);
     }
 
     public Artikel(String code,String omschrijving, String artikelgroep, double prijs, int voorraad){

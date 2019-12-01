@@ -24,7 +24,7 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
 
     @Override
     public Artikel get(String code){
-        if(code == null){
+        if(code.trim().isEmpty() || code.equalsIgnoreCase(null)){
             throw new IllegalArgumentException("No code given");
         }
         return artikels.get(code);

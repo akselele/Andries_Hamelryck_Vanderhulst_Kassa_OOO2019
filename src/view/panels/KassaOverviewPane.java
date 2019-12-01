@@ -51,14 +51,12 @@ public class KassaOverviewPane extends GridPane implements Subject{
         buttonAddArtikel.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
-                //TODO Hier moet een nullpointerexception gooien als je niets / iets fout invult maar gooit het niet
                     try{
                         Artikel artikel = artikelDbContext.getArtikel(artikelField.getText());
                         artikels.add(artikel);
                         artikels.removeAll(Collections.singleton(null));
                     }
-                    catch(NullPointerException e){
+                    catch(NullPointerException | IllegalArgumentException e){
                         displayErrorMessage("Niet bestaande code.");
                         artikelField.clear();
                     }
@@ -71,6 +69,8 @@ public class KassaOverviewPane extends GridPane implements Subject{
         this.add(buttonHold,1,1,1,1);
         this.add(button2,3,1,1,1);
         this.getChildren().addAll(table);
+        uitkomst();
+        totaal.setText("Totaal: $" + uitkomst );
         setTable();
     }
 
@@ -135,10 +135,9 @@ public class KassaOverviewPane extends GridPane implements Subject{
     class deleteArtikelHandler implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
-            //TODO Hier moet het ook een nullpointerexception gooien als je niets aanduidt maar doet het niet
             try{
                 TableView.TableViewSelectionModel<Artikel> t = table.getSelectionModel();
-                Artikel artikel = t.getSelectedItem();
+                Artikel artikel = artikelDbContext.getArtikel(t.getSelectedItem().getCode());
                 artikels.remove(artikel);
                 refresh("remove");
             }
