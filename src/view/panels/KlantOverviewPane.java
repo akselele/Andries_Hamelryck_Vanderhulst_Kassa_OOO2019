@@ -7,8 +7,10 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import model.Artikel;
+import model.ObserverPattern.EventType;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  @Author Axel Hamelryck
@@ -19,10 +21,15 @@ public class KlantOverviewPane extends GridPane {
     private Label totaal = new Label();
     private ObservableList<Artikel> artikels;
     private double uitkomst;
+    private double uitkomstHold;
+    private ObservableList<Artikel> artikelsHold;
+    private ObservableList<Artikel> artikelsVerkoop;
 
 
     public KlantOverviewPane(){
         artikels = FXCollections.observableArrayList(new ArrayList<Artikel>());
+        artikelsHold = FXCollections.observableArrayList(new ArrayList<Artikel>());
+        artikelsVerkoop = FXCollections.observableArrayList(new ArrayList<Artikel>());
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -46,14 +53,13 @@ public class KlantOverviewPane extends GridPane {
 
     public void uitkomst(){
         uitkomst = 0;
-        for(Artikel artikel : artikels){
+        for(Artikel artikel : artikelsVerkoop){
             uitkomst += artikel.getAantal() * artikel.getPrijs();
         }
     }
 
     public void setTable(){
         table.setEditable(false);
-        table.setItems(artikels);
         TableColumn omschrijvingColumn = new TableColumn("Omschrijving");
         omschrijvingColumn.setCellValueFactory(new PropertyValueFactory<Artikel,String>("Omschrijving"));
         omschrijvingColumn.setMinWidth(100);
@@ -66,26 +72,27 @@ public class KlantOverviewPane extends GridPane {
         table.getColumns().addAll(omschrijvingColumn, prijsColumn,aantalColumn);
     }
 
-    public void add(Artikel artikel, boolean remove){
+    public void add(ObservableList<Artikel> artikels, String remove){
         try {
-            if (remove) {
-                for(Artikel artikel1 : artikels){
-                    if(artikel1.getCode().equalsIgnoreCase(artikel.getCode())){
-                        artikel1.setAantal(artikel1.getAantal()-1);
-                    }
-                }
-                refresh();
+            for(Artikel artikel : artikels){
+                artikel.setAantal(Collections.frequency(artikels,artikel));
             }
-            else{
-                if (artikels.contains(artikel)) {
-                    artikel.setAantal(artikel.getAantal() + 1);
-                } else {
-                    artikel.setAantal(1);
-                    artikels.add(artikel);
-                }
-                refresh();
+            List<Artikel> artikelstest = artikels.stream().distinct().collect(Collectors.toList());
+            artikelsVerkoop.clear();
+            artikelsVerkoop.addAll(artikelstest);
+            table.setItems(artikelsVerkoop);
+            if(remove.equalsIgnoreCase("hold")){
+                List<Artikel> tmpList = new ArrayList<>(artikels);
+                double tmpUitkomst;
+                artikels.clear();
+                artikels.addAll(artikelsHold);
+                artikelsHold.clear();
+                artikelsHold.addAll(tmpList);
+                tmpUitkomst = uitkomst;
+                uitkomst = uitkomstHold;
+                uitkomstHold = tmpUitkomst;
             }
-
+            refresh();
         }
         //Deze catch is leeg omdat in KassaOverviewPane al een nullpointerexception wordt gegooid, anders zijn er 2 warning screens.
         catch(NullPointerException e){

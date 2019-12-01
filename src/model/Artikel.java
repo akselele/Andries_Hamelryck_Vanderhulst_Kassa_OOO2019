@@ -6,7 +6,7 @@ public class Artikel {
     private String artikelgroep;
     private double prijs;
     private int voorraad;
-    private int aantal = 0;
+    private int aantal = 1;
 
     //Dit is een basis artikel klasse met getters en setters met wat constraints.
 

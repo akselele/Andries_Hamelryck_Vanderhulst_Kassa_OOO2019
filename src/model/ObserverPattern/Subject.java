@@ -1,6 +1,9 @@
 package model.ObserverPattern;
 
+import javafx.collections.ObservableList;
 import model.Artikel;
+
+import java.util.List;
 
 /**
  @Author Axel Hamelryck
@@ -11,5 +14,5 @@ public interface Subject {
 
     public void unregisterObserver(EventType e, Observer o);
 
-    public void notifyObserver(EventType e, Artikel artikel,boolean remove);
+    public void notifyObserver(EventType e, ObservableList<Artikel> artikels, String remove);
 }

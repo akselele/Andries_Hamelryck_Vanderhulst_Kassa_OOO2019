@@ -1,5 +1,6 @@
 package view;
 
+import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -8,6 +9,8 @@ import model.Artikel;
 import model.DomainException;
 import model.ObserverPattern.Observer;
 import view.panels.KlantOverviewPane;
+
+import java.util.List;
 
 public class KlantView implements Observer {
 	private Stage stage = new Stage();
@@ -30,7 +33,7 @@ public class KlantView implements Observer {
 	}
 
 	@Override
-	public void update(Artikel artikel, boolean remove) {
-		borderPane.add(artikel, remove);
+	public void update(ObservableList<Artikel> artikels, String remove) {
+		borderPane.add(artikels, remove);
 	}
 }

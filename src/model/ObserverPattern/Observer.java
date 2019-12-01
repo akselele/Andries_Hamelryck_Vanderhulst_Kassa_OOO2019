@@ -1,6 +1,9 @@
 package model.ObserverPattern;
 
+import javafx.collections.ObservableList;
 import model.Artikel;
+
+import java.util.List;
 
 /**
  @Author Axel Hamelryck
@@ -8,5 +11,5 @@ import model.Artikel;
 
 public interface Observer {
 
-    public void update(Artikel artikel, boolean remove);
+    public void update(ObservableList<Artikel> artikels, String remove);
 }

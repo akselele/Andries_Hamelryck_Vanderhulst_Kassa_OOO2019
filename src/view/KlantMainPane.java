@@ -3,6 +3,7 @@ package view;
 
 import database.ArtikelDbContext;
 import database.ArtikelDbInMemory;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
@@ -11,6 +12,8 @@ import model.DomainException;
 import view.panels.KassaOverviewPane;
 import view.panels.KlantOverviewPane;
 import view.panels.ProductOverviewPane;
+
+import java.util.List;
 
 /**
  @Author Axel Hamelryck
@@ -27,8 +30,8 @@ public class KlantMainPane extends BorderPane {
         this.setCenter(tabPane);
     }
 
-    public void add(Artikel artikel,boolean remove){
-        klantOverviewPane.add(artikel, remove);
+    public void add(ObservableList<Artikel> artikels, String remove){
+        klantOverviewPane.add(artikels, remove);
     }
 
 

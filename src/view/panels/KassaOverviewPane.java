@@ -25,7 +25,9 @@ public class KassaOverviewPane extends GridPane implements Subject{
     private TableView<Artikel> table = new TableView<>();
     private ArtikelDbContext artikelDbContext;
     private ObservableList<Artikel> artikels;
+    private ObservableList<Artikel> artikelsHold;
     private double uitkomst;
+    private double uitkomstHold;
     private Map<EventType, List<Observer>> observers;
     Label totaal = new Label();
 
@@ -33,6 +35,7 @@ public class KassaOverviewPane extends GridPane implements Subject{
         observers = new HashMap<>();
         this.artikelDbContext = artikelDbContext;
         artikels = FXCollections.observableArrayList(new ArrayList<Artikel>());
+        artikelsHold = FXCollections.observableArrayList(new ArrayList<Artikel>());
 
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
@@ -45,7 +48,6 @@ public class KassaOverviewPane extends GridPane implements Subject{
         this.add(buttonAddArtikel,2,1,1,1 );
         Button button2 = new Button("Remove artikel");
         button2.setOnAction(new deleteArtikelHandler());
-
         buttonAddArtikel.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -60,19 +62,23 @@ public class KassaOverviewPane extends GridPane implements Subject{
                         displayErrorMessage("Niet bestaande code.");
                         artikelField.clear();
                     }
-                refresh(artikelDbContext.getArtikel(artikelField.getText()), false);
+                refresh("notremove");
                 artikelField.clear();
             }
         });
-        this.getChildren().addAll(table,button2);
+        Button buttonHold = new Button("Put on hold");
+        buttonHold.setOnAction(new putOnHold());
+        this.add(buttonHold,1,1,1,1);
+        this.add(button2,3,1,1,1);
+        this.getChildren().addAll(table);
         setTable();
     }
 
-    public void refresh(Artikel artikel, boolean remove){
+    public void refresh(String remove){
         table.getSelectionModel().clearSelection();
         uitkomst();
         totaal.setText("Totaal: $" + uitkomst );
-        notifyObserver(EventType.KLANTVIEW, artikel, remove);
+        notifyObserver(EventType.KLANTVIEW, artikels, remove);
         table.refresh();
     }
 
@@ -120,9 +126,9 @@ public class KassaOverviewPane extends GridPane implements Subject{
     }
 
     @Override
-    public void notifyObserver(EventType e, Artikel a, boolean remove) {
+    public void notifyObserver(EventType e, ObservableList<Artikel> artikels, String remove) {
             for (Observer o:this.observers.get(e)) {
-                o.update(a, remove);
+                o.update(artikels, remove);
             }
     }
 
@@ -134,12 +140,28 @@ public class KassaOverviewPane extends GridPane implements Subject{
                 TableView.TableViewSelectionModel<Artikel> t = table.getSelectionModel();
                 Artikel artikel = t.getSelectedItem();
                 artikels.remove(artikel);
-                refresh(artikel, true);
+                refresh("remove");
             }
             catch(NullPointerException e){
                 displayErrorMessage("Geen artikels geselecteerd");
             }
 
+        }
+    }
+
+    class putOnHold implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+            List<Artikel> tmpList = new ArrayList<>(artikels);
+            double tmpUitkomst;
+            artikels.clear();
+            artikels.addAll(artikelsHold);
+            artikelsHold.clear();
+            artikelsHold.addAll(tmpList);
+            tmpUitkomst = uitkomst;
+            uitkomst = uitkomstHold;
+            uitkomstHold = tmpUitkomst;
+            refresh("asd");
         }
     }
 }
