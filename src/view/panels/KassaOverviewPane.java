@@ -6,19 +6,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import model.Artikel;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 import model.ObserverPattern.Subject;
-
-import javax.swing.tree.ExpandVetoException;
 import java.util.*;
 
 /**
  @Author Axel Hamelryck
+ @Author Kasper Vanderhulst
  **/
 
 public class KassaOverviewPane extends GridPane implements Subject{
@@ -29,14 +31,15 @@ public class KassaOverviewPane extends GridPane implements Subject{
     private double uitkomst;
     private double uitkomstHold;
     private Map<EventType, List<Observer>> observers;
-    Label totaal = new Label();
+    private Label totaal = new Label();
+    private Button buttonAddArtikel = new Button("Add artikel");
 
     public KassaOverviewPane(ArtikelDbContext artikelDbContext){
         observers = new HashMap<>();
         this.artikelDbContext = artikelDbContext;
         artikels = FXCollections.observableArrayList(new ArrayList<Artikel>());
         artikelsHold = FXCollections.observableArrayList(new ArrayList<Artikel>());
-
+        setGlobalEventHandler(this);
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -44,25 +47,23 @@ public class KassaOverviewPane extends GridPane implements Subject{
         this.add(new Label("Add product:"), 1, 0, 1, 1);
         TextField artikelField = new TextField();
         this.add(artikelField,2,0,1,1);
-        Button buttonAddArtikel = new Button("Add artikel");
+
         this.add(buttonAddArtikel,2,1,1,1 );
         Button button2 = new Button("Remove artikel");
         button2.setOnAction(new deleteArtikelHandler());
-        buttonAddArtikel.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        buttonAddArtikel.setOnAction(e -> {
                     try{
                         Artikel artikel = artikelDbContext.getArtikel(artikelField.getText());
                         artikels.add(artikel);
                         artikels.removeAll(Collections.singleton(null));
                     }
-                    catch(NullPointerException | IllegalArgumentException e){
+                    catch(NullPointerException | IllegalArgumentException ex){
                         displayErrorMessage("Niet bestaande code.");
                         artikelField.clear();
                     }
                 refresh("notremove");
                 artikelField.clear();
-            }
+
         });
         Button buttonHold = new Button("Put on hold");
         buttonHold.setOnAction(new putOnHold());
@@ -130,6 +131,16 @@ public class KassaOverviewPane extends GridPane implements Subject{
             for (Observer o:this.observers.get(e)) {
                 o.update(artikels, remove);
             }
+    }
+
+    //Code om een artikel toe te voegen als men op enter drukt (gooit enkel exception als men in het vakje zit)
+    private void setGlobalEventHandler(Node root) {
+        root.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
+            if (ev.getCode() == KeyCode.ENTER) {
+                buttonAddArtikel.fire();
+                ev.consume();
+            }
+        });
     }
 
     class deleteArtikelHandler implements EventHandler<ActionEvent> {
