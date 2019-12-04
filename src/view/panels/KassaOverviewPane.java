@@ -61,7 +61,7 @@ public class KassaOverviewPane extends GridPane implements Subject{
                         displayErrorMessage("Niet bestaande code.");
                         artikelField.clear();
                     }
-                refresh("notremove");
+                refresh();
                 artikelField.clear();
 
         });
@@ -75,11 +75,11 @@ public class KassaOverviewPane extends GridPane implements Subject{
         setTable();
     }
 
-    public void refresh(String remove){
+    public void refresh(){
         table.getSelectionModel().clearSelection();
         uitkomst();
         totaal.setText("Totaal: $" + uitkomst );
-        notifyObserver(EventType.KLANTVIEW, artikels, remove);
+        notifyObserver(EventType.KLANTVIEW, artikels);
         table.refresh();
     }
 
@@ -127,9 +127,9 @@ public class KassaOverviewPane extends GridPane implements Subject{
     }
 
     @Override
-    public void notifyObserver(EventType e, ObservableList<Artikel> artikels, String remove) {
+    public void notifyObserver(EventType e, ObservableList<Artikel> artikels) {
             for (Observer o:this.observers.get(e)) {
-                o.update(artikels, remove);
+                o.update(artikels);
             }
     }
 
@@ -150,7 +150,7 @@ public class KassaOverviewPane extends GridPane implements Subject{
                 TableView.TableViewSelectionModel<Artikel> t = table.getSelectionModel();
                 Artikel artikel = artikelDbContext.getArtikel(t.getSelectedItem().getCode());
                 artikels.remove(artikel);
-                refresh("remove");
+                refresh();
             }
             catch(NullPointerException e){
                 displayErrorMessage("Geen artikels geselecteerd");
@@ -171,7 +171,7 @@ public class KassaOverviewPane extends GridPane implements Subject{
             tmpUitkomst = uitkomst;
             uitkomst = uitkomstHold;
             uitkomstHold = tmpUitkomst;
-            refresh("asd");
+            refresh();
         }
     }
 }

@@ -14,5 +14,5 @@ public interface Subject {
 
     public void unregisterObserver(EventType e, Observer o);
 
-    public void notifyObserver(EventType e, ObservableList<Artikel> artikels, String remove);
+    public void notifyObserver(EventType e, ObservableList<Artikel> artikels);
 }

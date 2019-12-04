@@ -33,7 +33,7 @@ public class KlantView implements Observer {
 	}
 
 	@Override
-	public void update(ObservableList<Artikel> artikels, String remove) {
-		borderPane.add(artikels, remove);
+	public void update(ObservableList<Artikel> artikels) {
+		borderPane.add(artikels);
 	}
 }

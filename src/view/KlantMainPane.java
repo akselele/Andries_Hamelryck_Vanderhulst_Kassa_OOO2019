@@ -30,8 +30,8 @@ public class KlantMainPane extends BorderPane {
         this.setCenter(tabPane);
     }
 
-    public void add(ObservableList<Artikel> artikels, String remove){
-        klantOverviewPane.add(artikels, remove);
+    public void add(ObservableList<Artikel> artikels){
+        klantOverviewPane.add(artikels);
     }
 
 

@@ -72,7 +72,7 @@ public class KlantOverviewPane extends GridPane {
         table.getColumns().addAll(omschrijvingColumn, prijsColumn,aantalColumn);
     }
 
-    public void add(ObservableList<Artikel> artikels, String remove){
+    public void add(ObservableList<Artikel> artikels){
         try {
             for(Artikel artikel : artikels){
                 artikel.setAantal(Collections.frequency(artikels,artikel));
@@ -81,17 +81,6 @@ public class KlantOverviewPane extends GridPane {
             artikelsVerkoop.clear();
             artikelsVerkoop.addAll(artikelstest);
             table.setItems(artikelsVerkoop);
-            if(remove.equalsIgnoreCase("hold")){
-                List<Artikel> tmpList = new ArrayList<>(artikels);
-                double tmpUitkomst;
-                artikels.clear();
-                artikels.addAll(artikelsHold);
-                artikelsHold.clear();
-                artikelsHold.addAll(tmpList);
-                tmpUitkomst = uitkomst;
-                uitkomst = uitkomstHold;
-                uitkomstHold = tmpUitkomst;
-            }
             refresh();
         }
         //Deze catch is leeg omdat in KassaOverviewPane al een nullpointerexception wordt gegooid, anders zijn er 2 warning screens.
