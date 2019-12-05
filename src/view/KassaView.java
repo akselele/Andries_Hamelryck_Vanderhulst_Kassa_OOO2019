@@ -10,6 +10,7 @@ import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 import model.ObserverPattern.Subject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ public class KassaView {
 	private Stage stage = new Stage();
 	private KassaMainPane borderPane = new KassaMainPane();
 
-	public KassaView() throws DomainException {
+	public KassaView() throws IOException {
 		stage.setTitle("KASSA VIEW");
 		stage.setResizable(false);		
 		stage.setX(20);

@@ -14,6 +14,7 @@ import view.panels.KassaOverviewPane;
 import view.panels.ProductOverviewPane;
 import view.panels.SettingsPane;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ public class KassaMainPane extends BorderPane {
     private SettingsPane settingsPane = new SettingsPane();
 
 
-	public KassaMainPane() throws DomainException {
+	public KassaMainPane() throws IOException {
 	    observers = new HashMap<>();
 
 	    TabPane tabPane = new TabPane();

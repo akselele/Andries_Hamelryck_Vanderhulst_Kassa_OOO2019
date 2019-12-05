@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 import model.Artikel;
 import model.DomainException;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +20,7 @@ import java.util.Map;
 public class ArtikelDbContext {
     private ArtikelDbStrategy artikelDbStrategy;
 
-    public ArtikelDbContext() throws DomainException {
+    public ArtikelDbContext() throws IOException {
         artikelDbStrategy = new ArtikelDbInMemory();
     }
 
@@ -58,5 +60,9 @@ public class ArtikelDbContext {
         String[] strategiesListStr = new String[strategiesList.size()];
         strategiesListStr = strategiesList.toArray(strategiesListStr);
         return strategiesListStr;
+    }
+
+    public void setLoadSaveStrategy(LoadSaveStrategy excel, String excel1) throws IOException {
+        artikelDbStrategy.setLoadSaveStrategy(excel,excel1);
     }
 }

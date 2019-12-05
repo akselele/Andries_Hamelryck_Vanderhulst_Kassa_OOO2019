@@ -8,9 +8,11 @@ import model.ObserverPattern.EventType;
 import view.KassaView;
 import view.KlantView;
 
+import java.io.IOException;
+
 public class Main extends Application {
 	@Override
-	public void start(Stage primaryStage) throws DomainException {
+	public void start(Stage primaryStage) throws IOException {
 		KassaView kassaView = new KassaView();
 		KlantView klantView = new KlantView();
 

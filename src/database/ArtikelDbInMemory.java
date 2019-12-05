@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import model.Artikel;
 import model.DomainException;
 
+import java.io.*;
 import java.util.*;
 
 /**
@@ -18,16 +19,16 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
     LoadSaveStrategy loadSaveStrategy;
     private ObservableList<Artikel> data;
 
-    public ArtikelDbInMemory() throws DomainException{
-        loadSaveStrategy = new ArtikelExcelLoadSaveStrategy();
+    public ArtikelDbInMemory() throws IOException {
+        propertiesOpen();
         load();
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
         data.addAll(artikels.values());
     }
 
-    public void setLoadSaveStrategy(LoadSaveStrategy loadSaveStrategy)  {
+    public void setLoadSaveStrategy(LoadSaveStrategy loadSaveStrategy, String property) throws IOException {
         this.loadSaveStrategy = loadSaveStrategy;
-
+        propertiesSave(property);
     }
 
     @Override
@@ -55,6 +56,7 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
     //Alles van de load van de lees klasse toevoegen aan de hashMap
     @Override
     public void load() throws DomainException {
+        artikels.clear();
         for(Artikel artikel: loadSaveStrategy.load()){
             add(artikel);
         }
@@ -84,5 +86,33 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
     @Override
     public void save() throws DomainException{
         loadSaveStrategy.save(new ArrayList<Artikel>(artikels.values()));
+    }
+
+    public void propertiesOpen() throws IOException {
+        Properties properties = new Properties();
+        InputStream is = new FileInputStream("src/bestanden/properties.properties");
+        properties.load(is);
+        if(properties.getProperty("type").equalsIgnoreCase("text")){
+            ArtikelTekstLoadSave artikelTekstLoadSave = new ArtikelTekstLoadSave();
+            setLoadSaveStrategy(artikelTekstLoadSave,"text");
+        }
+        else if(properties.getProperty("type").equalsIgnoreCase("excel")){
+            ArtikelExcelLoadSaveStrategy artikelExcelLoadSaveStrategy = new ArtikelExcelLoadSaveStrategy();
+            setLoadSaveStrategy(artikelExcelLoadSaveStrategy, "excel");
+        }
+    }
+
+    public void propertiesSave(String property) throws IOException {
+        FileInputStream in = new FileInputStream("src/bestanden/properties.properties");
+        Properties properties = new Properties();
+        properties.load(in);
+        in.close();
+
+        FileOutputStream out = new FileOutputStream("src/bestanden/properties.properties");
+        properties.setProperty("type", property);
+        properties.store(out, null);
+        out.close();
+        properties.setProperty("type",property);
+
     }
 }

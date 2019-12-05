@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import model.Artikel;
 import model.DomainException;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 /**
@@ -45,6 +46,16 @@ public class ArtikelDbSQL implements ArtikelDbStrategy {
 
     @Override
     public void toStringTest() {
+
+    }
+
+    @Override
+    public void propertiesSave(String property) throws FileNotFoundException {
+
+    }
+
+    @Override
+    public void setLoadSaveStrategy(LoadSaveStrategy loadSaveStrategy, String property) throws FileNotFoundException {
 
     }
 }

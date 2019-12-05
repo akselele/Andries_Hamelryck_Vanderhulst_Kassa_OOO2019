@@ -4,6 +4,8 @@ import javafx.collections.ObservableList;
 import model.Artikel;
 import model.DomainException;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Map;
 /**
  @Author Kasper Vanderhulst
@@ -30,4 +32,8 @@ public interface ArtikelDbStrategy {
     void save() throws DomainException;
 
     void toStringTest();
+
+    void propertiesSave(String property) throws IOException;
+
+    public void setLoadSaveStrategy(LoadSaveStrategy loadSaveStrategy, String property) throws IOException;
 }
