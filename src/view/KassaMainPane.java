@@ -1,6 +1,7 @@
 package view;
 
 
+import controller.SettingsPane;
 import database.ArtikelDbContext;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -23,6 +24,7 @@ public class KassaMainPane extends BorderPane {
     private Map<EventType, List<Observer>> observers;
     private ArtikelDbContext artikelDbContext = new ArtikelDbContext();
     private KassaOverviewPane kassaOverviewPane = new KassaOverviewPane(artikelDbContext);
+    private SettingsPane settingsPane = new SettingsPane();
 
 
 	public KassaMainPane() throws DomainException {
@@ -32,7 +34,7 @@ public class KassaMainPane extends BorderPane {
         Tab kassaTab = new Tab("Kassa",kassaOverviewPane);
         ProductOverviewPane productOverviewPane = new ProductOverviewPane(artikelDbContext);
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
-        Tab instellingTab = new Tab("Instellingen");
+        Tab instellingTab = new Tab("Instellingen", settingsPane);
         Tab logTab = new Tab("Log");
         tabPane.getTabs().add(kassaTab);
         tabPane.getTabs().add(artikelTab);

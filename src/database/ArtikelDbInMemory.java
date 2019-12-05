@@ -1,5 +1,6 @@
 package database;
 
+import database.excel.ArtikelExcelLoadSaveStrategy;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Artikel;
@@ -9,17 +10,24 @@ import java.util.*;
 
 /**
  @Author Axel Hamelryck
+ @Author Noa Andries
  **/
 
 public class ArtikelDbInMemory implements ArtikelDbStrategy {
     private Map<String, Artikel> artikels = new HashMap<>();
-    ArtikelTekstLoadSave artikelTekstLoadSave = new ArtikelTekstLoadSave();
+    LoadSaveStrategy loadSaveStrategy;
     private ObservableList<Artikel> data;
 
     public ArtikelDbInMemory() throws DomainException{
+        loadSaveStrategy = new ArtikelTekstLoadSave();
         load();
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
         data.addAll(artikels.values());
+    }
+
+    public void setLoadSaveStrategy(LoadSaveStrategy loadSaveStrategy) throws DomainException {
+        this.loadSaveStrategy = loadSaveStrategy;
+        load();
     }
 
     @Override
@@ -47,7 +55,7 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
     //Alles van de load van de lees klasse toevoegen aan de hashMap
     @Override
     public void load() throws DomainException {
-        for(Artikel artikel: artikelTekstLoadSave.load()){
+        for(Artikel artikel: loadSaveStrategy.load()){
             add(artikel);
         }
     }
@@ -75,6 +83,6 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
     //Het werkt wel als men het test via een ander uitvoerbestand
     @Override
     public void save() throws DomainException{
-        artikelTekstLoadSave.save(new ArrayList<Artikel>(artikels.values()));
+        loadSaveStrategy.save(new ArrayList<Artikel>(artikels.values()));
     }
 }

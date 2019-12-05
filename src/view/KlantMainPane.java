@@ -19,6 +19,7 @@ public class KlantMainPane extends BorderPane {
     public KlantMainPane() throws DomainException {
         TabPane tabPane = new TabPane();
         klantOverviewPane = new KlantOverviewPane();
+
         Tab kassaTab = new Tab("Kassa",klantOverviewPane);
         tabPane.getTabs().add(kassaTab);
         this.setCenter(tabPane);
