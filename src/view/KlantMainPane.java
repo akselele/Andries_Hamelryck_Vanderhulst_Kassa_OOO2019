@@ -1,19 +1,13 @@
 package view;
 
 
-import database.ArtikelDbContext;
-import database.ArtikelDbInMemory;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import model.Artikel;
 import model.DomainException;
-import view.panels.KassaOverviewPane;
-import view.panels.KlantOverviewPane;
-import view.panels.ProductOverviewPane;
-
-import java.util.List;
+import controller.KlantOverviewPane;
 
 /**
  @Author Axel Hamelryck

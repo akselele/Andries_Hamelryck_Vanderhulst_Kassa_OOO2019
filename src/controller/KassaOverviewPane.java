@@ -1,4 +1,4 @@
-package view.panels;
+package controller;
 
 import database.ArtikelDbContext;
 import javafx.collections.FXCollections;

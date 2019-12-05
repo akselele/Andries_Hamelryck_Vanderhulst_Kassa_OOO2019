@@ -3,14 +3,10 @@ package view;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Artikel;
 import model.DomainException;
 import model.ObserverPattern.Observer;
-import view.panels.KlantOverviewPane;
-
-import java.util.List;
 
 public class KlantView implements Observer {
 	private Stage stage = new Stage();

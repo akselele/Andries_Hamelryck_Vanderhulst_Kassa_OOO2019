@@ -2,16 +2,14 @@ package view;
 
 
 import database.ArtikelDbContext;
-import database.ArtikelDbInMemory;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import model.DomainException;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
-import view.panels.KassaOverviewPane;
-import view.panels.KlantOverviewPane;
-import view.panels.ProductOverviewPane;
+import controller.KassaOverviewPane;
+import controller.ProductOverviewPane;
 
 import java.util.HashMap;
 import java.util.List;
