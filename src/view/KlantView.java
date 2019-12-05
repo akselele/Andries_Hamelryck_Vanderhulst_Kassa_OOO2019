@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Artikel;
 import model.DomainException;
+import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 
 public class KlantView implements Observer {

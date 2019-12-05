@@ -96,4 +96,8 @@ public class KassaOverviewController implements Subject {
         uitkomstHold = tmpUitkomst;
         notifyObserver(EventType.KLANTVIEW, artikels);
     }
+
+    public void handleAfhandel() {
+        notifyObserver(EventType.KLANTVIEW, artikels);
+    }
 }

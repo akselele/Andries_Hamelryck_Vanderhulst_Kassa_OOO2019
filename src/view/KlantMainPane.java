@@ -8,6 +8,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import model.Artikel;
 import model.DomainException;
+import model.ObserverPattern.EventType;
 import view.panels.KlantOverviewPane;
 
 /**
@@ -28,7 +29,7 @@ public class KlantMainPane extends BorderPane {
     }
 
     public void add(ObservableList<Artikel> artikels){
-        klantOverviewPane.updateTable(artikels);
+        klantOverviewPane.update(artikels);
     }
 
 

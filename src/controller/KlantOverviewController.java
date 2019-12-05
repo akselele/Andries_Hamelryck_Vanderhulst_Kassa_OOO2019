@@ -47,7 +47,7 @@ public class KlantOverviewController {
         return uitkomst;
     }
 
-    public void updateTable(ObservableList<Artikel> artikels){
+    public void update(ObservableList<Artikel> artikels){
         try {
             for(Artikel artikel : artikels){
                 artikel.setAantal(Collections.frequency(artikels,artikel));
@@ -61,9 +61,5 @@ public class KlantOverviewController {
         catch(NullPointerException e){
 
         }
-    }
-
-    public void update(ObservableList<Artikel> artikels) {
-        updateTable(artikels);
     }
 }

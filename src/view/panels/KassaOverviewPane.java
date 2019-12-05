@@ -40,8 +40,10 @@ public class KassaOverviewPane extends GridPane{
         this.add(new Label("Add product:"), 1, 0, 1, 1);
         TextField artikelField = new TextField();
         this.add(artikelField,2,0,1,1);
-
+        Button buttonAfhandel = new Button("Afhandelen");
         this.add(buttonAddArtikel,2,1,1,1 );
+        this.add(buttonAfhandel,2,2,1,1);
+        buttonAfhandel.setOnAction(e -> setAfhandelScreen());
         Button button2 = new Button("Remove artikel");
         button2.setOnAction(e ->{
             try{
@@ -112,4 +114,16 @@ public class KassaOverviewPane extends GridPane{
         alert.setContentText(errorMessage);
         alert.show();
     }
-}
+
+    private void setAfhandelScreen(){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Afhandelen verkoop");
+        alert.setContentText("De klant moet $" + kassaOverviewController.getUitkomst()  + " betalen.");
+        ButtonType okButton = new ButtonType("Betaald?", ButtonBar.ButtonData.YES);
+        ButtonType noButton = new ButtonType("Niet betaald", ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(okButton, noButton);
+        alert.show();
+        kassaOverviewController.handleAfhandel();
+        }
+    }
+

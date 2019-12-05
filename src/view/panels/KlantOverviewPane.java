@@ -21,6 +21,7 @@ public class KlantOverviewPane extends GridPane {
     private TableView<Artikel> table = new TableView<Artikel>();
     private Label totaal = new Label();
     private KlantOverviewController klantOverviewController;
+    private Label betalen = new Label();
 
 
     public KlantOverviewPane(KlantOverviewController klantOverviewController){
@@ -28,6 +29,7 @@ public class KlantOverviewPane extends GridPane {
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
+        this.add(betalen, 2,2,1,1);
         this.add(totaal,0,1,1,1);
         this.getChildren().addAll(table);
         setTable();
@@ -49,11 +51,15 @@ public class KlantOverviewPane extends GridPane {
         table.getColumns().addAll(omschrijvingColumn, prijsColumn,aantalColumn);
     }
 
-    public void updateTable(ObservableList<Artikel> artikels){
-        totaal.setText("Totaal: $" + klantOverviewController.getUitkomst());
-        klantOverviewController.updateTable(artikels);
-        table.setItems(klantOverviewController.getArtikelsVerkoop());
-        table.refresh();
+    public void update(ObservableList<Artikel> artikels){
+            totaal.setText("Totaal: $" + klantOverviewController.getUitkomst());
+            klantOverviewController.update(artikels);
+            table.setItems(klantOverviewController.getArtikelsVerkoop());
+            table.refresh();
+    }
+
+    private void Afhandel(){
+        betalen.setText("Prijs te betalen: $" + klantOverviewController.getUitkomst());
     }
 
 
