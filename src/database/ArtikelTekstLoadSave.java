@@ -12,6 +12,7 @@ import java.util.Scanner;
 
 /**
  @Author Axel Hamelryck
+ @Author Kasper Vanderhulst
  **/
 
 public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate implements LoadSaveStrategy{

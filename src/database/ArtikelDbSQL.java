@@ -6,6 +6,10 @@ import model.DomainException;
 
 import java.util.Map;
 
+/**
+ @Author Kasper Vanderhulst
+ **/
+
 //Lege sql klasse voor uitbreiding
 
 public class ArtikelDbSQL implements ArtikelDbStrategy {

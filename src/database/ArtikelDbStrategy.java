@@ -5,6 +5,9 @@ import model.Artikel;
 import model.DomainException;
 
 import java.util.Map;
+/**
+ @Author Kasper Vanderhulst
+ **/
 
 public interface ArtikelDbStrategy {
     Artikel get(String code);
