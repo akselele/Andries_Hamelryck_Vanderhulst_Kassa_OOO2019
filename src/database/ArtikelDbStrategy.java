@@ -7,6 +7,7 @@ import model.DomainException;
 import java.util.Map;
 /**
  @Author Kasper Vanderhulst
+ @Author Noa Andries
  **/
 
 public interface ArtikelDbStrategy {

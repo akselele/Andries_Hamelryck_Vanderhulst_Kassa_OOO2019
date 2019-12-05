@@ -3,6 +3,7 @@ package database;
 /**
  * @Author Axel Hamelryck
  * @Author Kasper Vanderhulst
+ *  @Author Noa Andries
  **/
 
 import com.sun.javafx.collections.MappingChange;
