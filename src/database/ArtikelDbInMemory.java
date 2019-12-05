@@ -19,15 +19,15 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
     private ObservableList<Artikel> data;
 
     public ArtikelDbInMemory() throws DomainException{
-        loadSaveStrategy = new ArtikelTekstLoadSave();
+        loadSaveStrategy = new ArtikelExcelLoadSaveStrategy();
         load();
         data = FXCollections.observableArrayList(new ArrayList<Artikel>());
         data.addAll(artikels.values());
     }
 
-    public void setLoadSaveStrategy(LoadSaveStrategy loadSaveStrategy) throws DomainException {
+    public void setLoadSaveStrategy(LoadSaveStrategy loadSaveStrategy)  {
         this.loadSaveStrategy = loadSaveStrategy;
-        load();
+
     }
 
     @Override

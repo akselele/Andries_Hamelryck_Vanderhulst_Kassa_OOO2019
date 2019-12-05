@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ArtikelExcelLoadSaveStrategy  implements LoadSaveStrategy {
     private ExcelPlugin excelPlugin = new ExcelPlugin();
-    private File file = new File("bestanden/artikel.xls");
+    private File file = new File("src/bestanden/artikel.xls");
 
 
     public ArtikelExcelLoadSaveStrategy(){}

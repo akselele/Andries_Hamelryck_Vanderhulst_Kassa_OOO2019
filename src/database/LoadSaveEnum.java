@@ -8,7 +8,7 @@ import database.excel.ArtikelExcelLoadSaveStrategy;
 
 public enum LoadSaveEnum {
     EXCEL(ArtikelExcelLoadSaveStrategy.class),
-    TEKST(ArtikelTekstLoadSave.class);
+    TEXT(ArtikelTekstLoadSave.class);
 
     private Class klasse;
 

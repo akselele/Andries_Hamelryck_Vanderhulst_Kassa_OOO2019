@@ -23,21 +23,15 @@ public class SettingsPane extends GridPane {
         Button button2 = new Button("Text");
         button1.setOnAction( event ->
         {
-            try {
                 artikelDbInMemory.setLoadSaveStrategy(loadSaveFactory.getStrategy("EXCEL"));
-            } catch (DomainException e) {
-                e.printStackTrace();
-            }
+
 
 
         });
         button2.setOnAction( event ->
         {
-            try {
+
                 artikelDbInMemory.setLoadSaveStrategy(loadSaveFactory.getStrategy("TEXT"));
-            } catch (DomainException e) {
-                e.printStackTrace();
-            }
 
 
         });
