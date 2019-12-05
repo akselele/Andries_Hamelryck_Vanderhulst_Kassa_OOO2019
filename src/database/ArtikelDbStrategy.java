@@ -10,7 +10,7 @@ import java.util.Map;
  **/
 
 public interface ArtikelDbStrategy {
-    Artikel get(String code);
+    Artikel getArtikel(String code);
 
     //ObservableList returnen is nodig om het in een tableview te kunnen weergeven
     ObservableList<Artikel> getAll();

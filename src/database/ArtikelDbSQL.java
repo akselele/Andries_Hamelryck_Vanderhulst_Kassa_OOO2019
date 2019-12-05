@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ArtikelDbSQL implements ArtikelDbStrategy {
     @Override
-    public Artikel get(String code) {
+    public Artikel getArtikel(String code) {
         return null;
     }
 

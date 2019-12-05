@@ -23,8 +23,8 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
     }
 
     @Override
-    public Artikel get(String code){
-        if(code.trim().isEmpty() || code.equalsIgnoreCase(null)){
+    public Artikel getArtikel(String code){
+        if(code.trim().isEmpty() || code.equalsIgnoreCase(null) || artikels.get(code) == null){
             throw new IllegalArgumentException("No code given");
         }
         return artikels.get(code);

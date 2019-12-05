@@ -1,5 +1,6 @@
-package controller;
+package view.panels;
 
+import controller.ProductOverviewController;
 import database.ArtikelDbContext;
 import database.ArtikelDbInMemory;
 import javafx.event.ActionEvent;
@@ -31,17 +32,17 @@ import java.util.Map;
 
 public class ProductOverviewPane extends GridPane {
 	private TableView<Artikel> table = new TableView<>();
-	private ArtikelDbContext artikelDbContext;
+	private ProductOverviewController productOverviewController;
 
-	public ProductOverviewPane(ArtikelDbContext artikelDbContext) {
-		this.artikelDbContext = artikelDbContext;
+	public ProductOverviewPane(ProductOverviewController productOverviewController) {
+		this.productOverviewController = productOverviewController;
 		this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
 		this.add(new Label("Products:"), 0, 0, 1, 1);
 
 		table.setEditable(false);
-		table.setItems(artikelDbContext.getAll());
+		table.setItems(productOverviewController.getAll());
 
 
 		//Kolommen toevoegen + alle artikels inladen

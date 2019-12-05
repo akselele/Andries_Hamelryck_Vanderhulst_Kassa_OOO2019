@@ -22,7 +22,7 @@ public class ArtikelDbContext {
     }
 
     public Artikel getArtikel(String code) {
-        return artikelDbStrategy.get(code);
+        return artikelDbStrategy.getArtikel(code);
     }
 
     public ObservableList<Artikel> getAll() {

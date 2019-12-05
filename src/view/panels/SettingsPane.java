@@ -1,4 +1,4 @@
-package controller;
+package view.panels;
 
 import database.ArtikelDbContext;
 import database.LoadSaveFactory;

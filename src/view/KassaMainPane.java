@@ -1,6 +1,8 @@
 package view;
 
 
+import controller.KassaOverviewController;
+import controller.ProductOverviewController;
 import database.ArtikelDbContext;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -8,8 +10,8 @@ import javafx.scene.layout.BorderPane;
 import model.DomainException;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
-import controller.KassaOverviewPane;
-import controller.ProductOverviewPane;
+import view.panels.KassaOverviewPane;
+import view.panels.ProductOverviewPane;
 
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +24,9 @@ import java.util.Map;
 public class KassaMainPane extends BorderPane {
     private Map<EventType, List<Observer>> observers;
     private ArtikelDbContext artikelDbContext = new ArtikelDbContext();
-    private KassaOverviewPane kassaOverviewPane = new KassaOverviewPane(artikelDbContext);
+    private KassaOverviewController kassaOverviewController = new KassaOverviewController(artikelDbContext);
+    private KassaOverviewPane kassaOverviewPane = new KassaOverviewPane(kassaOverviewController);
+    private ProductOverviewController productOverviewController = new ProductOverviewController(artikelDbContext);
 
 
 	public KassaMainPane() throws DomainException {
@@ -30,7 +34,7 @@ public class KassaMainPane extends BorderPane {
 
 	    TabPane tabPane = new TabPane();
         Tab kassaTab = new Tab("Kassa",kassaOverviewPane);
-        ProductOverviewPane productOverviewPane = new ProductOverviewPane(artikelDbContext);
+        ProductOverviewPane productOverviewPane = new ProductOverviewPane(productOverviewController);
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
         Tab instellingTab = new Tab("Instellingen");
         Tab logTab = new Tab("Log");
@@ -42,7 +46,7 @@ public class KassaMainPane extends BorderPane {
 	}
 
     public void registerObserver(EventType e, Observer o) {
-	    kassaOverviewPane.registerObserver(e,o);
+	    kassaOverviewController.registerObserver(e,o);
     }
 
 
