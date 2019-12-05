@@ -12,6 +12,7 @@ import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 import view.panels.KassaOverviewPane;
 import view.panels.ProductOverviewPane;
+import view.panels.SettingsPane;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +28,7 @@ public class KassaMainPane extends BorderPane {
     private KassaOverviewController kassaOverviewController = new KassaOverviewController(artikelDbContext);
     private KassaOverviewPane kassaOverviewPane = new KassaOverviewPane(kassaOverviewController);
     private ProductOverviewController productOverviewController = new ProductOverviewController(artikelDbContext);
+    private SettingsPane settingsPane = new SettingsPane();
 
 
 	public KassaMainPane() throws DomainException {
@@ -36,7 +38,7 @@ public class KassaMainPane extends BorderPane {
         Tab kassaTab = new Tab("Kassa",kassaOverviewPane);
         ProductOverviewPane productOverviewPane = new ProductOverviewPane(productOverviewController);
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
-        Tab instellingTab = new Tab("Instellingen");
+        Tab instellingTab = new Tab("Instellingen", settingsPane);
         Tab logTab = new Tab("Log");
         tabPane.getTabs().add(kassaTab);
         tabPane.getTabs().add(artikelTab);
