@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class KlantOverviewController implements Observer {
+public class KlantOverviewController {
     private ObservableList<Artikel> artikels;
     private double uitkomst;
     private ObservableList<Artikel> artikelsVerkoop;
@@ -63,7 +63,6 @@ public class KlantOverviewController implements Observer {
         }
     }
 
-    @Override
     public void update(ObservableList<Artikel> artikels) {
         updateTable(artikels);
     }
