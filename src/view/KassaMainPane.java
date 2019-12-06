@@ -1,3 +1,4 @@
+
 package view;
 
 
@@ -32,10 +33,10 @@ public class KassaMainPane extends BorderPane {
     private SettingsPane settingsPane = new SettingsPane();
 
 
-	public KassaMainPane() throws IOException {
-	    observers = new HashMap<>();
+    public KassaMainPane() throws IOException {
+        observers = new HashMap<>();
 
-	    TabPane tabPane = new TabPane();
+        TabPane tabPane = new TabPane();
         Tab kassaTab = new Tab("Kassa",kassaOverviewPane);
         ProductOverviewPane productOverviewPane = new ProductOverviewPane(productOverviewController);
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
@@ -45,11 +46,11 @@ public class KassaMainPane extends BorderPane {
         tabPane.getTabs().add(artikelTab);
         tabPane.getTabs().add(instellingTab);
         tabPane.getTabs().add(logTab);
-	    this.setCenter(tabPane);
-	}
+        this.setCenter(tabPane);
+    }
 
     public void registerObserver(EventType e, Observer o) {
-	    kassaOverviewController.registerObserver(e,o);
+        kassaOverviewController.registerObserver(e,o);
     }
 
 
