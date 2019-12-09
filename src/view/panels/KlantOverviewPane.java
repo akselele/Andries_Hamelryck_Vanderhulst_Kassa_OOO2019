@@ -1,12 +1,16 @@
 package view.panels;
 
 import controller.KlantOverviewController;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.util.Pair;
 import model.Artikel;
 import model.ObserverPattern.EventType;
 
@@ -15,13 +19,13 @@ import java.util.stream.Collectors;
 
 /**
  @Author Axel Hamelryck
+ @Author Kasper Vanderhulst
  **/
 
 public class KlantOverviewPane extends GridPane {
-    private TableView<Artikel> table = new TableView<Artikel>();
+    private TableView<Pair<Artikel,Integer>> table = new TableView<>();
     private Label totaal = new Label();
     private KlantOverviewController klantOverviewController;
-    private Label betalen = new Label();
 
 
     public KlantOverviewPane(KlantOverviewController klantOverviewController){
@@ -29,7 +33,6 @@ public class KlantOverviewPane extends GridPane {
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
-        this.add(betalen, 2,2,1,1);
         this.add(totaal,0,1,1,1);
         this.getChildren().addAll(table);
         setTable();
@@ -39,27 +42,27 @@ public class KlantOverviewPane extends GridPane {
 
     public void setTable(){
         table.setEditable(false);
-        TableColumn omschrijvingColumn = new TableColumn("Omschrijving");
-        omschrijvingColumn.setCellValueFactory(new PropertyValueFactory<Artikel,String>("Omschrijving"));
+
+        TableColumn<Pair<Artikel,Integer>,String> omschrijvingColumn = new TableColumn<>("Omschrijving");
+        omschrijvingColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getKey().getOmschrijving()));
+
+        TableColumn<Pair<Artikel,Integer>,Number> prijsColumn = new TableColumn<>("Prijs");
+        prijsColumn.setCellValueFactory(data -> new SimpleDoubleProperty(data.getValue().getKey().getPrijs()));
+
+        TableColumn<Pair<Artikel,Integer>,Number> aantalColumn = new TableColumn<>("Aantal");
+        aantalColumn.setCellValueFactory(data -> new SimpleIntegerProperty(data.getValue().getValue()));
+
         omschrijvingColumn.setMinWidth(100);
-        TableColumn prijsColumn = new TableColumn("Prijs");
-        prijsColumn.setCellValueFactory(new PropertyValueFactory<Artikel,Double>("Prijs"));
         prijsColumn.setMinWidth(100);
-        TableColumn aantalColumn = new TableColumn<Artikel, Integer>("Aantal");
-        aantalColumn.setCellValueFactory(new PropertyValueFactory<Artikel,Integer>("Aantal"));
         aantalColumn.setMinWidth(100);
-        table.getColumns().addAll(omschrijvingColumn, prijsColumn,aantalColumn);
+        table.getColumns().addAll(omschrijvingColumn, prijsColumn, aantalColumn);
     }
 
     public void update(ObservableList<Artikel> artikels){
-            totaal.setText("Totaal: $" + klantOverviewController.getUitkomst());
-            klantOverviewController.update(artikels);
-            table.setItems(klantOverviewController.getArtikelsVerkoop());
-            table.refresh();
-    }
-
-    private void Afhandel(){
-        betalen.setText("Prijs te betalen: $" + klantOverviewController.getUitkomst());
+        totaal.setText("Totaal: $" + klantOverviewController.getUitkomst());
+        klantOverviewController.update(artikels);
+        table.setItems(klantOverviewController.getArtikels());
+        table.refresh();
     }
 
 

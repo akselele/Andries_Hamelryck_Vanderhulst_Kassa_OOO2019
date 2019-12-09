@@ -1,20 +1,24 @@
 package model;
 
+/**
+ * @Author Kasper Vanderhulst
+ **/
+
 public class Artikel {
     private String code;
     private String omschrijving;
     private String artikelgroep;
     private double prijs;
     private int voorraad;
-    private int aantal = 1;
+
 
     //Dit is een basis artikel klasse met getters en setters met wat constraints.
 
-    public Artikel(String code){
+    public Artikel(String code) {
         setCode(code);
     }
 
-    public Artikel(String code,String omschrijving, String artikelgroep, double prijs, int voorraad){
+    public Artikel(String code, String omschrijving, String artikelgroep, double prijs, int voorraad) {
         setCode(code);
         setOmschrijving(omschrijving);
         setArtikelgroep(artikelgroep);
@@ -22,15 +26,15 @@ public class Artikel {
         setVoorraad(voorraad);
     }
 
-    private void setVoorraad(int voorraad){
-        if(voorraad < 0){
+    private void setVoorraad(int voorraad) {
+        if (voorraad < 0) {
             throw new IllegalArgumentException("Voorraad mag niet kleiner dan 0 zijn.");
         }
         this.voorraad = voorraad;
     }
 
     private void setCode(String code) {
-        if(code.trim().isEmpty() || code.equalsIgnoreCase(null)){
+        if (code.trim().isEmpty() || code.equalsIgnoreCase(null)) {
             throw new IllegalArgumentException("Artikelcode mag niet leeg zijn.");
         }
         this.code = code;
@@ -45,7 +49,7 @@ public class Artikel {
     }
 
     private void setPrijs(double prijs) {
-        if(prijs <= 0){
+        if (prijs <= 0) {
             throw new IllegalArgumentException("Artikelprijs mag niet kleiner dan 0 zijn.");
         }
         this.prijs = prijs;
@@ -69,14 +73,6 @@ public class Artikel {
 
     public int getVoorraad() {
         return voorraad;
-    }
-
-    public int getAantal() {
-        return aantal;
-    }
-
-    public void setAantal(int aantal) {
-        this.aantal = aantal;
     }
 
     @Override

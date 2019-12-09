@@ -13,6 +13,7 @@ import view.panels.KlantOverviewPane;
 
 /**
  @Author Axel Hamelryck
+ @Author Kasper Vanderhulst
  **/
 
 public class KlantMainPane extends BorderPane {
