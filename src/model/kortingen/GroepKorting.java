@@ -1,12 +1,14 @@
 package model.kortingen;
 
+import model.WinkelMandje;
+
 /**
  * @Author Kasper Vanderhulst
  **/
 
 public class GroepKorting implements KortingStrategy {
     @Override
-    public double getTotaleKorting(double prijs) {
-        return prijs * 0.95;
+    public double getTotaleKorting(WinkelMandje winkelMandje) {
+        return 0.0;
     }
 }

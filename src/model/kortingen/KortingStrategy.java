@@ -1,5 +1,7 @@
 package model.kortingen;
 
+import model.WinkelMandje;
+
 /**
  * @Author Kasper Vanderhulst
  **/
@@ -7,5 +9,5 @@ package model.kortingen;
 
 public interface KortingStrategy {
 
-    double getTotaleKorting(double prijs);
+    double getTotaleKorting(WinkelMandje winkelMandje);
 }

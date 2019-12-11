@@ -1,5 +1,7 @@
 package model.kortingen;
 
+import model.WinkelMandje;
+
 /**
  * @Author Kasper Vanderhulst
  **/
@@ -7,7 +9,7 @@ package model.kortingen;
 
 public class DuursteItemKorting implements KortingStrategy {
     @Override
-    public double getTotaleKorting(double prijs) {
-        return prijs * 0.75;
+    public double getTotaleKorting(WinkelMandje winkelMandje) {
+        return 0.0;
     }
 }
