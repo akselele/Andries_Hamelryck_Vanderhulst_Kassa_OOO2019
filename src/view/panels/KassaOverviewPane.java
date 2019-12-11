@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import model.Artikel;
+import model.DomainException;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 import model.ObserverPattern.Subject;
@@ -45,7 +46,13 @@ public class KassaOverviewPane extends GridPane{
         Button buttonAfhandel = new Button("Afhandelen");
         this.add(buttonAddArtikel,2,1,1,1 );
         this.add(buttonAfhandel,2,2,1,1);
-        buttonAfhandel.setOnAction(e -> setAfhandelScreen());
+        buttonAfhandel.setOnAction(e -> {
+            try {
+                setAfhandelScreen();
+            } catch (DomainException ex) {
+                ex.printStackTrace();
+            }
+        });
         Button button2 = new Button("Remove artikel");
         button2.setOnAction(e ->{
             try{
@@ -117,15 +124,23 @@ public class KassaOverviewPane extends GridPane{
         alert.show();
     }
 
-    private void setAfhandelScreen(){
+    private void setAfhandelScreen() throws DomainException {
+        kassaOverviewController.handleAfhandel();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Afhandelen verkoop");
         alert.setContentText("De klant moet $" + kassaOverviewController.getUitkomst()  + " betalen.");
         ButtonType okButton = new ButtonType("Betaald?", ButtonBar.ButtonData.YES);
         ButtonType noButton = new ButtonType("Niet betaald", ButtonBar.ButtonData.NO);
-        alert.getButtonTypes().setAll(okButton, noButton);
-        alert.show();
-        kassaOverviewController.handleAfhandel();
+        ButtonType cancelButton = new ButtonType("Cancel",ButtonBar.ButtonData.NO);
+        alert.getButtonTypes().setAll(okButton, noButton,cancelButton);
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == okButton){
+            kassaOverviewController.verkoop();
+        }
+        else if(result.get()==cancelButton){
+            kassaOverviewController.cancel();
+        }
+
         }
     }
 

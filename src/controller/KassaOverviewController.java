@@ -90,6 +90,7 @@ public class KassaOverviewController implements Subject {
                 }
         }
         logPane.update(LocalDateTime.now(), uitkomst);
+        string();
         artikels.clear();
         notifyObserver(EventType.KLANTVIEW, artikels);
         artikelDbContext.save(a);
@@ -131,5 +132,32 @@ public class KassaOverviewController implements Subject {
 
     public void handleAfhandel() {
         notifyObserver(EventType.KLANTVIEW, uitkomst);
+    }
+
+    private void string(){
+        String y = "";
+        String x = "";
+        for(Artikel artikel : toMap().keySet()){
+            x += artikel.getOmschrijving() + "\t\t        " + toMap().get(artikel) + "\t" + artikel.getPrijs() + "\t\n";
+        }
+        y= "Omschrijving\t\tAantal\t  Prijs\n" +
+                "*****************************\n" +
+                x +
+                "*****************************\n" +
+                "Betaald (inclusief korting) : " + uitkomst + "€         \n";
+        System.out.println(y);
+    }
+
+    //TODO Hier moet de korting ook nog bij.
+    private Map<Artikel,Integer> toMap(){
+        Map<Artikel, Integer> artikelsMap = new HashMap<>();
+        artikelsMap.clear();
+        int ammount = 1;
+        for (Artikel artikel : artikels) {
+            ammount = Collections.frequency(artikels, artikel);
+            artikelsMap.put(artikel, ammount);
+        }
+
+        return artikelsMap;
     }
 }
