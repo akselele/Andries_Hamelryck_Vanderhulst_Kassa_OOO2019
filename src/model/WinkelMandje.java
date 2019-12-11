@@ -1,6 +1,9 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @Author Kasper Vanderhulst
@@ -25,10 +28,31 @@ public class WinkelMandje {
     }
 
     public Artikel getDuurste(){
-        return null;
+        Artikel duurste = new Artikel("","","",0.00,0);
+        Set<Artikel> artikelsSet = artikels.keySet();
+        for(Artikel artikel: artikelsSet){
+            if(artikel.getPrijs() > duurste.getPrijs()){
+                duurste = artikel;
+            }
+        }
+        return duurste;
     }
 
     public int getAantal(){
-        return 0;
+        int aantal = 0;
+
+        for(Artikel artikel: artikels.keySet()){
+            aantal += artikel.getPrijs() * artikels.get(artikel);
+        }
+        return aantal;
+    }
+
+    public Set<String> getArtikelgroepen(){
+        Set<String> groep = new TreeSet<>();
+        for(Artikel artikel : artikels.keySet()){
+            groep.add(artikel.getArtikelgroep());
+        }
+
+        return groep;
     }
 }
