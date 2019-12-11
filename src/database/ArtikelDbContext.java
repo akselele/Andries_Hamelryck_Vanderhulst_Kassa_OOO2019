@@ -65,4 +65,6 @@ public class ArtikelDbContext {
     public void setLoadSaveStrategy(LoadSaveStrategy excel, String excel1) throws IOException {
         artikelDbStrategy.setLoadSaveStrategy(excel,excel1);
     }
+
+
 }

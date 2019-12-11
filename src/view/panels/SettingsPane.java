@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import model.DomainException;
 
 import java.io.FileNotFoundException;
@@ -20,9 +21,20 @@ public class SettingsPane extends GridPane {
 
 
     public SettingsPane() throws IOException {
+        VBox vBox = new VBox();
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
+
+        ArtikelDbContext artikelDbContext = new ArtikelDbContext();
+
+        String[] vertaalLijst = artikelDbContext.getStrategiesList();
+
+        for(String s : vertaalLijst){
+            Button b = new Button(s);
+            vBox.getChildren().add(b);
+        }
+
         Button button1 = new Button("Excel");
         Button button2 = new Button("Text");
         button1.setOnAction( event ->
@@ -44,6 +56,7 @@ public class SettingsPane extends GridPane {
         this.add(button1, 2,1,1,1 );
         this.add(button2, 3,1,1,1 );
         this.getChildren().addAll();
+        this.getChildren().add(vBox);
     }
 
     public void displayErrorMessage(String errorMessage){

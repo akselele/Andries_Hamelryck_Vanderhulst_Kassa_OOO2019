@@ -31,6 +31,8 @@ public class KassaOverviewPane extends GridPane{
     private KassaOverviewController kassaOverviewController;
 
     public KassaOverviewPane(KassaOverviewController kassaOverviewController){
+        //TODO SORTING IS NOT CORRECT YET? IT SORTS RANDOMLY
+
         this.kassaOverviewController = kassaOverviewController;
         setGlobalEventHandler(this);
         this.setPadding(new Insets(5, 5, 5, 5));

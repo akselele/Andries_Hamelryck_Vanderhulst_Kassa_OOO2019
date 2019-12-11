@@ -6,6 +6,8 @@ import database.excel.ArtikelExcelLoadSaveStrategy;
  @Author Noa Andries
  **/
 
+//TODO AANMAAK PAS BIJ KLIK
+
 public enum LoadSaveEnum {
     EXCEL(ArtikelExcelLoadSaveStrategy.class),
     TEXT(ArtikelTekstLoadSave.class);
