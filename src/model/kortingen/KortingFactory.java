@@ -1,5 +1,8 @@
 package model.kortingen;
-
+/**
+ * @Author Kasper Vanderhulst
+ * @Author Noa Andries
+ **/
 public class KortingFactory {
     public  KortingStrategy createKorting(String code){
         KortingType kortingEnum = KortingType.valueOf(code.toUpperCase());

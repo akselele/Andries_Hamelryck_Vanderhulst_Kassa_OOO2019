@@ -16,6 +16,9 @@ import model.kortingen.KortingFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+/**
+ @Author Noa Andries
+ **/
 
 
 

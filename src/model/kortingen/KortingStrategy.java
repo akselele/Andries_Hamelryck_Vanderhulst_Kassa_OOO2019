@@ -9,5 +9,5 @@ import model.WinkelMandje;
 
 public interface KortingStrategy {
 
-    double getTotaleKorting(WinkelMandje winkelMandje);
+    double getTotaleKorting(WinkelMandje winkelMandje, int korting, int drempelwaarde, String group);
 }

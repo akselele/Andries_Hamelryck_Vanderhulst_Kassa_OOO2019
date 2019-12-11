@@ -8,6 +8,7 @@ import java.util.TreeSet;
 /**
  * @Author Kasper Vanderhulst
  * @Author Axel Hamelryck
+ * @Author Noa Andries
  **/
 
 
@@ -38,6 +39,7 @@ public class WinkelMandje {
         return duurste;
     }
 
+
     public int getAantal(){
         int aantal = 0;
 
@@ -54,5 +56,14 @@ public class WinkelMandje {
         }
 
         return groep;
+    }
+    public double getTotaalprijs()
+    {
+        double totaal = 0;
+        for (Map.Entry<Artikel, Integer> entry : this.artikels.entrySet())
+        {
+            totaal += entry.getKey().getPrijs()*entry.getValue();
+        }
+        return totaal;
     }
 }
