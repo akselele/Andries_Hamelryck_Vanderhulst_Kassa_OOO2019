@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.DomainException;
+import model.kortingen.KortingContext;
+import model.kortingen.KortingFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,11 +22,14 @@ import java.io.IOException;
 public class SettingsPane extends GridPane {
     ArtikelDbContext artikelDbContext = new ArtikelDbContext();
     LoadSaveFactory loadSaveFactory = new LoadSaveFactory();
+    KortingContext kortingContext = new KortingContext();
+    KortingFactory kortingFactory = new KortingFactory();
 
 
 
     public SettingsPane() throws IOException {
-        HBox vBox = new HBox();
+        VBox vBox = new VBox();
+        HBox hBoxloadsave = new HBox();
         this.setPadding(new Insets(5, 5, 5, 5));
         this.setVgap(5);
         this.setHgap(5);
@@ -34,8 +39,7 @@ public class SettingsPane extends GridPane {
 
         for(String s : vertaalLijst){
             Button b = new Button(s);
-            vBox.getChildren().add(b);
-            System.out.println(s);
+            hBoxloadsave.getChildren().add(b);
 
             b.setOnAction( event ->{
                 try {
@@ -48,8 +52,36 @@ public class SettingsPane extends GridPane {
 
         }
 
+        vBox.getChildren().add(hBoxloadsave);
+
+
+        HBox hboxKorting = new HBox();
+        String[] kortingLijst = new KortingContext().getKortingList();
+
+        for(String s : kortingLijst){
+            Button b = new Button(s);
+            hboxKorting.getChildren().add(b);
+
+            b.setOnAction( event -> {
+                try {
+                    kortingContext.setKortingStrategy(kortingFactory.createKorting(s));
+                }catch (Exception e){
+                    displayErrorMessage("Fout bij het bepalen van de korting");
+                }
+            });
+        }
+        vBox.getChildren().add(hboxKorting);
+
         this.getChildren().add(vBox);
+
+
+
+
+
     }
+
+
+
 
     public void displayErrorMessage(String errorMessage){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
