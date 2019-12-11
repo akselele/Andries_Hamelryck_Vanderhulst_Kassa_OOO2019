@@ -8,6 +8,6 @@ package model.kortingen;
 public class DuursteItemKorting implements KortingStrategy {
     @Override
     public double getTotaleKorting(double prijs) {
-        return 0;
+        return prijs * 0.75;
     }
 }

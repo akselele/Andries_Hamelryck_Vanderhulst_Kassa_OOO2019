@@ -17,4 +17,6 @@ public enum KortingType {
         this.kortingClass = kortingClass;
     }
 
+    public String getOmschrijving() { return kortingClass.toString(); }
+
 }
