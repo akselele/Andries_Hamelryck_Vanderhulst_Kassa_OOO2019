@@ -62,8 +62,8 @@ public class ArtikelDbContext {
         return strategiesListStr;
     }
 
-    public void setLoadSaveStrategy(LoadSaveStrategy excel, String excel1) throws IOException {
-        artikelDbStrategy.setLoadSaveStrategy(excel,excel1);
+    public void setLoadSaveStrategy(LoadSaveStrategy strategy, String property) throws IOException {
+        artikelDbStrategy.setLoadSaveStrategy(strategy,property);
     }
 
 
