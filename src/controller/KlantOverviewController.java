@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * @Author Kasper Vanderhulst
  **/
 
-public class KlantOverviewController implements Observer {
+public class KlantOverviewController {
     private ObservableMap<Artikel, Integer> artikelsMap;
     private double uitkomst;
     private ObservableList<Artikel> artikelsVerkoop;
@@ -83,6 +83,7 @@ public class KlantOverviewController implements Observer {
         }
 
     }
+
 
     private ObservableList<Pair<Artikel, Integer>> toPairList() {
         ObservableList<Pair<Artikel, Integer>> list = FXCollections.observableArrayList();

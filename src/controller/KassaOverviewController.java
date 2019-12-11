@@ -68,6 +68,13 @@ public class KassaOverviewController implements Subject {
         }
     }
 
+    @Override
+    public void notifyObserver(EventType e, double uitkomst) {
+        for (Observer o:this.observers.get(e)) {
+            o.update(uitkomst);
+        }
+    }
+
     public double getUitkomst() {
         return uitkomst;
     }
@@ -98,6 +105,6 @@ public class KassaOverviewController implements Subject {
     }
 
     public void handleAfhandel() {
-        notifyObserver(EventType.KLANTVIEW, artikels);
+        notifyObserver(EventType.KLANTVIEW, uitkomst);
     }
 }

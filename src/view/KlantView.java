@@ -31,6 +31,11 @@ public class KlantView implements Observer {
 
 	@Override
 	public void update(ObservableList<Artikel> artikels) {
-		borderPane.add(artikels);
+		borderPane.update(artikels);
+	}
+
+	@Override
+	public void update(double uitkomst) {
+		borderPane.update(uitkomst);
 	}
 }

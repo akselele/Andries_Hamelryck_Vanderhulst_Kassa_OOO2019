@@ -29,9 +29,12 @@ public class KlantMainPane extends BorderPane {
         this.setCenter(tabPane);
     }
 
-    public void add(ObservableList<Artikel> artikels){
+    public void update(ObservableList<Artikel> artikels){
         klantOverviewPane.update(artikels);
     }
 
+    public void update(double uitkomst){
+        klantOverviewPane.update(uitkomst);
+    }
 
 }
