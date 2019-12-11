@@ -61,8 +61,8 @@ public class KlantOverviewPane extends GridPane {
     }
 
     public void update(ObservableList<Artikel> artikels){
-        totaal.setText("Totaal: $" + klantOverviewController.getUitkomst());
         klantOverviewController.update(artikels);
+        totaal.setText("Totaal: $" + klantOverviewController.getUitkomst());
         table.setItems(klantOverviewController.getArtikels());
         table.refresh();
         afhandel.setText("");

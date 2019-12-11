@@ -84,8 +84,8 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
     //Het saven van eventueel gewijzigde artikels, wat nog niet gebruikt wordt.
     //Het werkt wel als men het test via een ander uitvoerbestand
     @Override
-    public void save() throws DomainException{
-        loadSaveStrategy.save(new ArrayList<Artikel>(artikels.values()));
+    public void save(ArrayList<Artikel> artikels) throws DomainException{
+        loadSaveStrategy.save(artikels);
     }
 
     public void propertiesOpen() throws IOException {

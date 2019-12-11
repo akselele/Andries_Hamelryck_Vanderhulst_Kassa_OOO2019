@@ -6,6 +6,7 @@ import model.DomainException;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 /**
  @Author Kasper Vanderhulst
@@ -29,7 +30,7 @@ public interface ArtikelDbStrategy {
 
     //Het saven van eventueel gewijzigde artikels, wat nog niet gebruikt wordt.
     //Het werkt wel als men het test via een ander uitvoerbestand
-    void save() throws DomainException;
+    void save(ArrayList<Artikel> artikels) throws DomainException;
 
     void toStringTest();
 

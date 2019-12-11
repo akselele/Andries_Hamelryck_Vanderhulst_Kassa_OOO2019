@@ -26,6 +26,13 @@ public class Artikel {
         setVoorraad(voorraad);
     }
 
+    public void verkoop(int aantalVerkocht){
+        if (aantalVerkocht > this.voorraad) {
+            throw new IllegalArgumentException("Er zijn niet genoeg artikelen. Nog maar " + this.voorraad + " in stock.");
+        }
+        this.voorraad = voorraad - aantalVerkocht;
+    }
+
     private void setVoorraad(int voorraad) {
         if (voorraad < 0) {
             throw new IllegalArgumentException("Voorraad mag niet kleiner dan 0 zijn.");

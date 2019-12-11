@@ -1,5 +1,6 @@
 package application;
 	
+import controller.LogController;
 import database.ArtikelDbInMemory;
 import javafx.application.Application;
 import javafx.stage.Stage;

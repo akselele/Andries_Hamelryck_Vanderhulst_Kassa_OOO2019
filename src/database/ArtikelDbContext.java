@@ -44,8 +44,8 @@ public class ArtikelDbContext {
         artikelDbStrategy.add(artikel);
     }
 
-    public void save() throws DomainException {
-        artikelDbStrategy.save();
+    public void save(ArrayList<Artikel> artikels) throws DomainException {
+        artikelDbStrategy.save(artikels);
     }
 
     public void toStringTest() {

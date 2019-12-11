@@ -5,6 +5,7 @@ import model.Artikel;
 import model.DomainException;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -40,7 +41,7 @@ public class ArtikelDbSQL implements ArtikelDbStrategy {
     }
 
     @Override
-    public void save() throws DomainException {
+    public void save(ArrayList<Artikel> artikels) throws DomainException {
 
     }
 

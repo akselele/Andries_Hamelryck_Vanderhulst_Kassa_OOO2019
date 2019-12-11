@@ -8,10 +8,13 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import model.Artikel;
+import model.DomainException;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 import model.ObserverPattern.Subject;
+import view.panels.LogPane;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class KassaOverviewController implements Subject {
@@ -21,8 +24,10 @@ public class KassaOverviewController implements Subject {
     private double uitkomst;
     private double uitkomstHold;
     private Map<EventType, List<Observer>> observers;
+    private LogPane logPane;
 
-    public KassaOverviewController(ArtikelDbContext artikelDbContext){
+    public KassaOverviewController(ArtikelDbContext artikelDbContext, LogPane logPane){
+        this.logPane = logPane;
         observers = new HashMap<>();
         this.artikelDbContext = artikelDbContext;
         artikels = FXCollections.observableArrayList(new ArrayList<Artikel>());
@@ -73,6 +78,26 @@ public class KassaOverviewController implements Subject {
         for (Observer o:this.observers.get(e)) {
             o.update(uitkomst);
         }
+    }
+
+    //TODO Artikels voorraad wordt niet opgeslagen in de txt/excel bestanden.
+    public void verkoop() throws DomainException {
+        ArrayList<Artikel> a = new ArrayList<Artikel>(artikelDbContext.getArtikels().values());
+        Iterator<Artikel> artikelList = a.iterator();
+            while(artikelList.hasNext()){
+                if(artikels.contains(artikelList.next())){
+                    artikelList.next().verkoop(Collections.frequency(artikels, artikelList.next()));
+                }
+        }
+        logPane.update(LocalDateTime.now(), uitkomst);
+        artikels.clear();
+        notifyObserver(EventType.KLANTVIEW, artikels);
+        artikelDbContext.save(a);
+    }
+
+    public void cancel(){
+        artikels.clear();
+        notifyObserver(EventType.KLANTVIEW, artikels);
     }
 
     public double getUitkomst() {

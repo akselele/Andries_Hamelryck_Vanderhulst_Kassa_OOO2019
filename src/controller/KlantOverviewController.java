@@ -62,7 +62,6 @@ public class KlantOverviewController {
     }
 
     public void update(ObservableList<Artikel> artikels) {
-
         try {
             artikelsMap.clear();
             int ammount = 1;
@@ -71,17 +70,12 @@ public class KlantOverviewController {
                 artikelsMap.put(artikel, ammount);
             }
             //List<Artikel> artikelstest = artikels.stream().distinct().collect(Collectors.toList());
-
-
             ObservableList<Pair<Artikel, Integer>> artikelList = toPairList();
-
             refresh();
         }
         //Deze catch is leeg omdat in KassaOverviewPane al een nullpointerexception wordt gegooid, anders zijn er 2 warning screens.
         catch (NullPointerException e) {
-
         }
-
     }
 
 
