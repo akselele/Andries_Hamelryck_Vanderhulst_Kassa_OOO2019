@@ -2,6 +2,7 @@ package model.kortingen;
 
 import model.WinkelMandje;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,11 @@ public class KortingContext {
 
     }
 
-    public void setKortingStrategy(KortingStrategy kortingStrategy) {
+    public void setKortingStrategy(KortingStrategy kortingStrategy, int korting, int drempelwaarde) throws IOException {
         this.kortingStrategy = kortingStrategy;
+        KassaProperties kassaProperties = new KassaProperties();
+        kassaProperties.saveDrempelwaarde(true, korting, drempelwaarde);
+
     }
 
     public double getTotaleKorting(WinkelMandje winkelMandje, int korting, int drempelwaarde, String group){
