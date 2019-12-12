@@ -30,6 +30,7 @@ public class KassaOverviewPane extends GridPane{
     private Label totaal = new Label();
     private Button buttonAddArtikel = new Button("Add artikel");
     private KassaOverviewController kassaOverviewController;
+    private Button buttonHold = new Button("Put on hold");
 
     public KassaOverviewPane(KassaOverviewController kassaOverviewController){
         //TODO SORTING IS NOT CORRECT YET? IT SORTS RANDOMLY
@@ -48,9 +49,13 @@ public class KassaOverviewPane extends GridPane{
         this.add(buttonAfhandel,2,2,1,1);
         buttonAfhandel.setOnAction(e -> {
             try {
+                isEmpty();
                 setAfhandelScreen();
-            } catch (DomainException ex) {
-                ex.printStackTrace();
+                buttonHold.setVisible(true);
+                kassaOverviewController.handleHold();
+                refresh();
+            } catch (DomainException | NullPointerException ex) {
+                displayErrorMessage("Geen items in winkelkar.");
             }
         });
         Button button2 = new Button("Remove artikel");
@@ -74,11 +79,17 @@ public class KassaOverviewPane extends GridPane{
             refresh();
             artikelField.clear();
         });
-        //TODO ON HOLD Een on hold kassaverkoop moet (na afrekening van een andere klant) terug actief kunnen gezet worden en afgehandeld worden.
-        Button buttonHold = new Button("Put on hold");
+
         buttonHold.setOnAction(e ->{
-            kassaOverviewController.handleHold();
-            refresh();
+            try {
+                isEmpty();
+                kassaOverviewController.handleHold();
+                buttonHold.setVisible(false);
+                refresh();
+            }
+            catch(NullPointerException ex){
+                displayErrorMessage("Geen items in winkelkar.");
+            }
         });
         this.add(buttonHold,1,1,1,1);
         this.add(button2,3,1,1,1);
@@ -123,6 +134,12 @@ public class KassaOverviewPane extends GridPane{
         alert.setHeaderText("Information Alert");
         alert.setContentText(errorMessage);
         alert.show();
+    }
+
+    private void isEmpty(){
+        if(table.getItems().isEmpty()){
+            throw new NullPointerException("Geen items in winkelkar");
+        }
     }
 
     private void setAfhandelScreen() throws DomainException {
