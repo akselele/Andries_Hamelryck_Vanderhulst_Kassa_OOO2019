@@ -103,7 +103,6 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
     }
 
     public void propertiesSave(String property) throws IOException {
-        System.out.println(property);
         FileInputStream in = new FileInputStream("src/bestanden/properties.properties");
         Properties properties = new Properties();
         properties.load(in);

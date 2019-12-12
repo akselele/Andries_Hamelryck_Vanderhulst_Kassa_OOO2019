@@ -74,6 +74,7 @@ public class KassaOverviewPane extends GridPane{
             refresh();
             artikelField.clear();
         });
+        //TODO ON HOLD Een on hold kassaverkoop moet (na afrekening van een andere klant) terug actief kunnen gezet worden en afgehandeld worden.
         Button buttonHold = new Button("Put on hold");
         buttonHold.setOnAction(e ->{
             kassaOverviewController.handleHold();

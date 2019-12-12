@@ -20,6 +20,9 @@ import java.io.IOException;
  @Author Noa Andries
  **/
 
+/**
+ * @Author Kasper Vanderhulst
+ **/
 
 
 public class SettingsPane extends GridPane {
