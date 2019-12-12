@@ -21,7 +21,7 @@ public class KortingContext {
     public void setKortingStrategy(KortingStrategy kortingStrategy, int korting, int drempelwaarde) throws IOException {
         this.kortingStrategy = kortingStrategy;
         KassaProperties kassaProperties = new KassaProperties();
-        kassaProperties.saveDrempelwaarde(true, korting, drempelwaarde);
+        kassaProperties.saveDrempelKorting( korting, drempelwaarde);
 
     }
 

@@ -33,7 +33,7 @@ public class KassaOverviewPane extends GridPane{
     private Button buttonHold = new Button("Put on hold");
 
     public KassaOverviewPane(KassaOverviewController kassaOverviewController){
-        //TODO SORTING IS NOT CORRECT YET? IT SORTS RANDOMLY
+
 
         this.kassaOverviewController = kassaOverviewController;
         setGlobalEventHandler(this);

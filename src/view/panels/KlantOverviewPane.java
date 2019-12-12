@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 import model.Artikel;
 import model.ObserverPattern.EventType;
+import model.ObserverPattern.Observer;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
  @Author Kasper Vanderhulst
  **/
 
-public class KlantOverviewPane extends GridPane {
+public class KlantOverviewPane extends GridPane implements Observer {
     private TableView<Pair<Artikel,Integer>> table = new TableView<>();
     private Label totaal = new Label();
     private KlantOverviewController klantOverviewController;
