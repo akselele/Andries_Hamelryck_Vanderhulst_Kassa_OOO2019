@@ -18,6 +18,8 @@ import model.DomainException;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 import model.ObserverPattern.Subject;
+
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -58,6 +60,8 @@ public class KassaOverviewPane extends GridPane{
                 displayErrorMessage("Geen items in winkelkar.");
             }catch(IllegalArgumentException ex2){
                 displayErrorMessage(ex2.getMessage());
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         });
         Button button2 = new Button("Remove artikel");
@@ -144,7 +148,7 @@ public class KassaOverviewPane extends GridPane{
         }
     }
 
-    private void setAfhandelScreen() throws DomainException {
+    private void setAfhandelScreen() throws IOException {
         kassaOverviewController.handleAfhandel();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Afhandelen verkoop");

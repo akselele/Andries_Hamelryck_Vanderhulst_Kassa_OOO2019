@@ -9,11 +9,18 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import model.Artikel;
 import model.DomainException;
+import model.Kassabonnen.BasisKassabon;
+import model.Kassabonnen.Kassabon;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 import model.ObserverPattern.Subject;
+import model.WinkelMandje;
+import model.kortingen.KassaProperties;
+import model.kortingen.KortingContext;
+import model.kortingen.KortingFactory;
 import view.panels.LogPane;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -25,13 +32,17 @@ public class KassaOverviewController implements Subject {
     private double uitkomstHold;
     private Map<EventType, List<Observer>> observers;
     private LogPane logPane;
+    private Properties properties;
+    private KortingContext kortingContext;
 
-    public KassaOverviewController(ArtikelDbContext artikelDbContext, LogPane logPane){
+    public KassaOverviewController(ArtikelDbContext artikelDbContext, LogPane logPane) throws IOException {
         this.logPane = logPane;
         observers = new HashMap<>();
         this.artikelDbContext = artikelDbContext;
         artikels = FXCollections.observableArrayList(new ArrayList<Artikel>());
         artikelsHold = FXCollections.observableArrayList(new ArrayList<Artikel>());
+        properties = KassaProperties.load();
+        kortingContext = new KortingContext();
     }
 
     public void addArtikel(Artikel artikel){
@@ -93,7 +104,8 @@ public class KassaOverviewController implements Subject {
         aObservable.addAll(a);
         notifyObserver(EventType.KASSAVIEW, aObservable);
         logPane.update(LocalDateTime.now(), uitkomst);
-        string();
+        Kassabon kassabon = new BasisKassabon();
+        kassabon.string(toMap(), uitkomst);
         artikels.clear();
         notifyObserver(EventType.KLANTVIEW, artikels);
         artikelDbContext.save(a);
@@ -103,6 +115,37 @@ public class KassaOverviewController implements Subject {
         artikels.clear();
         notifyObserver(EventType.KLANTVIEW, artikels);
     }
+
+    public double getUitkomstKorting() throws IOException {
+
+        double uitkomstMetKorting = 0.0;
+
+        Map<Artikel,Integer> tempMap = toMap();
+        WinkelMandje winkelMandje = new WinkelMandje(tempMap);
+
+//todo lijst niet gehardcode maar via enum?
+        String[] kortingen = kortingContext.getKortingList();
+        KortingFactory kortingFactory = new KortingFactory();
+        properties = KassaProperties.load();
+
+
+        if (properties.getProperty("GROEPKORTING").equalsIgnoreCase("true")) {
+            kortingContext.setKortingStrategy(kortingFactory.createKorting(kortingen[0]));
+            uitkomstMetKorting = kortingContext.getTotaleKorting(winkelMandje);
+        }
+        if (properties.getProperty("DREMPELKORTING").equalsIgnoreCase("true")) {
+            kortingContext.setKortingStrategy(kortingFactory.createKorting(kortingen[0]));
+            uitkomstMetKorting = kortingContext.getTotaleKorting(winkelMandje);
+        }
+        if (properties.getProperty("DUURSTEITEMKORTING").equalsIgnoreCase("true")) {
+            kortingContext.setKortingStrategy(kortingFactory.createKorting(kortingen[0]));
+            uitkomstMetKorting = kortingContext.getTotaleKorting(winkelMandje);
+        }
+
+
+        return uitkomstMetKorting;
+    }
+
 
     public double getUitkomst() {
         return uitkomst;
@@ -143,11 +186,15 @@ public class KassaOverviewController implements Subject {
         for(Artikel artikel : toMap().keySet()){
             x += artikel.getOmschrijving() + "\t\t        " + toMap().get(artikel) + "\t" + artikel.getPrijs() + "\t\n";
         }
-        y= "Omschrijving\t\tAantal\t  Prijs\n" +
-                "*****************************\n" +
-                x +
-                "*****************************\n" +
-                "Betaald (inclusief korting) : " + uitkomst + "€         \n";
+        try {
+            y= "Omschrijving\t\tAantal\t  Prijs\n" +
+                    "*****************************\n" +
+                    x +
+                    "*****************************\n" +
+                    "Betaald (inclusief korting) : " + getUitkomstKorting() + "€         \n";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println(y);
     }
 
