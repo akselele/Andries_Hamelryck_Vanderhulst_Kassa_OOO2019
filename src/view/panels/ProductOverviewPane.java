@@ -3,6 +3,7 @@ package view.panels;
 import controller.ProductOverviewController;
 import database.ArtikelDbContext;
 import database.ArtikelDbInMemory;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -30,7 +31,7 @@ import java.util.Map;
  **/
 
 
-public class ProductOverviewPane extends GridPane {
+public class ProductOverviewPane extends GridPane implements Observer {
 	private TableView<Artikel> table = new TableView<>();
 	private ProductOverviewController productOverviewController;
 
@@ -65,5 +66,16 @@ public class ProductOverviewPane extends GridPane {
 		table.getColumns().addAll(codeColumn,omschrijvingColumn,artikelgroepColumn,prijsColumn,voorraadColumn);
 
 		this.getChildren().addAll(table);
+	}
+
+	@Override
+	public void update(ObservableList<Artikel> artikels) {
+		table.setItems(artikels);
+		table.refresh();
+	}
+
+	@Override
+	public void update(double uitkomst) {
+
 	}
 }

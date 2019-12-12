@@ -83,6 +83,7 @@ public class KassaOverviewController implements Subject {
     //TODO Artikels voorraad wordt niet opgeslagen in de txt/excel bestanden.
     public void verkoop() throws DomainException {
         Map<Artikel, Integer> artikelIntegerMap = toMap();
+        ObservableList<Artikel> aObservable = FXCollections.observableArrayList();
         ArrayList<Artikel> a = new ArrayList<Artikel>(artikelDbContext.getArtikels().values());
         Iterator<Artikel> iter = a.iterator();
         Iterator<Artikel> iter2 = artikelIntegerMap.keySet().iterator();
@@ -90,6 +91,8 @@ public class KassaOverviewController implements Subject {
         for(Artikel artikel : artikelIntegerMap.keySet()){
             artikelDbContext.stockAanpas(artikel, artikelIntegerMap.get(artikel));
         }
+        aObservable.addAll(a);
+        notifyObserver(EventType.KASSAVIEW, aObservable);
         logPane.update(LocalDateTime.now(), uitkomst);
         string();
         artikels.clear();
