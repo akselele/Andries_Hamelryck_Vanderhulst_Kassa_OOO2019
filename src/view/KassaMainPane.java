@@ -43,6 +43,7 @@ public class KassaMainPane extends BorderPane {
         TabPane tabPane = new TabPane();
         Tab kassaTab = new Tab("Kassa",kassaOverviewPane);
         ProductOverviewPane productOverviewPane = new ProductOverviewPane(productOverviewController);
+        kassaOverviewController.registerObserver(EventType.KASSAVIEW, productOverviewPane);
         Tab artikelTab = new Tab("Artikelen",productOverviewPane);
         Tab instellingTab = new Tab("Instellingen", settingsPane);
         Tab logTab = new Tab("Log", logPane);
