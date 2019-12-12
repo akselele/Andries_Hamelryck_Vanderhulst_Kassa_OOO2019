@@ -16,12 +16,10 @@ import model.kortingen.KortingFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-/**
- @Author Noa Andries
- **/
 
 /**
  * @Author Kasper Vanderhulst
+ * @Author Noa Andries
  **/
 
 
@@ -32,7 +30,6 @@ public class SettingsPane extends GridPane {
     KortingFactory kortingFactory = new KortingFactory();
 
 
-
     public SettingsPane() throws IOException {
         VBox vBox = new VBox();
         HBox hBoxloadsave = new HBox();
@@ -41,17 +38,17 @@ public class SettingsPane extends GridPane {
         this.setHgap(5);
 
 
-       String[] vertaalLijst = artikelDbContext.getStrategiesList();
+        String[] vertaalLijst = artikelDbContext.getStrategiesList();
 
-        for(String s : vertaalLijst){
+        for (String s : vertaalLijst) {
             Button b = new Button(s);
             hBoxloadsave.getChildren().add(b);
 
-            b.setOnAction( event ->{
+            b.setOnAction(event -> {
                 try {
-                    artikelDbContext.setLoadSaveStrategy(loadSaveFactory.getStrategy(s),s.toLowerCase());
+                    artikelDbContext.setLoadSaveStrategy(loadSaveFactory.getStrategy(s), s.toLowerCase());
 
-                }catch (IOException e){
+                } catch (IOException e) {
                     displayErrorMessage("Fout bij het laden.");
                 }
             });
@@ -64,14 +61,15 @@ public class SettingsPane extends GridPane {
         HBox hboxKorting = new HBox();
         String[] kortingLijst = new KortingContext().getKortingList();
 
-        for(String s : kortingLijst){
+        for (String s : kortingLijst) {
             Button b = new Button(s);
             hboxKorting.getChildren().add(b);
 
-            b.setOnAction( event -> {
+            b.setOnAction(event -> {
                 try {
-                    kortingContext.setKortingStrategy(kortingFactory.createKorting(s),10, 5);
-                }catch (Exception e){
+                    System.out.println(s);
+                    kortingContext.setKortingStrategyProperties(kortingFactory.createKorting(s), 10, "5");
+                } catch (Exception e) {
                     displayErrorMessage("Fout bij het bepalen van de korting");
                 }
             });
@@ -81,15 +79,10 @@ public class SettingsPane extends GridPane {
         this.getChildren().add(vBox);
 
 
-
-
-
     }
 
 
-
-
-    public void displayErrorMessage(String errorMessage){
+    public void displayErrorMessage(String errorMessage) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Information Alert");
         alert.setContentText(errorMessage);

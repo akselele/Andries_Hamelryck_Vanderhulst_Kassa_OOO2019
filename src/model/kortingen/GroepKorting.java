@@ -3,7 +3,9 @@ package model.kortingen;
 import model.Artikel;
 import model.WinkelMandje;
 
+import java.io.IOException;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * @Author Kasper Vanderhulst
@@ -11,11 +13,21 @@ import java.util.Map;
  **/
 
 public class GroepKorting implements KortingStrategy {
+    private Properties properties;
+
+    public GroepKorting() throws IOException {
+        properties = KassaProperties.load();
+    }
 
 
 
     @Override
-    public double getTotaleKorting(WinkelMandje winkelMandje, int korting, int drempelwaarde, String group) {
+    public double getTotaleKorting(WinkelMandje winkelMandje) {
+        String group = properties.getProperty("GROEP");
+        int korting = Integer.parseInt(properties.getProperty("GROEPKORTINGWAARDE"));
+
+
+
         double totaal = 0;
         for (Map.Entry<Artikel, Integer> entry : winkelMandje.getArtikels().entrySet())
         {

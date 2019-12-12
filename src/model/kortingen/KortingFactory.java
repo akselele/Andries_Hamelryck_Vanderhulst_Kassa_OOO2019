@@ -5,15 +5,18 @@ package model.kortingen;
  **/
 public class KortingFactory {
     public  KortingStrategy createKorting(String code){
+
         KortingType kortingEnum = KortingType.valueOf(code.toUpperCase());
-        String klasseNaam = kortingEnum.getOmschrijving();
         KortingStrategy kortingStrategy = null;
         try{
-            Class dbClass = Class.forName(klasseNaam);
+            Class dbClass = kortingEnum.getKortingClass();
             Object dbObject = dbClass.newInstance();
             kortingStrategy = (KortingStrategy) dbObject;
         }
-        catch (Exception e){}
+        catch (Exception e){
+            System.out.println("Excepetion message: " + e.getMessage());
+        }
+
         return kortingStrategy;
     }
 }

@@ -14,6 +14,9 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 import model.Artikel;
 import model.ObserverPattern.Observer;
+import model.WinkelMandje;
+import model.kortingen.KortingContext;
+import model.kortingen.KortingStrategy;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -26,7 +29,8 @@ import java.util.stream.Collectors;
 public class KlantOverviewController {
     private ObservableMap<Artikel, Integer> artikelsMap;
     private double uitkomst;
-    private ObservableList<Artikel> artikelsVerkoop;
+    //private ObservableList<Artikel> artikelsVerkoop;
+    KortingContext kortingContext = new KortingContext();
 
     public KlantOverviewController() {
         artikelsMap = FXCollections.observableMap(new TreeMap<Artikel, Integer>(new Comparator<Artikel>() {
@@ -55,15 +59,26 @@ public class KlantOverviewController {
         }
     }
 
-    public ObservableList<Artikel> getArtikelsVerkoop() {
+   /* public ObservableList<Artikel> getArtikelsVerkoop() {
         return artikelsVerkoop;
-    }
+    }*/
 
-    public ObservableList<Pair<Artikel,Integer>> getArtikels(){
+    public ObservableList<Pair<Artikel, Integer>> getArtikels() {
         return toPairList();
     }
 
     public double getUitkomst() {
+      /*  WinkelMandje mandje = new WinkelMandje(artikelsMap);
+        int a,b;
+        String c = "";
+        KortingStrategy strategy = null;
+        //strategy halen uit de properties file
+
+        a = 0;
+        b = 0;
+        kortingContext.setKortingStrategy(strategy);
+        double out = kortingContext.getTotaleKorting(mandje,a,b,c);*/
+
         return uitkomst;
     }
 
@@ -90,7 +105,7 @@ public class KlantOverviewController {
         for (Artikel artikel : artikelsMap.keySet()) {
             list.add(new Pair<>(artikel, artikelsMap.get(artikel)));
         }
-       // System.out.println(list.toString());
+        // System.out.println(list.toString());
         return list;
     }
 

@@ -9,8 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import model.Artikel;
 import model.DomainException;
-import model.Kassabonnen.BasisKassabon;
-import model.Kassabonnen.Kassabon;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 import model.ObserverPattern.Subject;
@@ -95,8 +93,7 @@ public class KassaOverviewController implements Subject {
         aObservable.addAll(a);
         notifyObserver(EventType.KASSAVIEW, aObservable);
         logPane.update(LocalDateTime.now(), uitkomst);
-        Kassabon kassabon = new BasisKassabon();
-        kassabon.string(toMap(), uitkomst);
+        string();
         artikels.clear();
         notifyObserver(EventType.KLANTVIEW, artikels);
         artikelDbContext.save(a);
@@ -138,6 +135,20 @@ public class KassaOverviewController implements Subject {
 
     public void handleAfhandel() {
         notifyObserver(EventType.KLANTVIEW, uitkomst);
+    }
+
+    private void string(){
+        String y = "";
+        String x = "";
+        for(Artikel artikel : toMap().keySet()){
+            x += artikel.getOmschrijving() + "\t\t        " + toMap().get(artikel) + "\t" + artikel.getPrijs() + "\t\n";
+        }
+        y= "Omschrijving\t\tAantal\t  Prijs\n" +
+                "*****************************\n" +
+                x +
+                "*****************************\n" +
+                "Betaald (inclusief korting) : " + uitkomst + "€         \n";
+        System.out.println(y);
     }
 
     //TODO Hier moet de korting ook nog bij.

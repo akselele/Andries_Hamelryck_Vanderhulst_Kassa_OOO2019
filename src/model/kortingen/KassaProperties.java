@@ -11,20 +11,25 @@ import java.util.Properties;
  **/
 public class KassaProperties {
 
-    public void load() throws IOException {
+    public  static Properties load() throws IOException {
         Properties properties = new Properties();
         InputStream is = new FileInputStream("src/bestanden/properties.properties");
         properties.load(is);
-        if(properties.getProperty("DrempelKorting").equalsIgnoreCase("TRUE")){
-
-        }
-        else if(properties.getProperty("GroepKorting").equalsIgnoreCase("TRUE")){
-
-        }
-        else if(properties.getProperty("DuursteItemKorting").equalsIgnoreCase("TRUE")){
-
-        }
+        is.close();
+//        if(properties.getProperty("DREMPELKORTING").equalsIgnoreCase("TRUE")){
+//
+//        }
+//        else if(properties.getProperty("GROEPKORTING").equalsIgnoreCase("TRUE")){
+//
+//        }
+//        else if(properties.getProperty("DUURSTEITEMKORTING").equalsIgnoreCase("TRUE")){
+//
+//        }
+        return properties;
     }
+
+
+    //TODO VERANDER ALLE NAMEN VAN DE GETPROPERTIES IN DE 3 KORTINGSKLASSEN
 
     public void saveDrempelKorting(int korting, int drempelwaarde) throws IOException {
         FileInputStream in = new FileInputStream("src/bestanden/properties.properties");
@@ -33,11 +38,11 @@ public class KassaProperties {
         in.close();
 
         FileOutputStream out = new FileOutputStream("src/bestanden/properties.properties");
-        properties.setProperty("DrempelKorting", "TRUE");
-        properties.setProperty("GroepKorting", "FALSE");
-        properties.setProperty("DuursteItemKorting", "FALSE");
-        properties.setProperty("Drempelkorting", String.valueOf(korting));
-        properties.setProperty("Drempelwaarde", String.valueOf(drempelwaarde));
+        properties.setProperty("DREMPELKORTING", "TRUE");
+        properties.setProperty("GROEPKORTING", "FALSE");
+        properties.setProperty("DUURSTEITEMKORTING", "FALSE");
+        properties.setProperty("DREMPELKORTINGWAARDE", String.valueOf(korting));
+        properties.setProperty("DREMPELWAARDE", String.valueOf(drempelwaarde));
         properties.store(out, null);
         out.close();
     }
@@ -49,11 +54,11 @@ public class KassaProperties {
         in.close();
 
         FileOutputStream out = new FileOutputStream("src/bestanden/properties.properties");
-        properties.setProperty("GroepKorting", "TRUE");
-        properties.setProperty("DrempelKorting", "FALSE");
-        properties.setProperty("DuursteItemKorting", "FALSE");
-        properties.setProperty("Groepkorting", String.valueOf(korting));
-        properties.setProperty("Groep", groep);
+        properties.setProperty("GROEPKORTING", "TRUE");
+        properties.setProperty("DREMPELKORTING", "FALSE");
+        properties.setProperty("DUURSTEITEMKORTING", "FALSE");
+        properties.setProperty("GROEPKORTINGWAARDE", String.valueOf(korting));
+        properties.setProperty("GROEP", groep);
         properties.store(out, null);
         out.close();
     }
@@ -65,10 +70,10 @@ public class KassaProperties {
         in.close();
 
         FileOutputStream out = new FileOutputStream("src/bestanden/properties.properties");
-        properties.setProperty("DuursteItemKorting", "TRUE");
-        properties.setProperty("DrempelKorting", "FALSE");
-        properties.setProperty("GroepKorting", "FALSE");
-        properties.setProperty("DuursteItemkorting", String.valueOf(korting));
+        properties.setProperty("DUURSTEITEMKORTING", "TRUE");
+        properties.setProperty("DREMPELKORTING", "FALSE");
+        properties.setProperty("GROEPKORTING", "FALSE");
+        properties.setProperty("DUURSTEITEMKORTINGWAARDE", String.valueOf(korting));
         properties.store(out, null);
         out.close();
     }

@@ -3,7 +3,9 @@ package model.kortingen;
 import model.Artikel;
 import model.WinkelMandje;
 
+import java.io.IOException;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * @Author Kasper Vanderhulst
@@ -11,16 +13,26 @@ import java.util.Map;
  **/
 
 public class DrempelKorting implements KortingStrategy {
+    private Properties properties;
+
+    public DrempelKorting() throws IOException {
+        properties = KassaProperties.load();
+    }
 
 
     @Override
-    public double getTotaleKorting(WinkelMandje winkelMandje, int korting, int drempelwaarde, String group) {
+    public double getTotaleKorting(WinkelMandje winkelMandje) {
+        int korting = Integer.parseInt(properties.getProperty("DREMPELKORTINGWAARDE"));
+        int drempelWaarde = Integer.parseInt(properties.getProperty("DREMPELWAARDE"));
+
         double totaal = winkelMandje.getTotaalprijs();
-        if (totaal >= drempelwaarde)
+        if (totaal >= drempelWaarde)
         {
             totaal = totaal - (totaal/100)*korting;
         }
+        System.out.println(totaal + "TOTAAL");
         return totaal;
+
     }
 
 

@@ -14,19 +14,33 @@ import java.util.List;
 public class KortingContext {
     private KortingStrategy kortingStrategy;
 
-    public KortingContext() {
 
-    }
 
-    public void setKortingStrategy(KortingStrategy kortingStrategy, int korting, int drempelwaarde) throws IOException {
+    public void setKortingStrategy(KortingStrategy kortingStrategy){
         this.kortingStrategy = kortingStrategy;
-        KassaProperties kassaProperties = new KassaProperties();
-        kassaProperties.saveDrempelKorting( korting, drempelwaarde);
-
     }
 
-    public double getTotaleKorting(WinkelMandje winkelMandje, int korting, int drempelwaarde, String group){
-       return kortingStrategy.getTotaleKorting(winkelMandje,korting, drempelwaarde,group);
+    public void setKortingStrategyProperties(KortingStrategy kortingStrategy,int kortingprocent,String extraWaarde) throws IOException {
+
+        this.kortingStrategy = kortingStrategy;
+        System.out.println(kortingStrategy);
+
+        KassaProperties kassaProperties = new KassaProperties();
+        System.out.println(kortingStrategy.getClass().getName());
+        if(kortingStrategy.getClass().getName().equalsIgnoreCase("model.kortingen.DrempelKorting")){
+            //TODO makes this for all kortingen so it saves all given values, values atm are just true false rest is hardcoded
+            kassaProperties.saveDrempelKorting(kortingprocent,Integer.parseInt(extraWaarde));
+        }
+        if(kortingStrategy.getClass().getName().equalsIgnoreCase("model.kortingen.DuursteItemKorting")){
+            kassaProperties.saveDuursteItemKorting(kortingprocent);
+        }
+        if(kortingStrategy.getClass().getName().equalsIgnoreCase("model.kortingen.GroepKorting")){
+            kassaProperties.saveGroepKorting(kortingprocent,extraWaarde);
+        }
+    }
+
+    public double getTotaleKorting(WinkelMandje winkelMandje){
+       return kortingStrategy.getTotaleKorting(winkelMandje);
     }
 
     public String[] getKortingList(){
