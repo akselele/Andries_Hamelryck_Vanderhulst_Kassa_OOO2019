@@ -28,7 +28,7 @@ public class Artikel {
 
     public void verkoop(int aantalVerkocht){
         if (aantalVerkocht > this.voorraad) {
-            throw new IllegalArgumentException("Er zijn niet genoeg artikelen. Nog maar " + this.voorraad + " in stock.");
+            throw new IllegalArgumentException("Er zijn niet genoeg artikelen. Nog maar " + this.voorraad + " in stock van " + this.omschrijving + ".");
         }
         this.voorraad = voorraad - aantalVerkocht;
     }

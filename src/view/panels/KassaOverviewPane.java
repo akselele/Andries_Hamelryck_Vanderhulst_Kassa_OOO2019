@@ -33,7 +33,7 @@ public class KassaOverviewPane extends GridPane{
     private Button buttonHold = new Button("Put on hold");
 
     public KassaOverviewPane(KassaOverviewController kassaOverviewController){
-        //TODO SORTING IS NOT CORRECT YET? IT SORTS RANDOMLY
+
 
         this.kassaOverviewController = kassaOverviewController;
         setGlobalEventHandler(this);
@@ -56,6 +56,8 @@ public class KassaOverviewPane extends GridPane{
                 refresh();
             } catch (DomainException | NullPointerException ex) {
                 displayErrorMessage("Geen items in winkelkar.");
+            }catch(IllegalArgumentException ex2){
+                displayErrorMessage(ex2.getMessage());
             }
         });
         Button button2 = new Button("Remove artikel");
