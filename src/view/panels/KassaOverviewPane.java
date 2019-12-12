@@ -59,6 +59,7 @@ public class KassaOverviewPane extends GridPane{
             } catch (DomainException | NullPointerException ex) {
                 displayErrorMessage("Geen items in winkelkar.");
             }catch(IllegalArgumentException ex2){
+                ex2.printStackTrace();
                 displayErrorMessage(ex2.getMessage());
             } catch (IOException ex) {
                 ex.printStackTrace();

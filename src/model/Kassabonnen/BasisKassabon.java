@@ -12,7 +12,7 @@ public class BasisKassabon implements Kassabon {
 
 
     @Override
-    public void string(Map<Artikel, Integer> artikelIntegerMap, double uitkomst) {
+    public void string(Map<Artikel, Integer> artikelIntegerMap, double uitkomstmetKorting, double uitkomstZonderkorting) {
         String y = "";
         String x = "";
         for(Artikel artikel : artikelIntegerMap.keySet()){
@@ -22,7 +22,8 @@ public class BasisKassabon implements Kassabon {
                 "*****************************\n" +
                 x +
                 "*****************************\n" +
-                "Betaald (inclusief korting) : " + uitkomst + "€         \n";
+                "Totaal: (exclusief korting) : " + uitkomstZonderkorting + "€         \n" +
+                "Betaald (inclusief korting) : " + uitkomstmetKorting + "€         \n";
         System.out.println(y);
     }
 }

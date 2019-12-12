@@ -68,9 +68,10 @@ public class SettingsPane extends GridPane {
             b.setOnAction(event -> {
                 try {
                     System.out.println(s);
-                    kortingContext.setKortingStrategyProperties(kortingFactory.createKorting(s), 10, "5");
+                    kortingContext.setKortingStrategyProperties(kortingFactory.createKorting(s), 10, "GR1");
                 } catch (Exception e) {
                     displayErrorMessage("Fout bij het bepalen van de korting");
+                    e.printStackTrace();
                 }
             });
         }

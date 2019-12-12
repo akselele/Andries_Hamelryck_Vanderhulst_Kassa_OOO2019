@@ -30,7 +30,6 @@ public class DrempelKorting implements KortingStrategy {
         {
             totaal = totaal - (totaal/100)*korting;
         }
-        System.out.println(totaal + "TOTAAL");
         return totaal;
 
     }

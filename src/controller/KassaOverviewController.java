@@ -91,7 +91,7 @@ public class KassaOverviewController implements Subject {
         }
     }
 
-    public void verkoop() throws DomainException {
+    public void verkoop() throws IOException {
         Map<Artikel, Integer> artikelIntegerMap = toMap();
         ObservableList<Artikel> aObservable = FXCollections.observableArrayList();
         ArrayList<Artikel> a = new ArrayList<Artikel>(artikelDbContext.getArtikels().values());
@@ -103,9 +103,9 @@ public class KassaOverviewController implements Subject {
         }
         aObservable.addAll(a);
         notifyObserver(EventType.KASSAVIEW, aObservable);
-        logPane.update(LocalDateTime.now(), uitkomst);
+        logPane.update(LocalDateTime.now(), getUitkomstKorting());
         Kassabon kassabon = new BasisKassabon();
-        kassabon.string(toMap(), uitkomst);
+        kassabon.string(toMap(), getUitkomstKorting(), uitkomst);
         artikels.clear();
         notifyObserver(EventType.KLANTVIEW, artikels);
         artikelDbContext.save(a);
@@ -134,14 +134,13 @@ public class KassaOverviewController implements Subject {
             uitkomstMetKorting = kortingContext.getTotaleKorting(winkelMandje);
         }
         if (properties.getProperty("DREMPELKORTING").equalsIgnoreCase("true")) {
-            kortingContext.setKortingStrategy(kortingFactory.createKorting(kortingen[0]));
+            kortingContext.setKortingStrategy(kortingFactory.createKorting(kortingen[1]));
             uitkomstMetKorting = kortingContext.getTotaleKorting(winkelMandje);
         }
         if (properties.getProperty("DUURSTEITEMKORTING").equalsIgnoreCase("true")) {
-            kortingContext.setKortingStrategy(kortingFactory.createKorting(kortingen[0]));
+            kortingContext.setKortingStrategy(kortingFactory.createKorting(kortingen[2]));
             uitkomstMetKorting = kortingContext.getTotaleKorting(winkelMandje);
         }
-
 
         return uitkomstMetKorting;
     }
@@ -178,24 +177,6 @@ public class KassaOverviewController implements Subject {
 
     public void handleAfhandel() {
         notifyObserver(EventType.KLANTVIEW, uitkomst);
-    }
-
-    private void string(){
-        String y = "";
-        String x = "";
-        for(Artikel artikel : toMap().keySet()){
-            x += artikel.getOmschrijving() + "\t\t        " + toMap().get(artikel) + "\t" + artikel.getPrijs() + "\t\n";
-        }
-        try {
-            y= "Omschrijving\t\tAantal\t  Prijs\n" +
-                    "*****************************\n" +
-                    x +
-                    "*****************************\n" +
-                    "Betaald (inclusief korting) : " + getUitkomstKorting() + "€         \n";
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(y);
     }
 
     //TODO Hier moet de korting ook nog bij.

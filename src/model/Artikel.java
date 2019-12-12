@@ -18,6 +18,10 @@ public class Artikel {
         setCode(code);
     }
 
+    public Artikel(){
+
+    }
+
     public Artikel(String code, String omschrijving, String artikelgroep, double prijs, int voorraad) {
         setCode(code);
         setOmschrijving(omschrijving);

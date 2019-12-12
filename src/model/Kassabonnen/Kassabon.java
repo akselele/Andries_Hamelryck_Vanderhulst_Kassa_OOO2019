@@ -6,5 +6,5 @@ import java.util.Map;
 
 public interface Kassabon {
 
-    public void string(Map<Artikel, Integer> artikelIntegerMap, double uitkomst);
+    public void string(Map<Artikel, Integer> artikelIntegerMap, double uitkomstmetKorting, double uitkomstZonderkorting);
 }
