@@ -82,12 +82,13 @@ public class KassaOverviewController implements Subject {
 
     //TODO Artikels voorraad wordt niet opgeslagen in de txt/excel bestanden.
     public void verkoop() throws DomainException {
+        Map<Artikel, Integer> artikelIntegerMap = toMap();
         ArrayList<Artikel> a = new ArrayList<Artikel>(artikelDbContext.getArtikels().values());
-        Iterator<Artikel> artikelList = a.iterator();
-            while(artikelList.hasNext()){
-                if(artikels.contains(artikelList.next())){
-                    artikelList.next().verkoop(Collections.frequency(artikels, artikelList.next()));
-                }
+        Iterator<Artikel> iter = a.iterator();
+        Iterator<Artikel> iter2 = artikelIntegerMap.keySet().iterator();
+        //Eerst loopen over kassalist en dan voor elke entry in kassalist de stock verminderen in de algemene Map
+        for(Artikel artikel : artikelIntegerMap.keySet()){
+            artikelDbContext.stockAanpas(artikel, artikelIntegerMap.get(artikel));
         }
         logPane.update(LocalDateTime.now(), uitkomst);
         string();

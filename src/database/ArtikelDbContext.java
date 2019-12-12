@@ -24,6 +24,11 @@ public class ArtikelDbContext {
         artikelDbStrategy = new ArtikelDbInMemory();
     }
 
+    public void stockAanpas(Artikel artikel, int stock){
+        Map<String, Artikel> artikels  = getArtikels();
+        artikels.get(artikel.getCode()).verkoop(stock);
+    }
+
     public Artikel getArtikel(String code) {
         return artikelDbStrategy.getArtikel(code);
     }
