@@ -70,7 +70,7 @@ public class SettingsPane extends GridPane {
 
             b.setOnAction( event -> {
                 try {
-                    kortingContext.setKortingStrategy(kortingFactory.createKorting(s));
+                    kortingContext.setKortingStrategy(kortingFactory.createKorting(s),10, 5);
                 }catch (Exception e){
                     displayErrorMessage("Fout bij het bepalen van de korting");
                 }
