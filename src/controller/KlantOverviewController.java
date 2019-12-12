@@ -28,12 +28,7 @@ public class KlantOverviewController {
     private ObservableList<Artikel> artikelsVerkoop;
 
     public KlantOverviewController() {
-        artikelsMap = FXCollections.observableMap(new TreeMap<Artikel, Integer>(new Comparator<Artikel>() {
-            @Override
-            public int compare(Artikel o1, Artikel o2) {
-                return o1.getOmschrijving().toLowerCase().compareTo(o2.getOmschrijving().toLowerCase());
-            }
-        }));
+        artikelsMap = FXCollections.observableMap(new HashMap<Artikel, Integer>());
     }
 
     public void refresh() {
