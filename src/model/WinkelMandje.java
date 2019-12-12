@@ -30,6 +30,7 @@ public class WinkelMandje {
 
     public Artikel getDuurste(){
         Artikel duurste = new Artikel("","","",0.00,0);
+        //Artikel duurste = null;
         Set<Artikel> artikelsSet = artikels.keySet();
         for(Artikel artikel: artikelsSet){
             if(artikel.getPrijs() > duurste.getPrijs()){

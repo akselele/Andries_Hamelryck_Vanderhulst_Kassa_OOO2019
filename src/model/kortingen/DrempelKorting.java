@@ -22,4 +22,6 @@ public class DrempelKorting implements KortingStrategy {
         }
         return totaal;
     }
+
+
 }
