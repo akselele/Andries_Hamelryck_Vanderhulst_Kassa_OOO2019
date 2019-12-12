@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7099bf78-b19e-4465-9ee7-ec641e6cf6d9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/kortingen/KortingFactory.java" afterDir="false" />
+    <list default="true" id="7099bf78-b19e-4465-9ee7-ec641e6cf6d9" name="Default Changelist" comment="Story 7: added buttons for kortingmethods, added automatically by enum">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bestanden/artikel.xls" beforeDir="false" afterPath="$PROJECT_DIR$/src/bestanden/artikel.xls" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bestanden/properties.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/bestanden/properties.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/kortingen/KortingType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/kortingen/KortingType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/KlantOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/KlantOverviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/kortingen/KortingContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/kortingen/KortingContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/panels/SettingsPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/panels/SettingsPane.java" afterDir="false" />
     </list>
+    <list id="cfba67f2-5ce0-4d5f-8c3c-f19cbeff22b6" name="Story 7: Added WinkelMandje for getting duurste, aantal,..." comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,7 +68,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -132,6 +136,12 @@
       <workItem from="1574945800493" duration="1948000" />
       <workItem from="1575022056653" duration="7587000" />
       <workItem from="1576063171285" duration="929000" />
+      <workItem from="1576073279392" duration="907000" />
+      <workItem from="1576080122056" duration="4429000" />
+      <workItem from="1576143205343" duration="2787000" />
+      <workItem from="1576146174732" duration="900000" />
+      <workItem from="1576150107691" duration="2940000" />
+      <workItem from="1576153093209" duration="369000" />
     </task>
     <task id="LOCAL-00001" summary="Story 1 - Facade (context) toegevoegd en werkt. Ook @Author tags toegevoegd.">
       <created>1574946755274</created>
@@ -140,7 +150,35 @@
       <option name="project" value="LOCAL" />
       <updated>1574946755274</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Story 2: Added auto add for now strategies to loadsave so when an enum is added nothing has to be added into the ui just in the enum">
+      <created>1576074118951</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1576074118951</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Story 2: Fixed hardcoded SettingsPane, it now makes a button for each line in the enum automatically">
+      <created>1576082095991</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1576082095991</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Story 7: added buttons for kortingmethods, added automatically by enum">
+      <created>1576084159772</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1576084159772</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Story 6: added todo">
+      <created>1576143736683</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1576143736683</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,113 +213,97 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Story 1 - Facade (context) toegevoegd en werkt. Ook @Author tags toegevoegd." />
-    <option name="LAST_COMMIT_MESSAGE" value="Story 1 - Facade (context) toegevoegd en werkt. Ook @Author tags toegevoegd." />
+    <MESSAGE value="Story 2: Added auto add for now strategies to loadsave so when an enum is added nothing has to be added into the ui just in the enum" />
+    <MESSAGE value="Story 2: Fixed hardcoded SettingsPane, it now makes a button for each line in the enum automatically" />
+    <MESSAGE value="Story 7: added buttons for kortingmethods, added automatically by enum" />
+    <MESSAGE value="Story 6: added todo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Story 6: added todo" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#Project_Structure" timestamp="1576073005942">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1576073005942" />
+    <state x="640" y="247" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1576152804333">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="247" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576152804333" />
+    <state x="321" y="112" key="CommitChangelistDialog2" timestamp="1576143735261">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="321" y="112" key="CommitChangelistDialog2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576143735261" />
+    <state x="321" y="112" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1576084158421" />
     <state x="549" y="113" key="FileChooserDialogImpl" timestamp="1576063957482">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="113" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1576063957482" />
+    <state width="1877" height="279" key="GridCell.Tab.0.bottom" timestamp="1576153069187">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="279" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576146013664" />
+    <state width="1877" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576153069187" />
+    <state width="1877" height="279" key="GridCell.Tab.0.center" timestamp="1576153069187">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="279" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576146013664" />
+    <state width="1877" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576153069187" />
+    <state width="1877" height="279" key="GridCell.Tab.0.left" timestamp="1576153069187">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="279" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576146013664" />
+    <state width="1877" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576153069187" />
+    <state width="1877" height="279" key="GridCell.Tab.0.right" timestamp="1576153069187">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="279" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576146013664" />
+    <state width="1877" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576153069187" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1576073213077">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576073213077" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1576073213077">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576073213077" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1576073213077">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576073213077" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1576073213077">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576073213077" />
+    <state x="184" y="85" key="MergeDialog" timestamp="1576143497585">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="184" y="85" key="MergeDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576143497585" />
+    <state x="672" y="235" key="MultipleFileMergeDialog" timestamp="1576143497585">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="672" y="235" key="MultipleFileMergeDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576143497585" />
+    <state x="672" y="235" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576080245771" />
     <state x="439" y="31" width="661" height="761" key="NewModule_or_Project.wizard" timestamp="1576063961573">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="439" y="31" width="661" height="761" key="NewModule_or_Project.wizard/0.0.1536.824@0.0.1536.824" timestamp="1576063961573" />
-    <state x="577" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576063853386">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2" timestamp="1576143739505">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576143739505" />
+    <state x="552" y="252" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1576084161054" />
+    <state x="721" y="409" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1576153464978">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="721" y="409" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1576143433845" />
     <state x="577" y="324" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1576063853386" />
+    <state x="721" y="409" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1576153464978" />
     <state x="209" y="0" key="new project wizard" timestamp="1576063951575">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="209" y="0" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1576063951575" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>No facets are configured</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>jsp-api</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>10</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>Andries_Hamelryck_Vanderhulst_Kassa_OOO2019</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>10</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>jxl-2.6.12(1)(1)</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1576152257405">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1576152257405" />
   </component>
 </project>
