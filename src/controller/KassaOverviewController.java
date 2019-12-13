@@ -9,8 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import model.Artikel;
 import model.DomainException;
-import model.Kassabonnen.BasisKassabon;
-import model.Kassabonnen.Kassabon;
+import model.Kassabonnen.*;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 import model.ObserverPattern.Subject;
@@ -34,6 +33,7 @@ public class KassaOverviewController implements Subject {
     private LogPane logPane;
     private Properties properties;
     private KortingContext kortingContext;
+    private KassabonContext kassabonContext;
 
     public KassaOverviewController(ArtikelDbContext artikelDbContext, LogPane logPane) throws IOException {
         this.logPane = logPane;
@@ -43,6 +43,7 @@ public class KassaOverviewController implements Subject {
         artikelsHold = FXCollections.observableArrayList(new ArrayList<Artikel>());
         properties = KassaProperties.load();
         kortingContext = new KortingContext();
+        kassabonContext = new KassabonContext();
     }
 
     public void addArtikel(Artikel artikel){
@@ -104,8 +105,7 @@ public class KassaOverviewController implements Subject {
         aObservable.addAll(a);
         notifyObserver(EventType.KASSAVIEW, aObservable);
         logPane.update(LocalDateTime.now(), getUitkomstKorting());
-        Kassabon kassabon = new BasisKassabon();
-        kassabon.string(toMap(), getUitkomstKorting(), uitkomst);
+        System.out.println(getKassabon());
         artikels.clear();
         notifyObserver(EventType.KLANTVIEW, artikels);
         artikelDbContext.save(a);
@@ -143,6 +143,35 @@ public class KassaOverviewController implements Subject {
         }
 
         return uitkomstMetKorting;
+    }
+
+    public String getKassabon() throws IOException {
+
+        String x = "";
+//todo lijst niet gehardcode maar via enum?
+        String[] kassabonnen = kassabonContext.getKassabonList();
+        KassabonFactory kassabonFactory = new KassabonFactory();
+        properties = KassabonProperties.load();
+
+
+        if (properties.getProperty("HEADER").equalsIgnoreCase("true")) {
+            kassabonContext.setKassabon(kassabonFactory.createKassabon(kassabonnen[0]));
+            x = kassabonContext.getKassabon(toMap(), getUitkomstKorting(),  uitkomst, properties.getProperty("HEADERTEXT"));
+        }
+        if (properties.getProperty("FOOTER").equalsIgnoreCase("true")) {
+            kassabonContext.setKassabon(kassabonFactory.createKassabon(kassabonnen[1]));
+            x = kassabonContext.getKassabon(toMap(), getUitkomstKorting(),  uitkomst, "");
+        }
+        if (properties.getProperty("BEIDE").equalsIgnoreCase("true")) {
+            kassabonContext.setKassabon(kassabonFactory.createKassabon(kassabonnen[2]));
+            x= kassabonContext.getKassabon(toMap(), getUitkomstKorting(),  uitkomst,  properties.getProperty("HEADERTEXT"));
+        }
+        if(properties.getProperty("BEIDE").equalsIgnoreCase("false")  && properties.getProperty("FOOTER").equalsIgnoreCase("false")
+         && properties.getProperty("HEADER").equalsIgnoreCase("false")){
+            Kassabon kassabon = new BasisKassabon();
+            x = kassabon.string(toMap(), getUitkomstKorting(),uitkomst, "" );
+        }
+        return x;
     }
 
 

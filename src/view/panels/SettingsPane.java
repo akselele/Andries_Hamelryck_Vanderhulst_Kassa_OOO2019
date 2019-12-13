@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.DomainException;
+import model.Kassabonnen.KassabonContext;
+import model.Kassabonnen.KassabonFactory;
 import model.kortingen.KortingContext;
 import model.kortingen.KortingFactory;
 
@@ -28,6 +30,8 @@ public class SettingsPane extends GridPane {
     LoadSaveFactory loadSaveFactory = new LoadSaveFactory();
     KortingContext kortingContext = new KortingContext();
     KortingFactory kortingFactory = new KortingFactory();
+    KassabonContext kassabonContext = new KassabonContext();
+    KassabonFactory kassabonFactory = new KassabonFactory();
 
 
     public SettingsPane() throws IOException {
@@ -75,9 +79,29 @@ public class SettingsPane extends GridPane {
                 }
             });
         }
+
+        HBox hboxKassabon = new HBox();
+        String[] kassabonLijst = kassabonContext.getKassabonList();
+
+        for (String s : kassabonLijst) {
+            Button b = new Button(s);
+            hboxKassabon.getChildren().add(b);
+
+            b.setOnAction(event -> {
+                try {
+                    System.out.println(s);
+                    kassabonContext.setKassabonProperties(kassabonFactory.createKassabon(s));
+                } catch (Exception e) {
+                    displayErrorMessage("Fout bij het bepalen van de kassabon");
+                    e.printStackTrace();
+                }
+            });
+        }
+        vBox.getChildren().add(hboxKassabon);
+
         vBox.getChildren().add(hboxKorting);
 
-        this.getChildren().add(vBox);
+        this.getChildren().addAll(vBox);
 
 
     }

@@ -8,6 +8,7 @@ import model.DomainException;
 import model.ObserverPattern.EventType;
 import view.KassaView;
 import view.KlantView;
+import view.panels.KlantOverviewPane;
 
 import java.io.IOException;
 
