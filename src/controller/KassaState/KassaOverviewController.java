@@ -1,4 +1,4 @@
-package controller;
+package controller.KassaState;
 
 import database.ArtikelDbContext;
 import javafx.collections.FXCollections;
@@ -23,7 +23,15 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * @Author Noa Andries
+ **/
+
 public class KassaOverviewController implements Subject {
+    private State EmptyState;
+    private State OnHoldState;
+    private State ActiveState;
+    private State state;
     private ArtikelDbContext artikelDbContext;
     private ObservableList<Artikel> artikels;
     private ObservableList<Artikel> artikelsHold;
@@ -36,6 +44,10 @@ public class KassaOverviewController implements Subject {
     private KassabonContext kassabonContext;
 
     public KassaOverviewController(ArtikelDbContext artikelDbContext, LogPane logPane) throws IOException {
+        OnHoldState = new OnHoldState(this);
+        ActiveState = new ActiveState(this);
+        EmptyState = new EmptyState(this);
+        state = getEmptyState();
         this.logPane = logPane;
         observers = new HashMap<>();
         this.artikelDbContext = artikelDbContext;
@@ -46,11 +58,34 @@ public class KassaOverviewController implements Subject {
         kassabonContext = new KassabonContext();
     }
 
-    public void addArtikel(Artikel artikel){
-            artikels.add(artikel);
-            artikels.removeAll(Collections.singleton(null));
-            notifyObserver(EventType.KLANTVIEW, artikels);
+    public State getActiveState() {
+        return ActiveState;
     }
+
+    public State getOnHoldState() {
+        return OnHoldState;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public State getEmptyState() {
+        return EmptyState;
+    }
+
+    public void addArtikel(Artikel artikel){
+            state.addArtikel(artikel);
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public ObservableList<Artikel> getArtikelsHold() {
+        return artikelsHold;
+    }
+
 
     public Artikel getArtikel(String code){
         return artikelDbContext.getArtikel(code);
@@ -60,6 +95,17 @@ public class KassaOverviewController implements Subject {
         return artikels;
     }
 
+    public double getUitkomstHold() {
+        return uitkomstHold;
+    }
+
+    public void setUitkomst(double uitkomst) {
+        this.uitkomst = uitkomst;
+    }
+
+    public void setUitkomstHold(double uitkomstHold) {
+        this.uitkomstHold = uitkomstHold;
+    }
 
     @Override
     public void registerObserver(EventType e, Observer o) {
@@ -93,27 +139,11 @@ public class KassaOverviewController implements Subject {
     }
 
     public void verkoop() throws IOException {
-        Map<Artikel, Integer> artikelIntegerMap = toMap();
-        ObservableList<Artikel> aObservable = FXCollections.observableArrayList();
-        ArrayList<Artikel> a = new ArrayList<Artikel>(artikelDbContext.getArtikels().values());
-        Iterator<Artikel> iter = a.iterator();
-        Iterator<Artikel> iter2 = artikelIntegerMap.keySet().iterator();
-        //Eerst loopen over kassalist en dan voor elke entry in kassalist de stock verminderen in de algemene Map
-        for(Artikel artikel : artikelIntegerMap.keySet()){
-            artikelDbContext.stockAanpas(artikel, artikelIntegerMap.get(artikel));
-        }
-        aObservable.addAll(a);
-        notifyObserver(EventType.KASSAVIEW, aObservable);
-        logPane.update(LocalDateTime.now(), getUitkomstKorting());
-        System.out.println(getKassabon());
-        artikels.clear();
-        notifyObserver(EventType.KLANTVIEW, artikels);
-        artikelDbContext.save(a);
+        state.verkoop();
     }
 
     public void cancel(){
-        artikels.clear();
-        notifyObserver(EventType.KLANTVIEW, artikels);
+        state.cancel();
     }
 
     public double getUitkomstKorting() throws IOException {
@@ -187,21 +217,11 @@ public class KassaOverviewController implements Subject {
     }
 
     public void handleDelete(Artikel artikel) {
-                artikels.remove(artikel);
-                notifyObserver(EventType.KLANTVIEW, artikels);
+               state.handleDelete(artikel);
     }
 
     public void handleHold() {
-        List<Artikel> tmpList = new ArrayList<>(artikels);
-        double tmpUitkomst;
-        artikels.clear();
-        artikels.addAll(artikelsHold);
-        artikelsHold.clear();
-        artikelsHold.addAll(tmpList);
-        tmpUitkomst = uitkomst;
-        uitkomst = uitkomstHold;
-        uitkomstHold = tmpUitkomst;
-        notifyObserver(EventType.KLANTVIEW, artikels);
+        state.handleHold();
     }
 
     public void handleAfhandel() {
@@ -209,7 +229,7 @@ public class KassaOverviewController implements Subject {
     }
 
     //TODO Hier moet de korting ook nog bij.
-    private Map<Artikel,Integer> toMap(){
+    public Map<Artikel,Integer> toMap(){
         Map<Artikel, Integer> artikelsMap = new HashMap<>();
         artikelsMap.clear();
         int ammount = 1;
@@ -219,5 +239,13 @@ public class KassaOverviewController implements Subject {
         }
 
         return artikelsMap;
+    }
+
+    public ArtikelDbContext getArtikelDbContext() {
+        return artikelDbContext;
+    }
+
+    public LogPane getLogPane() {
+        return logPane;
     }
 }

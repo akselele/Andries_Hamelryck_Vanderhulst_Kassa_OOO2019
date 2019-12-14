@@ -2,14 +2,13 @@
 package view;
 
 
-import controller.KassaOverviewController;
+import controller.KassaState.KassaOverviewController;
 import controller.LogController;
 import controller.ProductOverviewController;
 import database.ArtikelDbContext;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
-import model.DomainException;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 import view.panels.KassaOverviewPane;

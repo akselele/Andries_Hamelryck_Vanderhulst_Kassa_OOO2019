@@ -1,11 +1,6 @@
 package view.panels;
 
-import controller.KassaOverviewController;
-import database.ArtikelDbContext;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import controller.KassaState.KassaOverviewController;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -16,8 +11,6 @@ import javafx.scene.layout.GridPane;
 import model.Artikel;
 import model.DomainException;
 import model.ObserverPattern.EventType;
-import model.ObserverPattern.Observer;
-import model.ObserverPattern.Subject;
 
 import java.io.IOException;
 import java.util.*;
@@ -25,6 +18,7 @@ import java.util.*;
 /**
  @Author Axel Hamelryck
  @Author Kasper Vanderhulst
+ @Author Noa Andries
  **/
 
 public class KassaOverviewPane extends GridPane{
