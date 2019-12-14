@@ -150,7 +150,7 @@ public class KassaOverviewPane extends GridPane{
         kassaOverviewController.handleAfhandel();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Afhandelen verkoop");
-        alert.setContentText("De klant moet $" + kassaOverviewController.getUitkomst()  + " betalen.");
+        alert.setContentText("De klant moet $" + kassaOverviewController.getUitkomstKorting()  + " betalen.");
         ButtonType okButton = new ButtonType("Betaald?", ButtonBar.ButtonData.YES);
         ButtonType noButton = new ButtonType("Niet betaald", ButtonBar.ButtonData.NO);
         ButtonType cancelButton = new ButtonType("Cancel",ButtonBar.ButtonData.NO);

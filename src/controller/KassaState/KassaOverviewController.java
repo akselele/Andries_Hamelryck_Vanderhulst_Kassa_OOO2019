@@ -158,30 +158,10 @@ public class KassaOverviewController implements Subject {
 
     public double getUitkomstKorting() throws IOException {
 
-        double uitkomstMetKorting = 0.0;
-
+        double uitkomstMetKorting = 0;
         Map<Artikel,Integer> tempMap = toMap();
         WinkelMandje winkelMandje = new WinkelMandje(tempMap);
-
-//todo lijst niet gehardcode maar via enum?
-        String[] kortingen = kortingContext.getKortingList();
-        KortingFactory kortingFactory = new KortingFactory();
-        properties = KassaProperties.load();
-
-
-        if (properties.getProperty("GROEPKORTING").equalsIgnoreCase("true")) {
-            kortingContext.setKortingStrategy(kortingFactory.createKorting(kortingen[0]));
-            uitkomstMetKorting = kortingContext.getTotaleKorting(winkelMandje);
-        }
-        if (properties.getProperty("DREMPELKORTING").equalsIgnoreCase("true")) {
-            kortingContext.setKortingStrategy(kortingFactory.createKorting(kortingen[1]));
-            uitkomstMetKorting = kortingContext.getTotaleKorting(winkelMandje);
-        }
-        if (properties.getProperty("DUURSTEITEMKORTING").equalsIgnoreCase("true")) {
-            kortingContext.setKortingStrategy(kortingFactory.createKorting(kortingen[2]));
-            uitkomstMetKorting = kortingContext.getTotaleKorting(winkelMandje);
-        }
-
+        uitkomstMetKorting = kortingContext.getTotaleKorting(winkelMandje);
         return uitkomstMetKorting;
     }
 

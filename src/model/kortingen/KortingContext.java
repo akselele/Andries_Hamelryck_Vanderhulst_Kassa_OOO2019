@@ -2,9 +2,13 @@ package model.kortingen;
 
 import model.WinkelMandje;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  * @Author Kasper Vanderhulst
@@ -13,8 +17,35 @@ import java.util.List;
 
 public class KortingContext {
     private KortingStrategy kortingStrategy;
+    private Properties properties;
 
 
+    public KortingContext(){
+        String[] kortingen = getKortingList();
+        KortingFactory kortingFactory = new KortingFactory();
+        try {
+            properties = KassaProperties.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (properties.getProperty("GROEPKORTING").equalsIgnoreCase("true")) {
+            setKortingStrategy(kortingFactory.createKorting(kortingen[0]));
+        }
+        if (properties.getProperty("DREMPELKORTING").equalsIgnoreCase("true")) {
+            setKortingStrategy(kortingFactory.createKorting(kortingen[1]));
+        }
+        if (properties.getProperty("DUURSTEITEMKORTING").equalsIgnoreCase("true")) {
+            setKortingStrategy(kortingFactory.createKorting(kortingen[2]));
+
+        }
+
+
+    }
+
+    public KortingStrategy getKortingStrategy() {
+        return kortingStrategy;
+    }
 
     public void setKortingStrategy(KortingStrategy kortingStrategy){
         this.kortingStrategy = kortingStrategy;

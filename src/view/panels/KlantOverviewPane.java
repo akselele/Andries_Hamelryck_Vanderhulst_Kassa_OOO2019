@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 public class KlantOverviewPane extends GridPane implements Observer {
     private TableView<Pair<Artikel,Integer>> table = new TableView<>();
     private Label totaal = new Label();
+    private Label totaalKorting = new Label();
     private KlantOverviewController klantOverviewController;
     private Label afhandel = new Label();
 
@@ -36,6 +37,7 @@ public class KlantOverviewPane extends GridPane implements Observer {
         this.setVgap(5);
         this.setHgap(5);
         this.add(totaal,0,1,1,1);
+        this.add(totaalKorting,0,3,1,1);
         this.add(afhandel,0,2,1,1);
         this.getChildren().addAll(table);
         setTable();
@@ -70,7 +72,8 @@ public class KlantOverviewPane extends GridPane implements Observer {
     }
 
     public void update(double uitkomst){
-        afhandel.setText("Te betalen: $" + uitkomst);
+        totaalKorting.setText("Te betalen: $" + klantOverviewController.getUitkomstKorting());
+        afhandel.setText("Korting: $" + (uitkomst - klantOverviewController.getUitkomstKorting()));
     }
 
 

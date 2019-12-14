@@ -15,6 +15,8 @@ import javafx.util.Pair;
 import model.Artikel;
 import model.ObserverPattern.Observer;
 import model.WinkelMandje;
+import model.kortingen.DrempelKorting;
+import model.kortingen.GroepKorting;
 import model.kortingen.KortingContext;
 import model.kortingen.KortingStrategy;
 
@@ -68,18 +70,14 @@ public class KlantOverviewController {
     }
 
     public double getUitkomst() {
-      /*  WinkelMandje mandje = new WinkelMandje(artikelsMap);
-        int a,b;
-        String c = "";
-        KortingStrategy strategy = null;
-        //strategy halen uit de properties file
+       return uitkomst;
 
-        a = 0;
-        b = 0;
-        kortingContext.setKortingStrategy(strategy);
-        double out = kortingContext.getTotaleKorting(mandje,a,b,c);*/
 
-        return uitkomst;
+    }
+    public double getUitkomstKorting()
+    {
+        WinkelMandje mandje = new WinkelMandje(artikelsMap);
+        return kortingContext.getTotaleKorting(mandje);
     }
 
     public void update(ObservableList<Artikel> artikels) {
