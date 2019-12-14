@@ -15,12 +15,14 @@ import model.Artikel;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  @Author Axel Hamelryck
  @Author Kasper Vanderhulst
+ @Author Noa Andries
  **/
 
 public class KlantOverviewPane extends GridPane implements Observer {
@@ -72,8 +74,9 @@ public class KlantOverviewPane extends GridPane implements Observer {
     }
 
     public void update(double uitkomst){
-        totaalKorting.setText("Te betalen: $" + klantOverviewController.getUitkomstKorting());
-        afhandel.setText("Korting: $" + (uitkomst - klantOverviewController.getUitkomstKorting()));
+        DecimalFormat f = new DecimalFormat("##.00");
+        totaalKorting.setText("Te betalen: $" + f.format(klantOverviewController.getUitkomstKorting()));
+        afhandel.setText("Korting: $" +f.format(klantOverviewController.getUitkomst() - klantOverviewController.getUitkomstKorting()));
     }
 
 

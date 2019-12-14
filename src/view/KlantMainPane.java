@@ -14,6 +14,7 @@ import view.panels.KlantOverviewPane;
 /**
  @Author Axel Hamelryck
  @Author Kasper Vanderhulst
+ @Author Noa Andries
  **/
 
 public class KlantMainPane extends BorderPane {

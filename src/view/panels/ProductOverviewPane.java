@@ -78,4 +78,7 @@ public class ProductOverviewPane extends GridPane implements Observer {
 	public void update(double uitkomst) {
 
 	}
+
+
+
 }

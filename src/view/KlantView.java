@@ -38,4 +38,5 @@ public class KlantView implements Observer {
 	public void update(double uitkomst) {
 		borderPane.update(uitkomst);
 	}
+
 }
