@@ -18,6 +18,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * @Author Noa Andries
+ **/
 public class LogPane extends GridPane{
     LogController logController;
     private Label text = new Label();
@@ -31,8 +34,8 @@ public class LogPane extends GridPane{
     }
 
 
-    public void update(LocalDateTime now, double uitkomst) {
-        logController.toString(now, uitkomst);
+    public void update(LocalDateTime now, double uitkomst, double korting) {
+        logController.toString(now, uitkomst, korting);
         text.setText(logController.getText());
     }
 }

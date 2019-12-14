@@ -70,6 +70,7 @@ public class KlantOverviewPane extends GridPane implements Observer {
         totaal.setText("Totaal: $" + klantOverviewController.getUitkomst());
         table.setItems(klantOverviewController.getArtikels());
         table.refresh();
+        totaalKorting.setText("");
         afhandel.setText("");
     }
 

@@ -12,9 +12,9 @@ public class LogController {
 
     }
 
-    //TODO hier moet nog korting en totaalbedrag bij.
-    public void toString(LocalDateTime dt, double bedrag){
-        text += (dt.format(formatter) + " - $" + bedrag + "\n");
+
+    public void toString(LocalDateTime dt, double bedrag, double korting){
+        text += (dt.format(formatter) + " --> $" + bedrag + " - "  + (bedrag - korting) + "= " + korting + "\n");
     }
 
     public String getText() {

@@ -42,7 +42,7 @@ public class OnHoldState implements State {
         }
         aObservable.addAll(a);
         kassaOverviewController.notifyObserver(EventType.KASSAVIEW, aObservable);
-        kassaOverviewController.getLogPane().update(LocalDateTime.now(), kassaOverviewController.getUitkomstKorting());
+        kassaOverviewController.getLogPane().update(LocalDateTime.now(), kassaOverviewController.getUitkomst(), kassaOverviewController.getUitkomstKorting());
         System.out.println(kassaOverviewController.getKassabon());
         kassaOverviewController.getArtikels().clear();
         kassaOverviewController.notifyObserver(EventType.KLANTVIEW, kassaOverviewController.getArtikels());
