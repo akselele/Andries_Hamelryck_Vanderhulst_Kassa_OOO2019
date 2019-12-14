@@ -7,28 +7,27 @@ import model.ObserverPattern.EventType;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author Noa Andries
  **/
 public class OnHoldState implements State {
     KassaOverviewController kassaOverviewController;
+
+
     public OnHoldState(KassaOverviewController kassaOverviewController)
     {
         this.kassaOverviewController = kassaOverviewController;
-    }
 
+
+    }
     @Override
     public void addArtikel(Artikel artikel) {
         kassaOverviewController.getArtikels().add(artikel);
         kassaOverviewController.getArtikels().removeAll(Collections.singleton(null));
         kassaOverviewController.notifyObserver(EventType.KLANTVIEW, kassaOverviewController.getArtikels());
     }
-
 
     @Override
     public void verkoop() throws IOException {
@@ -48,14 +47,14 @@ public class OnHoldState implements State {
         kassaOverviewController.getArtikels().clear();
         kassaOverviewController.notifyObserver(EventType.KLANTVIEW, kassaOverviewController.getArtikels());
         kassaOverviewController.getArtikelDbContext().save(a);
-        kassaOverviewController.setState(kassaOverviewController.getActiveState());
+        handleHold();
     }
 
     @Override
     public void cancel() {
         kassaOverviewController.getArtikels().clear();
         kassaOverviewController.notifyObserver(EventType.KLANTVIEW, kassaOverviewController.getArtikels());
-        kassaOverviewController.setState(kassaOverviewController.getEmptyState());
+        handleHold();
     }
 
     @Override
@@ -63,4 +62,22 @@ public class OnHoldState implements State {
         kassaOverviewController.getArtikels().remove(artikel);
         kassaOverviewController.notifyObserver(EventType.KLANTVIEW, kassaOverviewController.getArtikels());
     }
+
+    @Override
+    public void handleHold() {
+        ObservableList<Artikel> artikels = kassaOverviewController.getArtikels();
+        List<Artikel> tmpList = new ArrayList<>(kassaOverviewController.getArtikels());
+        double tmpUitkomst;
+        artikels.clear();
+        artikels.addAll(kassaOverviewController.getArtikelsHold());
+        kassaOverviewController.getArtikelsHold().clear();
+        kassaOverviewController.getArtikelsHold().addAll(tmpList);
+        tmpUitkomst = kassaOverviewController.getUitkomst();
+        kassaOverviewController.setUitkomst(kassaOverviewController.getUitkomstHold());
+        kassaOverviewController.setUitkomstHold(tmpUitkomst);
+        kassaOverviewController.notifyObserver(EventType.KLANTVIEW, artikels);
+        kassaOverviewController.setState(kassaOverviewController.getAfterHoldState());
+
+    }
+
 }

@@ -31,6 +31,7 @@ public class KassaOverviewController implements Subject {
     private State EmptyState;
     private State OnHoldState;
     private State ActiveState;
+    private State AfterHoldState;
     private State state;
     private ArtikelDbContext artikelDbContext;
     private ObservableList<Artikel> artikels;
@@ -47,6 +48,7 @@ public class KassaOverviewController implements Subject {
         OnHoldState = new OnHoldState(this);
         ActiveState = new ActiveState(this);
         EmptyState = new EmptyState(this);
+        AfterHoldState = new AfterHoldState(this);
         state = getEmptyState();
         this.logPane = logPane;
         observers = new HashMap<>();
@@ -58,12 +60,20 @@ public class KassaOverviewController implements Subject {
         kassabonContext = new KassabonContext();
     }
 
+    public void setOnHoldState(State onHoldState) {
+        OnHoldState = onHoldState;
+    }
+
     public State getActiveState() {
         return ActiveState;
     }
 
     public State getOnHoldState() {
         return OnHoldState;
+    }
+
+    public State getAfterHoldState() {
+        return AfterHoldState;
     }
 
     public State getState() {

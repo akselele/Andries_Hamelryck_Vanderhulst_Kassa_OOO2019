@@ -48,7 +48,6 @@ public class KassaOverviewPane extends GridPane{
                 isEmpty();
                 setAfhandelScreen();
                 buttonHold.setVisible(true);
-                kassaOverviewController.handleHold();
                 refresh();
             } catch (DomainException | NullPointerException ex) {
                 displayErrorMessage("Geen items in winkelkar.");
@@ -90,6 +89,10 @@ public class KassaOverviewPane extends GridPane{
             }
             catch(NullPointerException ex){
                 displayErrorMessage("Geen items in winkelkar.");
+            }
+            catch (IllegalArgumentException il)
+            {
+                displayErrorMessage(il.getMessage());
             }
         });
         this.add(buttonHold,1,1,1,1);

@@ -11,9 +11,9 @@ import java.util.*;
 /**
  * @Author Noa Andries
  **/
-public class ActiveState implements State{
+public class AfterHoldState implements State{
     KassaOverviewController kassaOverviewController;
-    public ActiveState(KassaOverviewController kassaOverviewController)
+    public AfterHoldState(KassaOverviewController kassaOverviewController)
     {
         this.kassaOverviewController = kassaOverviewController;
     }
@@ -59,20 +59,5 @@ public class ActiveState implements State{
         kassaOverviewController.notifyObserver(EventType.KLANTVIEW, kassaOverviewController.getArtikels());
     }
 
-    @Override
-    public void handleHold() {
-        ObservableList<Artikel> artikels = kassaOverviewController.getArtikels();
-        List<Artikel> tmpList = new ArrayList<>(kassaOverviewController.getArtikels());
-        double tmpUitkomst;
-        artikels.clear();
-        artikels.addAll(kassaOverviewController.getArtikelsHold());
-        kassaOverviewController.getArtikelsHold().clear();
-        kassaOverviewController.getArtikelsHold().addAll(tmpList);
-        tmpUitkomst = kassaOverviewController.getUitkomst();
-        kassaOverviewController.setUitkomst(kassaOverviewController.getUitkomstHold());
-        kassaOverviewController.setUitkomstHold(tmpUitkomst);
-        kassaOverviewController.notifyObserver(EventType.KLANTVIEW, artikels);
-        kassaOverviewController.setState(kassaOverviewController.getOnHoldState());
 
-    }
 }
