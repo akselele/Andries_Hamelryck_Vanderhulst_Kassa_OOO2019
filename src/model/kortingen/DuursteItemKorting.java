@@ -23,7 +23,8 @@ public class DuursteItemKorting implements KortingStrategy {
 
     @Override
     public double getTotaleKorting(WinkelMandje winkelMandje) {
-       int korting = Integer.parseInt(properties.getProperty("DUURSTEITEMKORTINGWAARDE"));
+       int korting = Integer.parseInt(properties.getProperty("DUURSTEKORTINGWAARDE"));
+        System.out.println(korting);
 
         double totaal = winkelMandje.getTotaalprijs();
         totaal = totaal - winkelMandje.getDuurste().getPrijs() + (winkelMandje.getDuurste().getPrijs() - (winkelMandje.getDuurste().getPrijs()/100)*korting);
