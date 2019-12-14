@@ -13,11 +13,13 @@ public enum KortingType {
     private Class kortingClass;
 
 
-    KortingType(Class kortingClass){
+    KortingType(Class kortingClass) {
         this.kortingClass = kortingClass;
     }
 
-    public String getOmschrijving() { return kortingClass.toString(); }
+    public String getOmschrijving() {
+        return kortingClass.toString();
+    }
 
     public Class getKortingClass() {
         return kortingClass;

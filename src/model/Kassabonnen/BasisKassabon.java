@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class BasisKassabon implements Kassabon {
 
-    public BasisKassabon(){
+    public BasisKassabon() {
 
     }
 
@@ -15,10 +15,10 @@ public class BasisKassabon implements Kassabon {
     public String string(Map<Artikel, Integer> artikelIntegerMap, double uitkomstmetKorting, double uitkomstZonderkorting, String z) {
         String y = "";
         String x = "";
-        for(Artikel artikel : artikelIntegerMap.keySet()){
+        for (Artikel artikel : artikelIntegerMap.keySet()) {
             x += artikel.getOmschrijving() + "\t\t        " + artikelIntegerMap.get(artikel) + "\t" + artikel.getPrijs() + "\t\n";
         }
-        y= "Omschrijving\t\tAantal\t  Prijs\n" +
+        y = "Omschrijving\t\tAantal\t  Prijs\n" +
                 "*****************************\n" +
                 x +
                 "*****************************\n" +

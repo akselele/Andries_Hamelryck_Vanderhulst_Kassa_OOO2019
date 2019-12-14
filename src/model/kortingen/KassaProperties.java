@@ -5,13 +5,14 @@ import database.excel.ArtikelExcelLoadSaveStrategy;
 
 import java.io.*;
 import java.util.Properties;
+
 /**
  * @Author Kasper Vanderhulst
  * @Author Noa Andries
  **/
 public class KassaProperties {
 
-    public  static Properties load() throws IOException {
+    public static Properties load() throws IOException {
         Properties properties = new Properties();
         InputStream is = new FileInputStream("src/bestanden/properties.properties");
         properties.load(is);
@@ -40,7 +41,7 @@ public class KassaProperties {
         FileOutputStream out = new FileOutputStream("src/bestanden/properties.properties");
         properties.setProperty("DREMPELKORTING", "TRUE");
         properties.setProperty("GROEPKORTING", "FALSE");
-        properties.setProperty("DUURSTEITEMKORTING", "FALSE");
+        properties.setProperty("DUURSTEKORTING", "FALSE");
         properties.setProperty("DREMPELKORTINGWAARDE", String.valueOf(korting));
         properties.setProperty("DREMPELWAARDE", String.valueOf(drempelwaarde));
         properties.store(out, null);
@@ -56,7 +57,7 @@ public class KassaProperties {
         FileOutputStream out = new FileOutputStream("src/bestanden/properties.properties");
         properties.setProperty("GROEPKORTING", "TRUE");
         properties.setProperty("DREMPELKORTING", "FALSE");
-        properties.setProperty("DUURSTEITEMKORTING", "FALSE");
+        properties.setProperty("DUURSTEKORTING", "FALSE");
         properties.setProperty("GROEPKORTINGWAARDE", String.valueOf(korting));
         properties.setProperty("GROEP", groep);
         properties.store(out, null);
@@ -70,10 +71,10 @@ public class KassaProperties {
         in.close();
 
         FileOutputStream out = new FileOutputStream("src/bestanden/properties.properties");
-        properties.setProperty("DUURSTEITEMKORTING", "TRUE");
+        properties.setProperty("DUURSTEKORTING", "TRUE");
         properties.setProperty("DREMPELKORTING", "FALSE");
         properties.setProperty("GROEPKORTING", "FALSE");
-        properties.setProperty("DUURSTEITEMKORTINGWAARDE", String.valueOf(korting));
+        properties.setProperty("DUURSTEKORTINGWAARDE", String.valueOf(korting));
         properties.store(out, null);
         out.close();
     }

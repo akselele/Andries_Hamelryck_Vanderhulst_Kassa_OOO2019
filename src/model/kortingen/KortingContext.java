@@ -35,7 +35,7 @@ public class KortingContext {
         if (properties.getProperty("DREMPELKORTING").equalsIgnoreCase("true")) {
             setKortingStrategy(kortingFactory.createKorting(kortingen[1]));
         }
-        if (properties.getProperty("DUURSTEITEMKORTING").equalsIgnoreCase("true")) {
+        if (properties.getProperty("DUURSTEKORTING").equalsIgnoreCase("true")) {
             setKortingStrategy(kortingFactory.createKorting(kortingen[2]));
 
         }

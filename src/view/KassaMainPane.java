@@ -22,28 +22,27 @@ import java.util.List;
 import java.util.Map;
 
 /**
- @Author Axel Hamelryck
+ * @Author Axel Hamelryck
  **/
 
 public class KassaMainPane extends BorderPane {
     private Map<EventType, List<Observer>> observers;
     private ArtikelDbContext artikelDbContext = new ArtikelDbContext();
     private LogController logController = new LogController();
-    private LogPane logPane= new LogPane(logController);
+    private LogPane logPane = new LogPane(logController);
     private KassaOverviewController kassaOverviewController = new KassaOverviewController(artikelDbContext, logPane);
     private KassaOverviewPane kassaOverviewPane = new KassaOverviewPane(kassaOverviewController);
     private ProductOverviewController productOverviewController = new ProductOverviewController(artikelDbContext);
     private SettingsPane settingsPane = new SettingsPane();
 
 
-
     public KassaMainPane() throws IOException {
         observers = new HashMap<>();
         TabPane tabPane = new TabPane();
-        Tab kassaTab = new Tab("Kassa",kassaOverviewPane);
+        Tab kassaTab = new Tab("Kassa", kassaOverviewPane);
         ProductOverviewPane productOverviewPane = new ProductOverviewPane(productOverviewController);
         kassaOverviewController.registerObserver(EventType.KASSAVIEW, productOverviewPane);
-        Tab artikelTab = new Tab("Artikelen",productOverviewPane);
+        Tab artikelTab = new Tab("Artikelen", productOverviewPane);
         Tab instellingTab = new Tab("Instellingen", settingsPane);
         Tab logTab = new Tab("Log", logPane);
         tabPane.getTabs().add(kassaTab);
@@ -54,10 +53,8 @@ public class KassaMainPane extends BorderPane {
     }
 
     public void registerObserver(EventType e, Observer o) {
-        kassaOverviewController.registerObserver(e,o);
+        kassaOverviewController.registerObserver(e, o);
     }
-
-
 
 
 }

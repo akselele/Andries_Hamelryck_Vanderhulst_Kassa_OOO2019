@@ -3,7 +3,7 @@ package database;
 import database.excel.ArtikelExcelLoadSaveStrategy;
 
 /**
- @Author Noa Andries
+ * @Author Noa Andries
  **/
 
 //TODO AANMAAK PAS BIJ KLIK

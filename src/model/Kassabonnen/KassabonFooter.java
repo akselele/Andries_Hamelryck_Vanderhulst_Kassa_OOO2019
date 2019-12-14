@@ -14,6 +14,6 @@ public class KassabonFooter extends BasisKassabon implements Kassabon {
     public String string(Map<Artikel, Integer> artikelIntegerMap, double uitkomstmetKorting, double uitkomstZonderkorting, String x) {
         double zonderBTW = (uitkomstmetKorting/100)*6;
         return super.string(artikelIntegerMap, uitkomstmetKorting, uitkomstZonderkorting, x) + "\n*****************************\n" + "Prijs zonder btw:     " +
-                (uitkomstmetKorting - zonderBTW) + " (BTW = " + zonderBTW + ")";
+                Math.round(uitkomstmetKorting - zonderBTW) + " (BTW = " + Math.round(zonderBTW) + ")";
     }
 }
