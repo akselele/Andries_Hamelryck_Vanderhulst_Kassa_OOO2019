@@ -65,8 +65,8 @@ public class KassaOverviewPane extends GridPane{
                 TableView.TableViewSelectionModel<Artikel> t = table.getSelectionModel();
                 kassaOverviewController.handleDelete(kassaOverviewController.getArtikel(t.getSelectedItem().getCode()));
                 refresh();
-            }catch(NullPointerException | IllegalArgumentException ex){
-                displayErrorMessage("Geen artikels geselecteerd");
+            }catch(IllegalArgumentException| NullPointerException ex){
+                displayErrorMessage("Geen item geselecteert");
             }
         });
         buttonAddArtikel.setOnAction(e -> {
@@ -74,7 +74,7 @@ public class KassaOverviewPane extends GridPane{
                 kassaOverviewController.addArtikel(kassaOverviewController.getArtikel(artikelField.getText()));
             }
             catch(NullPointerException | IllegalArgumentException eq){
-                displayErrorMessage("Niet bestaande code.");
+                displayErrorMessage(eq.getMessage());
                 artikelField.clear();
             }
             refresh();

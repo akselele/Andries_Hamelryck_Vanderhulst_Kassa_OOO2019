@@ -19,6 +19,13 @@ public class ActiveState implements State{
     }
 
     @Override
+    public void addArtikel(Artikel artikel) {
+        kassaOverviewController.getArtikels().add(artikel);
+        kassaOverviewController.getArtikels().removeAll(Collections.singleton(null));
+        kassaOverviewController.notifyObserver(EventType.KLANTVIEW, kassaOverviewController.getArtikels());
+    }
+
+    @Override
     public void verkoop() throws IOException {
         Map<Artikel, Integer> artikelIntegerMap = kassaOverviewController.toMap();
         ObservableList<Artikel> aObservable = FXCollections.observableArrayList();
