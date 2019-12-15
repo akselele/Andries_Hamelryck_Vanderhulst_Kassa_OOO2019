@@ -4,6 +4,11 @@ import model.Artikel;
 
 import java.util.Map;
 
+/**
+ * @Author Noa Andries
+ * @Author Axel Hamelryck
+ **/
+
 public class BasisKassabon implements Kassabon {
 
     public BasisKassabon() {
@@ -12,7 +17,7 @@ public class BasisKassabon implements Kassabon {
 
 
     @Override
-    public String string(Map<Artikel, Integer> artikelIntegerMap, double uitkomstmetKorting, double uitkomstZonderkorting, String z) {
+    public String string(Map<Artikel, Integer> artikelIntegerMap, double uitkomstmetKorting, double uitkomstZonderkorting) {
         String y = "";
         String x = "";
         for (Artikel artikel : artikelIntegerMap.keySet()) {

@@ -167,31 +167,8 @@ public class KassaOverviewController implements Subject {
 
     public String getKassabon() throws IOException {
 
-        String x = "";
-//todo lijst niet gehardcode maar via enum?
-        String[] kassabonnen = kassabonContext.getKassabonList();
-        KassabonFactory kassabonFactory = new KassabonFactory();
-        properties = KassabonProperties.load();
+        return kassabonContext.getKassabon(toMap(), getUitkomstKorting(),  uitkomst);
 
-
-        if (properties.getProperty("HEADER").equalsIgnoreCase("true")) {
-            kassabonContext.setKassabon(kassabonFactory.createKassabon(kassabonnen[0]));
-            x = kassabonContext.getKassabon(toMap(), getUitkomstKorting(),  uitkomst, properties.getProperty("HEADERTEXT"));
-        }
-        if (properties.getProperty("FOOTER").equalsIgnoreCase("true")) {
-            kassabonContext.setKassabon(kassabonFactory.createKassabon(kassabonnen[1]));
-            x = kassabonContext.getKassabon(toMap(), getUitkomstKorting(),  uitkomst, "");
-        }
-        if (properties.getProperty("BEIDE").equalsIgnoreCase("true")) {
-            kassabonContext.setKassabon(kassabonFactory.createKassabon(kassabonnen[2]));
-            x= kassabonContext.getKassabon(toMap(), getUitkomstKorting(),  uitkomst,  properties.getProperty("HEADERTEXT"));
-        }
-        if(properties.getProperty("BEIDE").equalsIgnoreCase("false")  && properties.getProperty("FOOTER").equalsIgnoreCase("false")
-         && properties.getProperty("HEADER").equalsIgnoreCase("false")){
-            Kassabon kassabon = new BasisKassabon();
-            x = kassabon.string(toMap(), getUitkomstKorting(),uitkomst, "" );
-        }
-        return x;
     }
 
 

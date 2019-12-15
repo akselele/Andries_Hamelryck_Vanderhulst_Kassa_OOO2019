@@ -10,12 +10,42 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+/**
+ * @Author Noa Andries
+ *  @Author Axel Hamelryck
+ **/
 
 public class KassabonContext {
     private Kassabon kassabon;
+    private Properties properties;
+
+    public KassabonContext()
+    {
+        String x = "";
+        String[] kassabonnen = getKassabonList();
+        KassabonFactory kassabonFactory = new KassabonFactory();
+        try {
+            properties = KassabonProperties.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
-
+        if (properties.getProperty("HEADER").equalsIgnoreCase("true")) {
+            setKassabon(kassabonFactory.createKassabon(kassabonnen[0]));
+        }
+        if (properties.getProperty("FOOTER").equalsIgnoreCase("true")) {
+           setKassabon(kassabonFactory.createKassabon(kassabonnen[1]));
+        }
+        if (properties.getProperty("BEIDE").equalsIgnoreCase("true")) {
+            setKassabon(kassabonFactory.createKassabon(kassabonnen[2]));
+        }
+        if(properties.getProperty("BEIDE").equalsIgnoreCase("false")  && properties.getProperty("FOOTER").equalsIgnoreCase("false")
+                && properties.getProperty("HEADER").equalsIgnoreCase("false")){
+            setKassabon(new BasisKassabon());
+        }
+    }
     public void setKassabon(Kassabon kassabon){
         this.kassabon = kassabon;
     }
@@ -37,8 +67,8 @@ public class KassabonContext {
         }
     }
 
-    public String getKassabon(Map<Artikel, Integer> artikelIntegerMap, double uitkomstmetKorting, double uitkomstZonderkorting, String x){
-        return kassabon.string(artikelIntegerMap, uitkomstmetKorting, uitkomstZonderkorting,  x);
+    public String getKassabon(Map<Artikel, Integer> artikelIntegerMap, double uitkomstmetKorting, double uitkomstZonderkorting){
+        return kassabon.string(artikelIntegerMap, uitkomstmetKorting, uitkomstZonderkorting);
     }
 
     public String[] getKassabonList(){
