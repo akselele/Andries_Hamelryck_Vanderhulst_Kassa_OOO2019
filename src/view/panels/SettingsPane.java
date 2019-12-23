@@ -30,11 +30,11 @@ import java.util.Properties;
 
 public class SettingsPane extends GridPane {
     ArtikelDbContext artikelDbContext = new ArtikelDbContext();
-    LoadSaveFactory loadSaveFactory = new LoadSaveFactory();
+    LoadSaveFactory loadSaveFactory = LoadSaveFactory.getInstance();
     KortingContext kortingContext = new KortingContext();
-    KortingFactory kortingFactory = new KortingFactory();
+    KortingFactory kortingFactory = KortingFactory.getInstance();
     KassabonContext kassabonContext = new KassabonContext();
-    KassabonFactory kassabonFactory = new KassabonFactory();
+    KassabonFactory kassabonFactory = KassabonFactory.getInstance();
     Properties properties = KassaProperties.load();
 
 

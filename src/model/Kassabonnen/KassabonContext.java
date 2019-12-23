@@ -24,7 +24,7 @@ public class KassabonContext {
     {
         String x = "";
         String[] kassabonnen = getKassabonList();
-        KassabonFactory kassabonFactory = new KassabonFactory();
+        KassabonFactory kassabonFactory = KassabonFactory.getInstance();
         try {
             properties = KassabonProperties.load();
         } catch (IOException e) {

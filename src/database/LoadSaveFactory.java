@@ -1,8 +1,19 @@
 package database;
 /**
  @Author Noa Andries
+ @Author Kasper Vanderhulst
  **/
 public class LoadSaveFactory {
+    private static LoadSaveFactory loadSaveFactoryUniqueInstance;
+
+    private LoadSaveFactory(){ }
+
+    public static LoadSaveFactory getInstance(){
+        if(loadSaveFactoryUniqueInstance == null){
+            loadSaveFactoryUniqueInstance = new LoadSaveFactory();
+        }
+        return loadSaveFactoryUniqueInstance;
+    }
 
     public LoadSaveStrategy getStrategy(String type)
     {

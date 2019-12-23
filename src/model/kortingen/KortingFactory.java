@@ -4,6 +4,18 @@ package model.kortingen;
  * @Author Noa Andries
  **/
 public class KortingFactory {
+    private static KortingFactory kortingFactory;
+
+    private KortingFactory(){}
+
+    public static KortingFactory getInstance(){
+        if(kortingFactory == null){
+            kortingFactory = new KortingFactory();
+        }
+        return kortingFactory;
+    }
+
+
     public  KortingStrategy createKorting(String code){
         KortingType kortingEnum = KortingType.valueOf(code.toUpperCase());
         KortingStrategy kortingStrategy = null;

@@ -22,7 +22,7 @@ public class KortingContext {
 
     public KortingContext(){
         String[] kortingen = getKortingList();
-        KortingFactory kortingFactory = new KortingFactory();
+        KortingFactory kortingFactory = KortingFactory.getInstance();
         try {
             properties = KassaProperties.load();
         } catch (IOException e) {
@@ -57,9 +57,7 @@ public class KortingContext {
 
         KassaProperties kassaProperties = new KassaProperties();
         if(kortingStrategy.getClass().getName().equalsIgnoreCase("model.kortingen.DrempelKorting")){
-            //TODO makes this for all kortingen so it saves all given values, values atm are just true false rest is hardcoded
-            /*TODO als men drempelkorting aanduidt geeft het een numberformatexception omdat het GR1 wilt opslaan bij de
-            DREMPWELWAARDE (terwijl dat daar eigenlijk niets mee heeft te maken) */
+
             kassaProperties.saveDrempelKorting(kortingprocent,Integer.parseInt(extraWaarde));
         }
         if(kortingStrategy.getClass().getName().equalsIgnoreCase("model.kortingen.DuursteItemKorting")){
