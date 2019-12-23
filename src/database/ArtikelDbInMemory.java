@@ -82,12 +82,12 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
 
 
     //Het saven van eventueel gewijzigde artikels, wat nog niet gebruikt wordt.
-    //Het werkt wel als men het test via een ander uitvoerbestand
     @Override
     public void save(ArrayList<Artikel> artikels) throws DomainException{
         loadSaveStrategy.save(artikels);
     }
 
+    //leest uit de properties file welke strategy er gebruikt wordt
     public void propertiesOpen() throws IOException {
         Properties properties = new Properties();
         InputStream is = new FileInputStream("src/bestanden/properties.properties");
@@ -102,6 +102,7 @@ public class ArtikelDbInMemory implements ArtikelDbStrategy {
         }
     }
 
+    //schrijft in de properties file welke strategy er gebruikt moet worden
     public void propertiesSave(String property) throws IOException {
         FileInputStream in = new FileInputStream("src/bestanden/properties.properties");
         Properties properties = new Properties();

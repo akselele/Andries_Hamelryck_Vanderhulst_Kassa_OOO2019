@@ -2,7 +2,7 @@
 package view;
 
 
-import controller.KassaState.KassaOverviewController;
+import controller.KassaOverviewController;
 import controller.LogController;
 import controller.ProductOverviewController;
 import database.ArtikelDbContext;

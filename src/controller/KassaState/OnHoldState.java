@@ -1,5 +1,6 @@
 package controller.KassaState;
 
+import controller.KassaOverviewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Artikel;
@@ -16,12 +17,10 @@ public class OnHoldState implements State {
     KassaOverviewController kassaOverviewController;
 
 
-    public OnHoldState(KassaOverviewController kassaOverviewController)
-    {
+    public OnHoldState(KassaOverviewController kassaOverviewController) {
         this.kassaOverviewController = kassaOverviewController;
-
-
     }
+
     @Override
     public void addArtikel(Artikel artikel) {
         kassaOverviewController.getArtikels().add(artikel);
@@ -37,7 +36,7 @@ public class OnHoldState implements State {
         Iterator<Artikel> iter = a.iterator();
         Iterator<Artikel> iter2 = artikelIntegerMap.keySet().iterator();
         //Eerst loopen over kassalist en dan voor elke entry in kassalist de stock verminderen in de algemene Map
-        for(Artikel artikel : artikelIntegerMap.keySet()){
+        for (Artikel artikel : artikelIntegerMap.keySet()) {
             kassaOverviewController.getArtikelDbContext().stockAanpas(artikel, artikelIntegerMap.get(artikel));
         }
         aObservable.addAll(a);

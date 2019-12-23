@@ -53,10 +53,7 @@ public class ArtikelDbContext {
         artikelDbStrategy.save(artikels);
     }
 
-    public void toStringTest() {
-        artikelDbStrategy.toStringTest();
-    }
-
+    //returnt alle mogelijke strategieen om bestanden te schrijven en lezen
     public String[] getStrategiesList(){
         List<String> strategiesList = new ArrayList<>();
         for(LoadSaveEnum loadSaveEnum : LoadSaveEnum.values()){

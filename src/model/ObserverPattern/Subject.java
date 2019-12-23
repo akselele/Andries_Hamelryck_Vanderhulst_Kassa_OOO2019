@@ -10,10 +10,10 @@ import java.util.List;
  **/
 
 public interface Subject {
-    public void registerObserver(EventType e, Observer o);
+     void registerObserver(EventType e, Observer o);
 
-    public void unregisterObserver(EventType e, Observer o);
+     void unregisterObserver(EventType e, Observer o);
 
-    public void notifyObserver(EventType e, ObservableList<Artikel> artikels);
-    public void notifyObserver(EventType e, double artikels);
+     void notifyObserver(EventType e, ObservableList<Artikel> artikels);
+     void notifyObserver(EventType e, double artikels);
 }

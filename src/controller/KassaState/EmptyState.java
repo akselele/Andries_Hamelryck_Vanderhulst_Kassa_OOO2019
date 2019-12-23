@@ -1,5 +1,6 @@
 package controller.KassaState;
 
+import controller.KassaOverviewController;
 import model.Artikel;
 import model.ObserverPattern.EventType;
 
@@ -10,8 +11,8 @@ import java.util.Collections;
  **/
 public class EmptyState implements State {
     KassaOverviewController kassaOverviewController;
-    public EmptyState(KassaOverviewController kassaOverviewController)
-    {
+
+    public EmptyState(KassaOverviewController kassaOverviewController) {
         this.kassaOverviewController = kassaOverviewController;
     }
 

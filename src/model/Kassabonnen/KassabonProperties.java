@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class KassabonProperties {
+
+    //returnt de eigenschappen die in de properties file zitten
     public  static Properties load() throws IOException {
         Properties properties = new Properties();
         InputStream is = new FileInputStream("src/bestanden/properties.properties");
@@ -15,6 +17,7 @@ public class KassabonProperties {
         return properties;
     }
 
+    //savet de nieuwe waardes voor welke kassabon moet gemaakt worden in de properties file (in dit geval headerbon)
     public void saveHeader() throws IOException {
         FileInputStream in = new FileInputStream("src/bestanden/properties.properties");
         Properties properties = new Properties();
@@ -29,6 +32,7 @@ public class KassabonProperties {
         out.close();
     }
 
+    //savet de nieuwe waardes voor welke kassabon moet gemaakt worden in de properties file (in dit geval beide)
     public void saveBeide() throws IOException {
         FileInputStream in = new FileInputStream("src/bestanden/properties.properties");
         Properties properties = new Properties();
@@ -43,6 +47,7 @@ public class KassabonProperties {
         out.close();
     }
 
+    //savet de nieuwe waardes voor welke kassabon moet gemaakt worden in de properties file (in dit geval footerbon)
     public void saveFooter() throws IOException {
         FileInputStream in = new FileInputStream("src/bestanden/properties.properties");
         Properties properties = new Properties();

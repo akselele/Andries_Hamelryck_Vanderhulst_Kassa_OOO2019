@@ -1,5 +1,6 @@
 package controller.KassaState;
 
+import controller.KassaOverviewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Artikel;
@@ -30,8 +31,7 @@ public class ActiveState implements State{
         Map<Artikel, Integer> artikelIntegerMap = kassaOverviewController.toMap();
         ObservableList<Artikel> aObservable = FXCollections.observableArrayList();
         ArrayList<Artikel> a = new ArrayList<Artikel>(kassaOverviewController.getArtikelDbContext().getArtikels().values());
-        Iterator<Artikel> iter = a.iterator();
-        Iterator<Artikel> iter2 = artikelIntegerMap.keySet().iterator();
+
         //Eerst loopen over kassalist en dan voor elke entry in kassalist de stock verminderen in de algemene Map
         for(Artikel artikel : artikelIntegerMap.keySet()){
             kassaOverviewController.getArtikelDbContext().stockAanpas(artikel, artikelIntegerMap.get(artikel));

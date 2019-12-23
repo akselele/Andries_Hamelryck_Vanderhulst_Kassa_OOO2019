@@ -1,14 +1,10 @@
-package controller.KassaState;
+package controller;
 
+import controller.KassaState.*;
 import database.ArtikelDbContext;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableView;
 import model.Artikel;
-import model.DomainException;
 import model.Kassabonnen.*;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
@@ -16,11 +12,8 @@ import model.ObserverPattern.Subject;
 import model.WinkelMandje;
 import model.kortingen.KassaProperties;
 import model.kortingen.KortingContext;
-import model.kortingen.KortingFactory;
 import view.panels.LogPane;
-
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -96,7 +89,6 @@ public class KassaOverviewController implements Subject {
         return artikelsHold;
     }
 
-
     public Artikel getArtikel(String code){
         return artikelDbContext.getArtikel(code);
     }
@@ -117,6 +109,8 @@ public class KassaOverviewController implements Subject {
         this.uitkomstHold = uitkomstHold;
     }
 
+
+//Registers to the list of observers
     @Override
     public void registerObserver(EventType e, Observer o) {
         if (observers.get(e) == null){
@@ -129,10 +123,12 @@ public class KassaOverviewController implements Subject {
         }
     }
 
+    //Unregisters from the list of observers
     @Override
     public void unregisterObserver(EventType e, Observer o) {
         this.observers.get(e).remove(o);
     }
+
 
     @Override
     public void notifyObserver(EventType e, ObservableList<Artikel> artikels) {
@@ -148,6 +144,7 @@ public class KassaOverviewController implements Subject {
         }
     }
 
+
     public void verkoop() throws IOException {
         state.verkoop();
     }
@@ -156,6 +153,7 @@ public class KassaOverviewController implements Subject {
         state.cancel();
     }
 
+//returns de uitkomst berekend met korting erbij
     public double getUitkomstKorting() throws IOException {
 
         double uitkomstMetKorting = 0;
@@ -165,6 +163,7 @@ public class KassaOverviewController implements Subject {
         return uitkomstMetKorting;
     }
 
+    //returnt de kassabon
     public String getKassabon() throws IOException {
 
         return kassabonContext.getKassabon(toMap(), getUitkomstKorting(),  uitkomst);
@@ -172,10 +171,12 @@ public class KassaOverviewController implements Subject {
     }
 
 
+    //returnt de gewone uitkomst zonder korting
     public double getUitkomst() {
         return uitkomst;
     }
 
+    //voegt de prijzen toe aan uitkomst van alle artikels uit de lijst
     public void uitkomst(){
         uitkomst = 0;
         for(Artikel artikel : artikels){
@@ -195,7 +196,7 @@ public class KassaOverviewController implements Subject {
         notifyObserver(EventType.KLANTVIEW, uitkomst);
     }
 
-    //TODO Hier moet de korting ook nog bij.
+//maakt een map van de lijst van artikels (zodat ook het aantal makkelijk kan bijgehouden worden)
     public Map<Artikel,Integer> toMap(){
         Map<Artikel, Integer> artikelsMap = new HashMap<>();
         artikelsMap.clear();

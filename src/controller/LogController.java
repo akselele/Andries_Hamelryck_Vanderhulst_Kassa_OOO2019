@@ -8,13 +8,12 @@ public class LogController {
     private String text = "";
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    public LogController(){
-
+    public LogController() {
     }
 
 
-    public void toString(LocalDateTime dt, double bedrag, double korting){
-        text += (dt.format(formatter) + " --> $" + bedrag + " - "  + (bedrag - korting) + "= " + korting + "\n");
+    public void toString(LocalDateTime dt, double bedrag, double korting) {
+        text += (dt.format(formatter) + " --> $" + bedrag + " - " + (bedrag - korting) + "= " + korting + "\n");
     }
 
     public String getText() {

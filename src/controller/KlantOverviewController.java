@@ -31,16 +31,11 @@ import java.util.stream.Collectors;
 public class KlantOverviewController {
     private ObservableMap<Artikel, Integer> artikelsMap;
     private double uitkomst;
-    //private ObservableList<Artikel> artikelsVerkoop;
+
     KortingContext kortingContext = new KortingContext();
 
     public KlantOverviewController() {
-        artikelsMap = FXCollections.observableMap(new TreeMap<Artikel, Integer>(new Comparator<Artikel>() {
-            @Override
-            public int compare(Artikel o1, Artikel o2) {
-                return o1.getOmschrijving().toLowerCase().compareTo(o2.getOmschrijving().toLowerCase());
-            }
-        }));
+        artikelsMap = FXCollections.observableMap(new TreeMap<>(Comparator.comparing(o -> o.getOmschrijving().toLowerCase())));
     }
 
     public void refresh() {
@@ -61,9 +56,7 @@ public class KlantOverviewController {
         }
     }
 
-   /* public ObservableList<Artikel> getArtikelsVerkoop() {
-        return artikelsVerkoop;
-    }*/
+
 
     public ObservableList<Pair<Artikel, Integer>> getArtikels() {
         return toPairList();
@@ -74,8 +67,7 @@ public class KlantOverviewController {
 
 
     }
-    public double getUitkomstKorting()
-    {
+    public double getUitkomstKorting() {
         WinkelMandje mandje = new WinkelMandje(artikelsMap);
         return kortingContext.getTotaleKorting(mandje);
     }
@@ -88,7 +80,7 @@ public class KlantOverviewController {
                 ammount = Collections.frequency(artikels, artikel);
                 artikelsMap.put(artikel, ammount);
             }
-            //List<Artikel> artikelstest = artikels.stream().distinct().collect(Collectors.toList());
+
             ObservableList<Pair<Artikel, Integer>> artikelList = toPairList();
             refresh();
         }
@@ -97,13 +89,12 @@ public class KlantOverviewController {
         }
     }
 
-
+//verandert de map naar een lijst van pairs van artikel en aantal voor handiger gebruik in de ui
     private ObservableList<Pair<Artikel, Integer>> toPairList() {
         ObservableList<Pair<Artikel, Integer>> list = FXCollections.observableArrayList();
         for (Artikel artikel : artikelsMap.keySet()) {
             list.add(new Pair<>(artikel, artikelsMap.get(artikel)));
         }
-        // System.out.println(list.toString());
         return list;
     }
 

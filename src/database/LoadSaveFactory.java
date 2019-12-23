@@ -7,7 +7,7 @@ public class LoadSaveFactory {
     private static LoadSaveFactory loadSaveFactoryUniqueInstance;
 
     private LoadSaveFactory(){ }
-
+//singleton
     public static LoadSaveFactory getInstance(){
         if(loadSaveFactoryUniqueInstance == null){
             loadSaveFactoryUniqueInstance = new LoadSaveFactory();

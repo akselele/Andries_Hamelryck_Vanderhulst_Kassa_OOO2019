@@ -38,9 +38,6 @@ public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate implements LoadS
         } catch (FileNotFoundException ex) {
             throw new DomainException("Fout bij het inlezen", ex);
         }
-//        for(Artikel artikel: artikels){
-//            System.out.println(artikel.toString());
-//        }
         return artikels;
     }
 

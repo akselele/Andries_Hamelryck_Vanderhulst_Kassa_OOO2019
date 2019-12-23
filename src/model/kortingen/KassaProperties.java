@@ -12,26 +12,16 @@ import java.util.Properties;
  **/
 public class KassaProperties {
 
+    //laad de properties file in en returnt deze
     public static Properties load() throws IOException {
         Properties properties = new Properties();
         InputStream is = new FileInputStream("src/bestanden/properties.properties");
         properties.load(is);
         is.close();
-//        if(properties.getProperty("DREMPELKORTING").equalsIgnoreCase("TRUE")){
-//
-//        }
-//        else if(properties.getProperty("GROEPKORTING").equalsIgnoreCase("TRUE")){
-//
-//        }
-//        else if(properties.getProperty("DUURSTEITEMKORTING").equalsIgnoreCase("TRUE")){
-//
-//        }
         return properties;
     }
 
-
-    //TODO VERANDER ALLE NAMEN VAN DE GETPROPERTIES IN DE 3 KORTINGSKLASSEN
-
+    //savet welke korting er moet gegeven worden in de properties file (in dit geval drempelkorting), ook de drempelwaarde en het % van de korting worden bijgehouden
     public void saveDrempelKorting(int korting, int drempelwaarde) throws IOException {
         FileInputStream in = new FileInputStream("src/bestanden/properties.properties");
         Properties properties = new Properties();
@@ -48,6 +38,7 @@ public class KassaProperties {
         out.close();
     }
 
+    //savet welke korting er moet gegeven worden in de properties file(in dit geval groepskorting), ook het % van de korting en de groep waarop wordt bijgehouden
     public void saveGroepKorting(int korting, String groep) throws IOException {
         FileInputStream in = new FileInputStream("src/bestanden/properties.properties");
         Properties properties = new Properties();
@@ -64,6 +55,7 @@ public class KassaProperties {
         out.close();
     }
 
+    //savet welke korting er moet gegeven worden in de properties file (in dit geval duursteitemkorting), ook het % van korting wordt bijgehouden
     public void saveDuursteItemKorting(int korting) throws IOException {
         FileInputStream in = new FileInputStream("src/bestanden/properties.properties");
         Properties properties = new Properties();

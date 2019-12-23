@@ -1,6 +1,6 @@
 package view.panels;
 
-import controller.KassaState.KassaOverviewController;
+import controller.KassaOverviewController;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;

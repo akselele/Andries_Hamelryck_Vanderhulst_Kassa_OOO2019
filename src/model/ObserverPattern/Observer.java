@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface Observer {
 
-    public void update(ObservableList<Artikel> artikels);
+     void update(ObservableList<Artikel> artikels);
 
-    public void update(double uitkomst);
+     void update(double uitkomst);
 }
