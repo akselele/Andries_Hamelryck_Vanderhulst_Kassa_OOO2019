@@ -1,7 +1,7 @@
 package model;
 
 /**
- * @Author Kasper Vanderhulst
+ * @author Kasper Vanderhulst
  **/
 
 public class Artikel {

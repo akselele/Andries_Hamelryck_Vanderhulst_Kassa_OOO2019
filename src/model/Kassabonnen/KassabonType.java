@@ -3,6 +3,11 @@ package model.Kassabonnen;
 import model.kortingen.DrempelKorting;
 import model.kortingen.DuursteItemKorting;
 import model.kortingen.GroepKorting;
+/**
+ @author Axel Hamelryck
+ **/
+
+
 
 public enum KassabonType {
 

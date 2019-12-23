@@ -1,7 +1,7 @@
 package model.kortingen;
 
 /**
- * @Author Kasper Vanderhulst
+ * @author Kasper Vanderhulst
  **/
 
 

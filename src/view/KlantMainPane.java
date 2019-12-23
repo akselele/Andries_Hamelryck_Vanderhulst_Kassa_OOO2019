@@ -12,9 +12,9 @@ import model.ObserverPattern.EventType;
 import view.panels.KlantOverviewPane;
 
 /**
- @Author Axel Hamelryck
- @Author Kasper Vanderhulst
- @Author Noa Andries
+ @author Axel Hamelryck
+ @author Kasper Vanderhulst
+ @author Noa Andries
  **/
 
 public class KlantMainPane extends BorderPane {

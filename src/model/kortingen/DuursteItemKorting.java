@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * @Author Kasper Vanderhulst
- * @Author Noa Andries
+ * @author Kasper Vanderhulst
+ * @author Noa Andries
  **/
 
 

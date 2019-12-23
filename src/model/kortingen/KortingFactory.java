@@ -1,7 +1,7 @@
 package model.kortingen;
 /**
- * @Author Kasper Vanderhulst
- * @Author Noa Andries
+ * @author Kasper Vanderhulst
+ * @author Noa Andries
  **/
 public class KortingFactory {
     private static KortingFactory kortingFactory;

@@ -7,7 +7,7 @@ import model.ObserverPattern.EventType;
 import java.util.Collections;
 
 /**
- * @Author Noa Andries
+ * @author Noa Andries
  **/
 public class EmptyState implements State {
     KassaOverviewController kassaOverviewController;

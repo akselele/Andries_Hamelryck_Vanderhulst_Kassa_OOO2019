@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 /**
- @Author Kasper Vanderhulst
- @Author Noa Andries
+ @author Kasper Vanderhulst
+ @author Noa Andries
  **/
 
 public interface ArtikelDbStrategy {

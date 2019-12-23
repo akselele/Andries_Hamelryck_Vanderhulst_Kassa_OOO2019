@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 /**
- * @Author Noa Andries
- *  @Author Axel Hamelryck
+ * @author Noa Andries
+ * @author Axel Hamelryck
  **/
 
 public class KassabonContext {

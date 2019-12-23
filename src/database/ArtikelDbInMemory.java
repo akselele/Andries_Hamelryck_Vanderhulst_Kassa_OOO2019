@@ -10,8 +10,8 @@ import java.io.*;
 import java.util.*;
 
 /**
- @Author Axel Hamelryck
- @Author Noa Andries
+ @author Axel Hamelryck
+ @author Noa Andries
  **/
 
 public class ArtikelDbInMemory implements ArtikelDbStrategy {

@@ -9,6 +9,12 @@ import model.DomainException;
 import model.ObserverPattern.EventType;
 import model.ObserverPattern.Observer;
 
+/**
+ @author Kasper Vanderhulst
+ @author Axel Hamelryck
+ **/
+
+
 public class KlantView implements Observer {
 	private Stage stage = new Stage();
 	KlantMainPane borderPane = new KlantMainPane();

@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * @Author Kasper Vanderhulst
- * @Author Noa Andries
+ * @author Kasper Vanderhulst
+ * @author Noa Andries
  **/
 
 public class KortingContext {

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 /**
- * @Author Noa Andries
+ * @author Noa Andries
  **/
 public class OnHoldState implements State {
     KassaOverviewController kassaOverviewController;

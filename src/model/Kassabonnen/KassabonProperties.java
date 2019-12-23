@@ -7,9 +7,14 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class KassabonProperties {
+    /**
+     * @author Axel Hamelryck
+     * @author Kasper Vanderhulst
+     **/
+
 
     //returnt de eigenschappen die in de properties file zitten
-    public  static Properties load() throws IOException {
+    public static Properties load() throws IOException {
         Properties properties = new Properties();
         InputStream is = new FileInputStream("src/bestanden/properties.properties");
         properties.load(is);

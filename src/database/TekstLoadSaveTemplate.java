@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- @Author Axel Hamelryck
+ @author Axel Hamelryck
  **/
 
 public abstract class TekstLoadSaveTemplate implements LoadSaveStrategy {

@@ -20,9 +20,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- @Author Axel Hamelryck
- @Author Kasper Vanderhulst
- @Author Noa Andries
+ @author Axel Hamelryck
+ @author Kasper Vanderhulst
+ @author Noa Andries
  **/
 
 public class KlantOverviewPane extends GridPane implements Observer {

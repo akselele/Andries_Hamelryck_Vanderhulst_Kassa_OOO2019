@@ -24,8 +24,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @Author Kasper Vanderhulst
- * @Author Noa Andries
+ * @author Kasper Vanderhulst
+ * @author Noa Andries
  **/
 
 public class KlantOverviewController {

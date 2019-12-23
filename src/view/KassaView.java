@@ -16,6 +16,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ @author Kasper Vanderhulst
+ **/
+
+
 public class KassaView {
 	private Stage stage = new Stage();
 	private KassaMainPane borderPane = new KassaMainPane();

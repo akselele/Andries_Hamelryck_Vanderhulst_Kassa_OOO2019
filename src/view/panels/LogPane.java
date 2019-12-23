@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
- * @Author Noa Andries
+ * @author Noa Andries
  **/
 public class LogPane extends GridPane{
     LogController logController;

@@ -7,8 +7,8 @@ import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Properties;
 /**
- * @Author Noa Andries
- *  @Author Axel Hamelryck
+ * @author Noa Andries
+ * @author Axel Hamelryck
  **/
 
 public class KassabonBeide extends BasisKassabon implements Kassabon {

@@ -4,17 +4,18 @@ import model.kortingen.KortingStrategy;
 import model.kortingen.KortingType;
 
 /**
- @Author Kasper Vanderhulst
+ * @author Kasper Vanderhulst
  **/
 
 
 public class KassabonFactory {
     private static KassabonFactory kassabonFactory;
 
-    private KassabonFactory(){}
+    private KassabonFactory() {
+    }
 
-    public static KassabonFactory getInstance(){
-        if(kassabonFactory == null){
+    public static KassabonFactory getInstance() {
+        if (kassabonFactory == null) {
             kassabonFactory = new KassabonFactory();
         }
         return kassabonFactory;

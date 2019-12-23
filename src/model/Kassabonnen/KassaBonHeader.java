@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 /**
- * @Author Noa Andries
- * @Author Axel Hamelryck
+ * @author Noa Andries
+ * @author Axel Hamelryck
  **/
 
 public class KassaBonHeader extends BasisKassabon implements Kassabon {

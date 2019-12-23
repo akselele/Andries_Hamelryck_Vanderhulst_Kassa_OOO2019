@@ -6,7 +6,7 @@ import model.Artikel;
 import java.util.List;
 
 /**
- @Author Axel Hamelryck
+ @author Axel Hamelryck
  **/
 
 public interface Subject {

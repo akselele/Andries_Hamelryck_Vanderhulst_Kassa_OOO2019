@@ -4,8 +4,8 @@ import model.Artikel;
 
 import java.util.Map;
 /**
- * @Author Noa Andries
- *  @Author Axel Hamelryck
+ * @author Noa Andries
+ * @author Axel Hamelryck
  **/
 
 

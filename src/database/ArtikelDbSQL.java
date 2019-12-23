@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 /**
- @Author Kasper Vanderhulst
+ @author Kasper Vanderhulst
  **/
 
 //Lege sql klasse voor uitbreiding

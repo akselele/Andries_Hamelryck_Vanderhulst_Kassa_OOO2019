@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 /**
- @Author Noa Andries
+ @author Noa Andries
  **/
 public interface LoadSaveStrategy {
 

@@ -9,13 +9,14 @@ import model.ObserverPattern.EventType;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
+
 /**
- * @Author Noa Andries
+ * @author Noa Andries
  **/
-public class ActiveState implements State{
+public class ActiveState implements State {
     KassaOverviewController kassaOverviewController;
-    public ActiveState(KassaOverviewController kassaOverviewController)
-    {
+
+    public ActiveState(KassaOverviewController kassaOverviewController) {
         this.kassaOverviewController = kassaOverviewController;
     }
 
@@ -33,7 +34,7 @@ public class ActiveState implements State{
         ArrayList<Artikel> a = new ArrayList<Artikel>(kassaOverviewController.getArtikelDbContext().getArtikels().values());
 
         //Eerst loopen over kassalist en dan voor elke entry in kassalist de stock verminderen in de algemene Map
-        for(Artikel artikel : artikelIntegerMap.keySet()){
+        for (Artikel artikel : artikelIntegerMap.keySet()) {
             kassaOverviewController.getArtikelDbContext().stockAanpas(artikel, artikelIntegerMap.get(artikel));
         }
         aObservable.addAll(a);

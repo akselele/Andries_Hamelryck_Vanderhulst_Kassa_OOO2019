@@ -6,9 +6,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * @Author Kasper Vanderhulst
- * @Author Axel Hamelryck
- * @Author Noa Andries
+ * @author Kasper Vanderhulst
+ * @author Axel Hamelryck
+ * @author Noa Andries
  **/
 
 

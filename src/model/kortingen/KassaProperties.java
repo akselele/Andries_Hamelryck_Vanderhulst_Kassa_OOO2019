@@ -7,8 +7,8 @@ import java.io.*;
 import java.util.Properties;
 
 /**
- * @Author Kasper Vanderhulst
- * @Author Noa Andries
+ * @author Kasper Vanderhulst
+ * @author Noa Andries
  **/
 public class KassaProperties {
 

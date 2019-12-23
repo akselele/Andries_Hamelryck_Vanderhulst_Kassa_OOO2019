@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- @Author Axel Hamelryck
- @Author Kasper Vanderhulst
- @Author Noa Andries
+ @author Axel Hamelryck
+ @author Kasper Vanderhulst
+ @author Noa Andries
  **/
 
 public class ArtikelTekstLoadSave extends TekstLoadSaveTemplate implements LoadSaveStrategy{

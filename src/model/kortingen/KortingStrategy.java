@@ -3,7 +3,7 @@ package model.kortingen;
 import model.WinkelMandje;
 
 /**
- * @Author Kasper Vanderhulst
+ * @author Kasper Vanderhulst
  **/
 
 

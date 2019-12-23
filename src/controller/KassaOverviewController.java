@@ -17,7 +17,8 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * @Author Noa Andries
+ * @author Noa Andries
+ * @author Kasper Vanderhulst
  **/
 
 public class KassaOverviewController implements Subject {

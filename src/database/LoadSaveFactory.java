@@ -1,7 +1,7 @@
 package database;
 /**
- @Author Noa Andries
- @Author Kasper Vanderhulst
+ @author Noa Andries
+ @author Kasper Vanderhulst
  **/
 public class LoadSaveFactory {
     private static LoadSaveFactory loadSaveFactoryUniqueInstance;

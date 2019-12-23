@@ -5,7 +5,7 @@ import model.Artikel;
 import java.io.IOException;
 
 /**
- * @Author Noa Andries
+ * @author Noa Andries
  **/
 
 public interface State {

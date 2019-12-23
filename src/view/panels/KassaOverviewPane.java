@@ -16,9 +16,9 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- @Author Axel Hamelryck
- @Author Kasper Vanderhulst
- @Author Noa Andries
+ @author Axel Hamelryck
+ @author Kasper Vanderhulst
+ @author Noa Andries
  **/
 
 public class KassaOverviewPane extends GridPane{
